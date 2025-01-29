@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "TestItem", menuName = "Items/TestItem")]
-public class ItemData : ScriptableObject {
+public class Item : ScriptableObject {
     #region Fields
         [SerializeField] private string nameItem;
         [TextArea]
