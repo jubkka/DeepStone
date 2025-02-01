@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1c9292e3a8c0e3b4ab8090eb1e3f32ea, type: 2}
+  m_sharedMaterial: {fileID: 1041454403919592756, guid: 1c9292e3a8c0e3b4ab8090eb1e3f32ea, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 5257447949048831256}
   - component: {fileID: 3458724732341685313}
   - component: {fileID: 6823687857170664608}
-  - component: {fileID: -7719466410231230772}
+  - component: {fileID: 708037887620332702}
   m_Layer: 5
   m_Name: ItemUI
   m_TagString: Untagged
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4073954384835129369, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-7719466410231230772
+--- !u!114 &708037887620332702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,9 +220,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4747741621152434271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9167e2add63a204c9e6826d6e2710d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 7812cdd1844a49742a555b11c8c678df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 6823687857170664608}
-  count: {fileID: 5992981036726189624}
-  parentBeforeDrag: {fileID: 0}
+  TMP: {fileID: 5992981036726189624}
+  icon: {fileID: 6823687857170664608}
+  inventory: {fileID: 0}
+  index: 0
+  beforeDragParent: {fileID: 0}
+  afterDragParent: {fileID: 0}
+  dragContainer: {fileID: 0}
