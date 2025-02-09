@@ -3,11 +3,10 @@ using UnityEngine;
 public class InventoryTesting : MonoBehaviour
 {
     [SerializeField] private InventoryComponent inventory;
-    public Item simpleItem;
-    public Item stackItem;
+    public ItemData simpleItem;
+    public ItemData stackItem;
     public int amount;
-    public int stack;
 
-    public void SimpleAddToInventory() => inventory.AddItem(new ItemSlot(simpleItem, amount), stack);
-    public void StackAddToInventory() => inventory.AddItem(new ItemSlot(stackItem, amount), stack);
+    public void SimpleAddToInventory() => inventory.AddItem(new Item(simpleItem, amount));
+    public void StackAddToInventory() => inventory.AddItem(new Item(stackItem, amount));
 }

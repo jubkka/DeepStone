@@ -174,8 +174,8 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 0
-        y: 0
+        x: 1
+        y: 1
         width: 158
         height: 24
       spriteId: 960ef69577703e54888372f8f7778712
@@ -233,4 +233,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 158, y: 24}
+  canvasSize: {x: 160, y: 26}

@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -11.4, y: 5.5}
-  m_SizeDelta: {x: 27.258, y: 16.8333}
+  m_AnchoredPosition: {x: -10, y: 10}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2463501468590631304
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c9292e3a8c0e3b4ab8090eb1e3f32ea, type: 2}
   m_sharedMaterial: {fileID: 1041454403919592756, guid: 1c9292e3a8c0e3b4ab8090eb1e3f32ea, type: 2}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -145,9 +145,9 @@ GameObject:
   - component: {fileID: 5257447949048831256}
   - component: {fileID: 3458724732341685313}
   - component: {fileID: 6823687857170664608}
-  - component: {fileID: 708037887620332702}
+  - component: {fileID: 1015758122910957788}
   m_Layer: 5
-  m_Name: ItemUI
+  m_Name: InventoryItemUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,8 +170,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.6695, y: 0.6694}
-  m_SizeDelta: {x: 62.3223, y: 61.802}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3458724732341685313
 CanvasRenderer:
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &708037887620332702
+--- !u!114 &1015758122910957788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,13 +220,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4747741621152434271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7812cdd1844a49742a555b11c8c678df, type: 3}
+  m_Script: {fileID: 11500000, guid: d689e3be3e7d3d24f8ce0d30f4518666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TMP: {fileID: 5992981036726189624}
   icon: {fileID: 6823687857170664608}
-  inventory: {fileID: 0}
+  gear: {fileID: 0}
   index: 0
+  alphaInDrag: 0.7
   beforeDragParent: {fileID: 0}
   afterDragParent: {fileID: 0}
   dragContainer: {fileID: 0}
