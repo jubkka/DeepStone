@@ -4,8 +4,10 @@ public class HotbarManager : GearManager
 
     public override bool AddItem(Item item, int index)
     {
+        if (item == null) return false;
+        
         storage.SetItem(item, index);
-        InvokeItemAdded(index);
+        InvokeItemChanged(index);
 
         return true;
     }
@@ -15,7 +17,7 @@ public class HotbarManager : GearManager
         if (storage.Items[index] == null) return false;
 
         storage.Items[index] = new Item();
-        InvokeItemAdded(index);
+        InvokeItemChanged(index);
 
         return true;
     }
@@ -40,8 +42,8 @@ public class HotbarManager : GearManager
 
         if (moveCommand.Execute(storage.Items)) 
         {
-            InvokeItemAdded(fromIndex);
-            InvokeItemAdded(targetIndex);
+            InvokeItemChanged(fromIndex);
+            InvokeItemChanged(targetIndex);
             return true;
         }
 

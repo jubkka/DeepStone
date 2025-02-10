@@ -23,7 +23,7 @@ public class InventoryManager : GearManager
         if (storage.Items[index] == null) return false;
 
         storage.Items[index] = new Item();
-        InvokeItemAdded(index);
+        InvokeItemChanged(index);
 
         return true;
     }
@@ -51,7 +51,7 @@ public class InventoryManager : GearManager
                     item.Amount -= countToPut;
 
                     added = true;
-                    InvokeItemAdded(index);
+                    InvokeItemChanged(index);
                 }
             }
 
@@ -76,7 +76,7 @@ public class InventoryManager : GearManager
             item.Amount -= countToPut;
 
             added = true;
-            InvokeItemAdded(index);
+            InvokeItemChanged(index);
         }
 
         return added;
@@ -105,8 +105,8 @@ public class InventoryManager : GearManager
 
         if (moveCommand.Execute(storage.Items)) 
         {
-            InvokeItemAdded(fromIndex);
-            InvokeItemAdded(targetIndex);
+            InvokeItemChanged(fromIndex);
+            InvokeItemChanged(targetIndex);
             return true;
         }
 

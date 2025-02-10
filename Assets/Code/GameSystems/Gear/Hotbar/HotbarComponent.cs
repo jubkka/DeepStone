@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class HotbarComponent : GearComponent
 {
+    public InventoryComponent inventory;
     private void Awake() => Initialize();
 
     protected override void Initialize()
@@ -10,9 +11,10 @@ public class HotbarComponent : GearComponent
         manager = new HotbarManager(storage);
         uiManager = GetComponent<GearUIComponent>();
 
+        inventory.OnItemRemoved += HandleItemRemoved;
+
         base.Initialize();
     }
-
     public override void AddItem(Item item, int index)
     {
         if (manager.AddItem(item, index)) 
@@ -25,12 +27,17 @@ public class HotbarComponent : GearComponent
         if (manager.RemoveItem(index)) Debug.Log("Item delete from hotbar");
         else Debug.Log("Item not delete from hotbar");
     }
-
+    private void HandleItemRemoved(Item item) 
+    {
+        for (int i = 0; i < storage.Items.Length; i++)
+        {
+            if (storage.Items[i] == item) RemoveItem(i);
+        }
+    }
     public override bool MoveItems(int fromIndex, int targetIndex)
     {
         return manager.MoveItems(fromIndex, targetIndex);
     }
-
     public override bool ContainsItem(Item item, out int existingIndex) 
     {
         for (int i = 0; i < storage.Items.Length; i++)
@@ -47,5 +54,4 @@ public class HotbarComponent : GearComponent
 
         return false;
     }
-
 }

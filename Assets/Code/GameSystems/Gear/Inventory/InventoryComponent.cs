@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class InventoryComponent : GearComponent 
 {
+    public event Action<Item> OnItemRemoved;
+
     protected void Awake() => Initialize();
 
     protected override void Initialize()
@@ -22,7 +25,13 @@ public class InventoryComponent : GearComponent
     }
     public override void RemoveItem(int index)
     {
-        if (manager.RemoveItem(index)) Debug.Log("Item delete from inventory");
+        Item removedItem = storage.Items[index];
+
+        if (manager.RemoveItem(index)) 
+        {
+            Debug.Log("Item delete from inventory");
+            OnItemRemoved?.Invoke(removedItem);
+        }
         else Debug.Log("Item not delete from inventory");
     }
 

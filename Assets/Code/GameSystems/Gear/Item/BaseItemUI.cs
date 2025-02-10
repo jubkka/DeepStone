@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,6 +6,7 @@ using UnityEngine.UI;
 public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerClickHandler
 {
     #region Varibales
+    
         [Header("Game Objects")]
         protected TextMeshProUGUI TMP;
         protected Image icon;
@@ -29,7 +29,7 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
             TMP = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             icon = GetComponent<Image>();
         }
-        public void Initialize(Item item, int index) 
+        public virtual void Initialize(Item item, int index) 
         {
             this.index = index;
             this.item = item;
@@ -38,7 +38,7 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
             
             UpdateItem();
         }
-        public void OnBeginDrag(PointerEventData eventData)
+        public virtual void OnBeginDrag(PointerEventData eventData)
         {
             ChangeStateIcon(false, alphaInDrag);
     
@@ -49,7 +49,7 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
         {
             transform.position = eventData.position;
         }
-        public void OnEndDrag(PointerEventData eventData) 
+        public virtual void OnEndDrag(PointerEventData eventData) 
         {
             SetTransformParent(beforeDragParent);
             ChangeStateIcon(true, 1f);
@@ -58,7 +58,7 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
         {
             if (eventData.button == PointerEventData.InputButton.Right) Debug.Log("Right click!");
         }
-        protected void UpdateItem()
+        protected virtual void UpdateItem()
         {
             icon.sprite = item.data.GetIcon;
             TMP.text = item.data.IsStackable ? item.Amount.ToString() : "";

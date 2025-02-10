@@ -1,22 +1,25 @@
 public class InventoryItemUI : BaseItemUI
 {
-    public override void HandleDrop(GearComponent hotbar)
+    public override void HandleDrop(GearComponent gear)
     {
         if (!afterDragParent.TryGetComponent(out SlotUI slot)) return;
 
+        int targetIndex = afterDragParent.GetSiblingIndex();
+
         if (slot.slotType == SlotType.Inventory) 
         {
-            int targetIndex = afterDragParent.GetSiblingIndex();
-
             gear.MoveItems(index, targetIndex);
         } 
+        else if (slot.slotType == SlotType.Equipment) 
+        {
+            gear.AddItem(item, targetIndex);
+            this.gear.RemoveItem(index);
+        }
         else if (slot.slotType == SlotType.Hotbar) 
         {
-            int targetIndex = afterDragParent.GetSiblingIndex();
-
-            if (hotbar.ContainsItem(item, out int existingIndex)) hotbar.MoveItems(existingIndex, targetIndex);
+            if (gear.ContainsItem(item, out int existingIndex)) gear.MoveItems(existingIndex, targetIndex);
             
-            hotbar.AddItem(item, targetIndex);
+            gear.AddItem(item, targetIndex);
         }
     }
 }

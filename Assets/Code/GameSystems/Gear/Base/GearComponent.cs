@@ -5,7 +5,7 @@ public abstract class GearComponent : MonoBehaviour
 {
     public int maxSize = 1;
     public event Action<int> OnItemChanged;
-
+    public event Action<bool> OnEquipmentChanged;
     [SerializeField] protected GearStorage storage;
     protected GearManager manager;
     protected GearUIComponent uiManager;
@@ -14,7 +14,7 @@ public abstract class GearComponent : MonoBehaviour
     {
         for (int index = 0; index < storage.Items.Length; index++) storage.Items[index] = new Item(); 
 
-        manager.OnItemAdded += NotifyItemChanged;
+        manager.OnItemChanged += NotifyItemChanged;
 
         uiManager.Initialize();
     }
@@ -22,7 +22,7 @@ public abstract class GearComponent : MonoBehaviour
     public abstract void AddItem(Item item, int index); 
     public abstract void RemoveItem(int index);
     public abstract bool MoveItems(int fromIndex, int targetIndex); 
-
+    public void NotifyItemEquiped(bool state) => OnEquipmentChanged?.Invoke(state);
     public void NotifyItemChanged(int index) => OnItemChanged?.Invoke(index);
     public Item GetItem(int index) => IsValidIndex(index) ? storage.Items[index] : null;
     public bool IsValidIndex(int index) => index >= 0 && index < storage.Items.Length;
