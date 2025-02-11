@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.AI;
 
 public class StackItemsCommand : IMoveCommand
 {
@@ -16,7 +17,8 @@ public class StackItemsCommand : IMoveCommand
 
         if (items[fromIndex].data.GetId == items[targetIndex].data.GetId) 
         {
-            int maxStackSize = items[targetIndex].data.GetMaxStackSize;
+            int maxStackSize = items[targetIndex].GetMaxStackSize;
+
             int amountToMove = Math.Min(items[fromIndex].Amount, maxStackSize - items[targetIndex].Amount);
 
             if (amountToMove > 0) 

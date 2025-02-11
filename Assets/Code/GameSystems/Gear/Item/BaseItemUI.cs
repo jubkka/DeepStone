@@ -29,7 +29,7 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
             TMP = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             icon = GetComponent<Image>();
         }
-        public virtual void Initialize(Item item, int index) 
+        public void Initialize(Item item, int index) 
         {
             this.index = index;
             this.item = item;
@@ -38,7 +38,7 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
             
             UpdateItem();
         }
-        public virtual void OnBeginDrag(PointerEventData eventData)
+        public void OnBeginDrag(PointerEventData eventData)
         {
             ChangeStateIcon(false, alphaInDrag);
     
@@ -49,7 +49,7 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
         {
             transform.position = eventData.position;
         }
-        public virtual void OnEndDrag(PointerEventData eventData) 
+        public void OnEndDrag(PointerEventData eventData) 
         {
             SetTransformParent(beforeDragParent);
             ChangeStateIcon(true, 1f);
@@ -58,10 +58,10 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
         {
             if (eventData.button == PointerEventData.InputButton.Right) Debug.Log("Right click!");
         }
-        protected virtual void UpdateItem()
+        protected void UpdateItem()
         {
             icon.sprite = item.data.GetIcon;
-            TMP.text = item.data.IsStackable ? item.Amount.ToString() : "";
+            TMP.text = item.data is StackableItemData ? item.Amount.ToString() : "";
         }
         protected void SetTransformParent(Transform newParent)
         {

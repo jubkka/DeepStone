@@ -9,18 +9,22 @@ public class InventoryComponent : GearComponent
 
     protected override void Initialize()
     {
-        storage = new InventoryStorage(maxSize);
+        storage = new GearStorage(maxSize);
         manager = new InventoryManager(storage);
-        uiManager = GetComponent<InventoryUIManager>();
+        uiManager = GetComponent<GearUIComponent>();
 
         base.Initialize();
     }
 
-    public override void AddItem(Item item, int index = 0) 
+    public override void AddItem(Item item, int index = -1) 
     { 
         if (manager.AddItem(item, index)) 
         {
-            Debug.Log("Add item in inventory: " + item.data.GetName);
+            Debug.Log($"Add item in inventory: {item.data.GetName} in slot by index {index}" );
+        }
+        else 
+        {
+            Debug.Log($"Fail add item in inventory: {item.data.GetName} in slot by index {index}");
         }
     }
     public override void RemoveItem(int index)
@@ -29,13 +33,16 @@ public class InventoryComponent : GearComponent
 
         if (manager.RemoveItem(index)) 
         {
-            Debug.Log("Item delete from inventory");
+            Debug.Log($"Item delete from inventory from index {index}");
             OnItemRemoved?.Invoke(removedItem);
         }
-        else Debug.Log("Item not delete from inventory");
+        else
+        {
+            Debug.Log($"Item not delete from inventory by index {index}");
+        }
     }
 
-    public override bool MoveItems(int fromIndex, int targetIndex) 
+    public override bool MoveItems(int fromIndex, int targetIndex) // убрать bool
     {
         if (manager.MoveItems(fromIndex, targetIndex)) return true;
         return false;

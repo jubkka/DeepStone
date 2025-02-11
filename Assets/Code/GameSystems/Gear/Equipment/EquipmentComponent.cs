@@ -6,7 +6,7 @@ public class EquipmentComponent : GearComponent
 
     protected override void Initialize()
     {
-        storage = new EquipmentStorage(maxSize);
+        storage = new GearStorage(maxSize);
         manager = new EquipmentManager(storage);
         uiManager = GetComponent<GearUIComponent>();
 
@@ -18,7 +18,6 @@ public class EquipmentComponent : GearComponent
         if (manager.AddItem(item, index)) 
         {
             Debug.Log("Add item in equipment: " + item.data.GetName + " In slot index: " + index);
-            NotifyItemEquiped(false);
         }
     }
     public override void RemoveItem(int index)
@@ -26,7 +25,6 @@ public class EquipmentComponent : GearComponent
         if (manager.RemoveItem(index)) 
         {
             Debug.Log("Remove item from equipment slot index: " + index);
-            NotifyItemEquiped(true);
         }
     }
 

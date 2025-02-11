@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class GearUIComponent : MonoBehaviour
+public class GearUIComponent : MonoBehaviour
 {
     [SerializeField] protected GearComponent gear;
     [SerializeField] protected Transform slotsParent;
@@ -8,8 +8,10 @@ public abstract class GearUIComponent : MonoBehaviour
     [SerializeField] protected GameObject itemUIPrefab;
     [SerializeField] protected BaseItemUI[] itemUIs;
 
-    public virtual void Initialize()
+    public void Initialize()
     {
+        gear = GetComponent<GearComponent>();
+
         itemUIs = new BaseItemUI[gear.maxSize];
 
         gear.OnItemChanged += UpdateSlotUI;

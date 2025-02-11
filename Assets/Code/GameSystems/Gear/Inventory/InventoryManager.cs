@@ -5,18 +5,20 @@ public class InventoryManager : GearManager
     public InventoryManager(GearStorage storage) : base(storage) {}
     public override bool AddItem(Item item, int index) 
     {
-        if (item.data.IsStackable)
+        if (item.data is StackableItemData)
         {
             bool stacked = StackItem(item);
+            
             if (item.Amount > 0) 
             {
-                bool placed = PlaceItem(item);
-                return stacked || placed; // true если хоть что-то добавилось
+                bool placed = PlaceItem(item, index);
+                return placed || stacked;
             }
+
             return stacked;
         }
     
-        return PlaceItem(item);
+        return PlaceItem(item, index);
     }
     public override bool RemoveItem(int index)
     {
@@ -39,11 +41,11 @@ public class InventoryManager : GearManager
             
             bool match = !itemInInv.IsEmpty && //Пустая ли ячейка
                 itemInInv.data.GetId == item.data.GetId && // Такого же типа предмет
-                itemInInv.Amount < item.data.GetMaxStackSize; // есть еще место в стаке
+                itemInInv.Amount < item.GetMaxStackSize; // есть еще место в стаке
 
             if (match) 
             {
-                int countToPut = Math.Min(item.Amount, itemInInv.data.GetMaxStackSize - itemInInv.Amount); //кладем не больше лимита размера стака
+                int countToPut = Math.Min(item.Amount, itemInInv.GetMaxStackSize - itemInInv.Amount); //кладем не больше лимита размера стака
 
                 if (countToPut > 0) 
                 {
@@ -59,27 +61,35 @@ public class InventoryManager : GearManager
 
         return added;
     }
-    private bool PlaceItem(Item item) 
+    private bool PlaceItem(Item item, int index) 
     {
-        bool added = false;
+        bool added = index != -1 && //Индекс не должен быть отрицательным
+            storage.GetItem(index).data == null && // В слоте не должен быть предмет
+            PlaceItemByIndex(item, index); //Размещаем
 
         while (item.Amount > 0)
         {
-            int index = Array.FindIndex(storage.Items, item => item != null && item.IsEmpty); //Ищем индекс пустой ячейки в инвентаре
+            int freeIndex = Array.FindIndex(storage.Items, item => item != null && item.IsEmpty); //Ищем индекс пустой ячейки в инвентаре
+            
+            if (freeIndex == -1) break;
 
-            if (index == -1) break;
-
-            int countToPut = Math.Min(item.Amount, item.data.GetMaxStackSize);
-
-            Item newItem = new Item(item.data, countToPut);
-            storage.SetItem(newItem, index);
-            item.Amount -= countToPut;
-
-            added = true;
-            InvokeItemChanged(index);
+            added = PlaceItemByIndex(item, freeIndex);
         }
 
         return added;
+    }
+    private bool PlaceItemByIndex(Item item, int index) 
+    {
+        int maxStackSize = item.GetMaxStackSize;
+
+        int countToPut = Math.Min(item.Amount, maxStackSize);
+        Item newItem = new Item(item.data, countToPut);
+        storage.SetItem(newItem, index);
+        item.Amount -= countToPut;
+
+        InvokeItemChanged(index);
+
+        return true;
     }
     public override bool MoveItems(int fromIndex, int targetIndex) 
     {

@@ -10,6 +10,15 @@ public class Item
     public string GetUniqueId => uniqueId;
     public bool IsEmpty { get => data == null; }
 
+    public int GetMaxStackSize 
+    {
+        get 
+        {
+            if (data is StackableItemData stackableItem) return stackableItem.GetMaxStackSize;
+            else return 1; 
+        }
+    }
+
     public int Amount 
     {
         get

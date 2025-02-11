@@ -12,6 +12,8 @@ public class InventoryItemUI : BaseItemUI
         } 
         else if (slot.slotType == SlotType.Equipment) 
         {
+            if (!CanEquipArmor(slot)) return;
+
             gear.AddItem(item, targetIndex);
             this.gear.RemoveItem(index);
         }
@@ -21,5 +23,15 @@ public class InventoryItemUI : BaseItemUI
             
             gear.AddItem(item, targetIndex);
         }
+    }
+
+    private bool CanEquipArmor(SlotUI slot) 
+    {
+        if (item.data is ArmorData armor) 
+        {
+            return armor.GetArmorType == slot.armorType;
+        }
+
+        return false;
     }
 }

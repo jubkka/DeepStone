@@ -166,3 +166,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gear: {fileID: 0}
   slotType: 1
+  armorType: 0

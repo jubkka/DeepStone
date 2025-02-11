@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public enum SlotType { Inventory, Equipment, Hotbar } 
 public class SlotUI : MonoBehaviour, IDropHandler
 {
     public GearComponent gear;
     public SlotType slotType;
+    public ArmorType armorType;
 
     public virtual void OnDrop(PointerEventData eventData) 
     {

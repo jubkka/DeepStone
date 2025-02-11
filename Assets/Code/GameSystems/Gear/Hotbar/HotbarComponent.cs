@@ -7,7 +7,7 @@ public class HotbarComponent : GearComponent
 
     protected override void Initialize()
     {
-        storage = new HotbarStorage(maxSize);
+        storage = new GearStorage(maxSize);
         manager = new HotbarManager(storage);
         uiManager = GetComponent<GearUIComponent>();
 
