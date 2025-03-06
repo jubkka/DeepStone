@@ -122,5 +122,4 @@ public class InventoryManager : GearManager
 
         return false;
     }
-
 }

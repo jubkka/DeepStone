@@ -3,8 +3,8 @@ using UnityEngine;
 public class HotbarComponent : GearComponent
 {
     public InventoryComponent inventory;
-    private void Awake() => Initialize();
 
+    private void Awake() => Initialize();
     protected override void Initialize()
     {
         storage = new GearStorage(maxSize);
@@ -15,12 +15,16 @@ public class HotbarComponent : GearComponent
 
         base.Initialize();
     }
-    public override void AddItem(Item item, int index)
+    public override bool AddItem(Item item, int index)
     {
         if (manager.AddItem(item, index)) 
         {
             Debug.Log("Add item in hotbar: " + item.data.GetName + " In slot index: " + index);
+            return true;
         }
+
+        Debug.Log("Fail add item in equipment: " + item.data.GetName + " In slot index: " + index);
+        return false;
     }
     public override void RemoveItem(int index)
     {

@@ -8,6 +8,8 @@ public class EquipmentItemUI : BaseItemUI
 
         if (slot.slotType == SlotType.Inventory) 
         {
+            if (targetGear.IsFull()) return;
+
             targetGear.AddItem(item, targetIndex);
             gear.RemoveItem(index);
         } 

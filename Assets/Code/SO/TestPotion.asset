@@ -15,7 +15,7 @@ MonoBehaviour:
   nameItem: TestPotion
   description: 
   icon: {fileID: -4073954384835129369, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
-  id: 1
+  id: 0
   weight: 1
   cost: 1
   maxStackSize: 5

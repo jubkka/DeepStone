@@ -5,7 +5,7 @@ public class InventoryComponent : GearComponent
 {
     public event Action<Item> OnItemRemoved;
 
-    protected void Awake() => Initialize();
+    protected void Start() => Initialize();
 
     protected override void Initialize()
     {
@@ -16,16 +16,15 @@ public class InventoryComponent : GearComponent
         base.Initialize();
     }
 
-    public override void AddItem(Item item, int index = -1) 
+    public override bool AddItem(Item item, int index = -1) 
     { 
         if (manager.AddItem(item, index)) 
         {
             Debug.Log($"Add item in inventory: {item.data.GetName} in slot by index {index}" );
+            return true;
         }
-        else 
-        {
-            Debug.Log($"Fail add item in inventory: {item.data.GetName} in slot by index {index}");
-        }
+        Debug.Log($"Fail add item in inventory: in slot by index {index}");
+        return false;
     }
     public override void RemoveItem(int index)
     {

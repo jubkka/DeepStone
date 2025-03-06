@@ -142,7 +142,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: TestSword
+  - name: SwordTest
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -151,8 +151,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 37
       y: 113
-      width: 16
-      height: 16
+      width: 15
+      height: 15
     spriteID: b0cc64b862e28394b93a0025d716baaa
     spriteBone: []
     spriteOutline: []
@@ -162,17 +162,17 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: TestPotion
+  - name: PotionTest
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 20
-      y: 113
-      width: 16
-      height: 16
+      x: 22
+      y: 114
+      width: 12
+      height: 13
     spriteID: fdabeba405016e342b75205f1ae7e26d
     spriteBone: []
     spriteOutline: []
@@ -182,18 +182,138 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: TestHelmet
+  - name: HelmetTest
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 53
+      x: 4
       y: 115
       width: 15
       height: 13
     spriteID: 1de3f50fd69d7304c8e67d17b67f6e4d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: PantsTest
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 38
+      y: 128
+      width: 12
+      height: 13
+    spriteID: 71ed14bdb9bace440ad88dcec2429560
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: BootsTest
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 22
+      y: 130
+      width: 14
+      height: 11
+    spriteID: 173d9ff75789c3e498151c7de652f4ae
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Chestplate
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 5
+      y: 129
+      width: 14
+      height: 13
+    spriteID: 66d5803409f2853489444f3d3b61566a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: NecklaceTest
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 144
+      width: 15
+      height: 16
+    spriteID: 2f089723823cbeb488396f10eef3a406
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: RingTest
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 23
+      y: 146
+      width: 11
+      height: 11
+    spriteID: 7cd6cd7733e39b84fb18c415a2948dd8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: HelmetTest2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 146
+      width: 15
+      height: 13
+    spriteID: 30273da1a7b64b44482c7dc957ddf980
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -217,7 +337,7 @@ ScriptedImporter:
         x: 0
         y: 4
         width: 126
-        height: 123
+        height: 156
       spriteId: 5bd2d03a53f61ed498c4cb562735c3da
     linkedCells: []
     parentIndex: -1
@@ -273,4 +393,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 128, y: 128}
+  canvasSize: {x: 128, y: 160}

@@ -1,9 +1,10 @@
 public enum ArmorType 
 {
+    _,
     Helmet,
     Chestplate,
-    Pants,
     Boots,
+    Mantle,
     Ring,
     Necklace
 }

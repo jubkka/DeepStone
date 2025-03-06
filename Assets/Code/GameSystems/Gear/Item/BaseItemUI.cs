@@ -15,7 +15,7 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
         [Header("Properties")]
         public int index;
         [SerializeField] protected float alphaInDrag = 0.7f;
-        protected Item item;
+        [SerializeField] protected Item item;
     
         [Header("DragAndDrop")]
         public Transform beforeDragParent;
@@ -54,9 +54,10 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
             SetTransformParent(beforeDragParent);
             ChangeStateIcon(true, 1f);
         }
-        public void OnPointerClick(PointerEventData eventData) 
+        public virtual void OnPointerClick(PointerEventData eventData) 
         {
-            if (eventData.button == PointerEventData.InputButton.Right) Debug.Log("Right click!");
+            if (eventData.button == PointerEventData.InputButton.Right) item.data.Use();
+            else if (eventData.button == PointerEventData.InputButton.Middle) Drop();
         }
         protected void UpdateItem()
         {

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5527293255210554629}
   - component: {fileID: 9027751837843413604}
-  - component: {fileID: 7013138953701757320}
-  - component: {fileID: 2073388115390592074}
+  - component: {fileID: 636683789925941257}
+  - component: {fileID: 8503539725830318492}
   m_Layer: 5
   m_Name: Inventoryslot
   m_TagString: Untagged
@@ -46,21 +46,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2590422606591152993}
   m_CullTransparentMesh: 1
---- !u!114 &7013138953701757320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2590422606591152993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 039bab941d1bdd243b046ed178e6ae71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gear: {fileID: 0}
-  slotType: 0
---- !u!114 &2073388115390592074
+--- !u!114 &636683789925941257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,14 +59,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7262706450492718537, guid: 58cfccd5918ace54d878dd20c5e11fa5, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -90,3 +76,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8503539725830318492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2590422606591152993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c299cae74fa437f4591adde8172f997d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gear: {fileID: 0}
+  slotType: 0

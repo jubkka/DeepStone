@@ -1,31 +1,53 @@
 public class InventoryItemUI : BaseItemUI
 {
-    public override void HandleDrop(GearComponent gear)
+    public override void HandleDrop(GearComponent targetGear)
     {
         if (!afterDragParent.TryGetComponent(out SlotUI slot)) return;
 
         int targetIndex = afterDragParent.GetSiblingIndex();
 
-        if (slot.slotType == SlotType.Inventory) 
+        switch (slot.slotType)
         {
-            gear.MoveItems(index, targetIndex);
-        } 
-        else if (slot.slotType == SlotType.Equipment) 
-        {
-            if (!CanEquipArmor(slot)) return;
-
-            gear.AddItem(item, targetIndex);
-            this.gear.RemoveItem(index);
-        }
-        else if (slot.slotType == SlotType.Hotbar) 
-        {
-            if (gear.ContainsItem(item, out int existingIndex)) gear.MoveItems(existingIndex, targetIndex);
-            
-            gear.AddItem(item, targetIndex);
+            case SlotType.Equipment:
+                HandleEquipmentDrop(targetGear, targetIndex, slot);
+                break;
+            case SlotType.Inventory:
+                targetGear.MoveItems(index, targetIndex);
+                break;
+            case SlotType.Hotbar:
+                HandleHotbarDrop(targetGear, targetIndex);
+                break;
         }
     }
+    private void HandleHotbarDrop(GearComponent targetGear, int targetIndex)
+    {
+        if (targetGear.ContainsItem(item, out int existingIndex)) 
+        targetGear.MoveItems(existingIndex, targetIndex);
+    
+        targetGear.AddItem(item, targetIndex);
+    }
+    //Костыльный метод, но по другому не знаю как сделать, будущий я разберется.
+    private void HandleEquipmentDrop(GearComponent targetGear, int targetIndex, SlotUI slot)
+    {
+        if (!CanEquipArmor((EquipmentSlotUI)slot)) return;
 
-    private bool CanEquipArmor(SlotUI slot) 
+        Item currentItem = item;
+        Item targetItem  = targetGear.GetItem(targetIndex);
+
+        if (targetItem.data == null) //Если слот в экипировке пустой
+        {
+            targetGear.AddItem(currentItem, targetIndex); // Добавляем предмет в экипировку
+            gear.RemoveItem(index); //Удаляем из инвентаря
+        }
+        else 
+        {
+            targetGear.RemoveItem(targetIndex); // Удаляем предмет в слоте экипировки
+            targetGear.AddItem(currentItem, targetIndex); // Добавляем предмет из инвентаря
+            gear.RemoveItem(index);  // Удаляем предмет из инвентаря
+            gear.AddItem(targetItem, index); // Добавляем предмет из экипировки в инвентарь
+        }
+    }
+    private bool CanEquipArmor(EquipmentSlotUI slot) 
     {
         if (item.data is ArmorData armor) 
         {

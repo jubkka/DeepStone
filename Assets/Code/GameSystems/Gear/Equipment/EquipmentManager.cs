@@ -11,6 +11,7 @@ public class EquipmentManager : GearManager
 
         return true;
     }
+
     public override bool RemoveItem(int index)
     {
         if (storage.Items[index] == null) return false;
