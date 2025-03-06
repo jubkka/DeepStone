@@ -11,14 +11,16 @@ public class PatrollingState : State
 
     public override State RunCurrentState()
     {
-        if (!isPatrolling)
-        {
-            return idleState;
-        }
-
         if (patrollingCoroutine == null)
         {
             patrollingCoroutine = StartCoroutine(Patrolling());
+        }
+
+        if (!isPatrolling)
+        {
+            patrollingCoroutine = null;
+            
+            return idleState;
         }
 
         return this;
@@ -33,10 +35,10 @@ public class PatrollingState : State
             enemyMove.MoveToDestination();
             yield return new WaitForSeconds(5);
 
-            if (Random.Range(0, 100) < 10)
+            if (Random.Range(0, 100) < 85)
             {
                 isPatrolling = false;
-                patrollingCoroutine = null;
+                Debug.Log("10 Percent!");
                 yield break;
             }
         }

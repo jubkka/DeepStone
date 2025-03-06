@@ -13,7 +13,7 @@ public class IdleState : State
 
     private State DecideToPatrol() 
     {
-        if (Random.Range(0, 100) == 1) return patrollingState;
+        if (Random.Range(0, 1000) == 1) return patrollingState;
 
         return this;
     }
