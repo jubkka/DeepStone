@@ -14,7 +14,7 @@ public static class InputManager
         {"Left", KeyCode.D},
         {"Right", KeyCode.A},
         {"ToggleInventory", KeyCode.Tab},
-        {"PickUp", KeyCode.E},
+        {"Interact", KeyCode.E},
         {"Attack", KeyCode.Mouse0},
         {"CastSpell", KeyCode.F},
         {"CallMenu", KeyCode.Escape},

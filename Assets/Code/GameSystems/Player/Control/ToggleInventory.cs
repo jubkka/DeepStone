@@ -25,6 +25,8 @@ public class ToggleInventory : MonoBehaviour
         bool isInventoryOpen = inventory.alpha == 0;
 
         inventory.alpha = isInventoryOpen ? 1f : 0f;
+
+        //Переделать в функцию, в событие или еще что нибудь
         playerRotate.enabled = !isInventoryOpen;
         playerMovement.enabled = !isInventoryOpen;
 

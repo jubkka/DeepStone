@@ -13,7 +13,7 @@ public class ItemPicker : MonoBehaviour
 
     private void Awake()
     {
-        pickUpKey = InputManager.GetKey("PickUp");
+        pickUpKey = InputManager.GetKey("Interact");
         interactRay.Distance = distance;
     }
     private void Update()
