@@ -5,6 +5,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private float speed = 1;
 
+    private void Start()
+    {
+        characterController = GameObject.FindWithTag("Player").GetComponent<CharacterController>();   
+    }
+
     private void Update() 
     {
         Move();

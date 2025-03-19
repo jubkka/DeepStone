@@ -20,9 +20,9 @@ public class HotbarInputControl : MonoBehaviour
     {
         if (Input.anyKeyDown) 
         {
-            for (int i = 0; i < InputManager.GetKeyCodesHotbar.Count; i++)
+            for (int i = 0; i < KeysManager.GetKeyCodesHotbar.Count; i++)
             {
-                if (Input.GetKeyDown(InputManager.GetKeyCodesHotbar[i])) 
+                if (Input.GetKeyDown(KeysManager.GetKeyCodesHotbar[i])) 
                 {
                     activeSlot = i;
                 }

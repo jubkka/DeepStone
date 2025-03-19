@@ -14,7 +14,7 @@ public class ControlMenu : MonoBehaviour
 
     public void CallMenu(bool isClick)
     {
-        if (!Input.GetKeyDown(InputManager.GetKey("CallMenu")) && !isClick) return;
+        if (!Input.GetKeyDown(KeysManager.GetKey("CallMenu")) && !isClick) return;
 
         isMenuOpen = !isMenuOpen;
 

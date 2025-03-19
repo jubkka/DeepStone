@@ -5,26 +5,28 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
     [SerializeField] private float duration;
+
+    private BoxCollider boxCollider;
     private Transform door;
     private Coroutine coroutine;
 
     private void Start()
     {  
        door = transform.parent; 
+       boxCollider = transform.parent.GetComponent<BoxCollider>();
     }
 
-    public void Open()
+    public void Interact()
     {
         if (coroutine == null)
-            coroutine = StartCoroutine(SmoothMovementDoor(90));
-    }
+        {
+            float targetAngle = transform.rotation.y > 0 ? -90f : 90f;
+            boxCollider.enabled = transform.rotation.y > 0 ? true : false;
 
-    public void Close() 
-    {
-        if (coroutine == null)
-            coroutine = StartCoroutine(SmoothMovementDoor(-90));
+            coroutine = StartCoroutine(SmoothMovementDoor(targetAngle));
+        }
     }
-
+    
     public IEnumerator SmoothMovementDoor(float targetAngle)
     {
         Quaternion startRotation = door.transform.rotation;
@@ -35,6 +37,7 @@ public class DoorController : MonoBehaviour
         {
             door.transform.rotation = Quaternion.Lerp(startRotation, endRotation, timeElapsed / duration);
             timeElapsed += Time.deltaTime;
+
             yield return null;
         }
 

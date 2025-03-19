@@ -10,7 +10,7 @@ public class ToggleInventory : MonoBehaviour
 
     private void Awake()
     {
-        toggleInventory = InputManager.GetKey("ToggleInventory");
+        toggleInventory = KeysManager.GetKey("ToggleInventory");
         playerRotate = GetComponent<PlayerRotate>();
         playerMovement = GetComponent<PlayerMovement>();
     }

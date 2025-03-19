@@ -11,8 +11,8 @@ public class Debbuger : MonoBehaviour
     private void Awake()
     {
          
-        toggleFPSKey = InputManager.GetKey("ToggleFPS");   
-        toggleItemSpawnerKey = InputManager.GetKey("ToggleItemSpawner");   
+        toggleFPSKey = KeysManager.GetKey("ToggleFPS");   
+        toggleItemSpawnerKey = KeysManager.GetKey("ToggleItemSpawner");   
     }
 
     private void Update()

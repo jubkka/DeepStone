@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class InputManager 
+public static class KeysManager 
 {
     public static event Action<string, KeyCode> OnKeyChanged;
     private static Dictionary<string, KeyCode> keyBindings = new Dictionary<string, KeyCode>();
@@ -14,6 +14,7 @@ public static class InputManager
         {"Left", KeyCode.D},
         {"Right", KeyCode.A},
         {"ToggleInventory", KeyCode.Tab},
+        {"PickUp", KeyCode.E},
         {"Interact", KeyCode.E},
         {"Attack", KeyCode.Mouse0},
         {"CastSpell", KeyCode.F},
@@ -36,7 +37,7 @@ public static class InputManager
         {8, KeyCode.Alpha9},
     };
     public static Dictionary<int, KeyCode> GetKeyCodesHotbar => keyCodesHotbar;
-    static InputManager()
+    static KeysManager()
     {
         LoadKeys();
     }
