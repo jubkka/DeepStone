@@ -3,17 +3,24 @@ using UnityEngine;
 
 public class InventoryComponent : GearComponent 
 {
+    public static InventoryComponent Instance;
     public event Action<Item> OnItemRemoved;
-
-    protected void Start() => Initialize();
-
+    protected void Awake() => Initialize();
     protected override void Initialize()
     {
+        Singleton();
+        
         storage = new GearStorage(maxSize);
         manager = new InventoryManager(storage);
         uiManager = GetComponent<GearUIComponent>();
 
         base.Initialize();
+    }
+
+    private void Singleton() 
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);  
     }
 
     public override bool AddItem(Item item, int index = -1) 
@@ -41,7 +48,7 @@ public class InventoryComponent : GearComponent
         }
     }
 
-    public override bool MoveItems(int fromIndex, int targetIndex) // убрать bool
+    public override bool MoveItems(int fromIndex, int targetIndex)
     {
         if (manager.MoveItems(fromIndex, targetIndex)) return true;
         return false;

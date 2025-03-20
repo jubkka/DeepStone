@@ -3,11 +3,12 @@ using UnityEngine;
 public class OutlineControl : MonoBehaviour
 {
     [SerializeField] private InteractRay interactRay;
+    [SerializeField] private LayerMask outlineLayerMask;
     private OutlineActivation lastOutline;
 
     private void Update()
     {
-        DrawOutline(interactRay.Cast(LayerMask.GetMask("Item")));   
+        DrawOutline(interactRay.Cast(outlineLayerMask));   
     }
 
     public void DrawOutline(GameObject obj) 
@@ -15,14 +16,17 @@ public class OutlineControl : MonoBehaviour
         if (obj == null) 
         {
             if (lastOutline) lastOutline.DisableLastOutline();
+
             return;
         }
 
-        if (obj.TryGetComponent(out OutlineActivation outline))
-        {
-            if (lastOutline && lastOutline != outline) lastOutline.DisableLastOutline();
+        OutlineActivation outlineActivation = obj.GetComponentInChildren<OutlineActivation>();
+
+        if (outlineActivation == null)
+            return;
+
+        if (lastOutline && lastOutline != outlineActivation) lastOutline.DisableLastOutline();
         
-            lastOutline = outline.EnableOutline();
-        }
+        lastOutline = outlineActivation.EnableOutline();
     }
 }

@@ -11,6 +11,8 @@ public class HotbarInputControl : MonoBehaviour
     public event Action<int> OnActiveSlotChanged;
     public event Action OnItemChanged;
 
+    
+
     private void Update()
     {
         ScrollMouse();

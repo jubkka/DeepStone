@@ -21,4 +21,11 @@ public class GearStorage
         
         return items[index];
     }
+
+    public bool IsFull() 
+    {
+        
+
+        return false;
+    }
 }

@@ -3,7 +3,6 @@ using UnityEngine;
 public class InteractRay : MonoBehaviour 
 {
     private Ray ray;
-    public float distance = 1f;
     private Transform cameraTransform;
 
     private void Awake()
@@ -11,17 +10,12 @@ public class InteractRay : MonoBehaviour
         cameraTransform = Camera.main.transform;
     }
 
-    private void Update()
-    {
-        DrawRay(); 
-    }
-
-    private void DrawRay() 
+    public void DrawRay(float distance) 
     {
         Debug.DrawRay(ray.origin, ray.direction * distance, Color.black);
     }
 
-    public GameObject Cast(LayerMask layerMask) 
+    public GameObject Cast(LayerMask layerMask, float distance = 2.5f) 
     {
         ray = new Ray(cameraTransform.position, cameraTransform.TransformDirection(Vector3.forward));
 

@@ -5,13 +5,8 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
-    private Dictionary<KeyCode, Action> inputActions = new ();
-    private Dictionary<Type, string> actionKeyBindings = new()
-    {
-        {typeof(PickUpAction), "PickUp"},
-        {typeof(InteractAction), "Interact"},
-    };
-
+    private Dictionary<KeyCode, Action> keyActions = new ();
+    public event Action OnInteractPressed;
 
     private void Awake()
     {
@@ -21,31 +16,24 @@ public class InputManager : MonoBehaviour
     
     private void Start()
     {
-        InputAction[] actions = FindObjectsOfType<InputAction>();
+        AddKeyAction(KeysManager.GetKey("Interact"), () => OnInteractPressed?.Invoke());
+    }
 
-        foreach (InputAction action in actions)
-        {
-            Type actionType = action.GetType();
-
-            if (actionKeyBindings.TryGetValue(actionType, out string keyName)) 
-            {
-                KeyCode key = KeysManager.GetKey(keyName);
-
-                if (!inputActions.ContainsKey(key))
-                    inputActions[key] = () => {};
-
-                inputActions[key] += action.Execute; 
-            }
-        }
+    private void AddKeyAction(KeyCode keyCode, Action action) 
+    {
+        if (!keyActions.ContainsKey(keyCode))
+            keyActions[keyCode] = action;
+        else
+            keyActions[keyCode] += action;
     }
 
     private void Update()
     {
-        foreach (var key in inputActions.Keys)
+        foreach (var entry in keyActions)
         {
-            if (Input.GetKeyDown(key))
+            if (Input.GetKeyDown(entry.Key))
             {
-                inputActions[key]?.Invoke();
+                entry.Value?.Invoke();
             }
         }
     }

@@ -21,5 +21,6 @@ public enum SlotType
 { 
     Inventory, 
     Equipment, 
-    Hotbar 
+    Hotbar,
+    Chest
 } 

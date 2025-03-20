@@ -1,32 +1,34 @@
 using UnityEngine;
 
-public class HotbarInfo : MonoBehaviour
+public class HotbarInfo : GearInfo
 {
+
     [Header("Components")]
     [SerializeField] private HotbarInputControl hotbarControl;
-    [SerializeField] private HotbarComponent hotbarComponent;
-
-    [Header("Hotbar storage")]
-
-    [SerializeField] private GearStorage storage;
-
+    
     [Header("Active Slot")]
     [SerializeField] private int activeSlot;
     [SerializeField] private Item activeItem;
 
-    private void Awake()
+    protected override void Initialize()
     {
-        hotbarControl.OnItemChanged += UpdateActiveSlotInfo;
-        hotbarComponent.OnItemChanged += UpdateStorageInfo;
+        component = HotbarComponent.Instance;
     }
-    private void UpdateStorageInfo(int index)
+
+    protected override void Start()
     {
-        storage = hotbarComponent.GetStorage;
+        Initialize();
+
+        component.OnItemChanged += UpdateStorageInfo;
+        hotbarControl.OnItemChanged += UpdateActiveSlotInfo;
+    }
+    protected override void UpdateStorageInfo(int index)
+    {
+        storage = component.GetStorage;
     }
     private void UpdateActiveSlotInfo() 
     {
         activeItem = hotbarControl.GetActiveItem;
         activeSlot = hotbarControl.GetActiveSlot;
-
     }
 }

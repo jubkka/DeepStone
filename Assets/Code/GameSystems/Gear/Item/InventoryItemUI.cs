@@ -1,3 +1,6 @@
+using System;
+using Unity.Burst;
+
 public class InventoryItemUI : BaseItemUI
 {
     public override void HandleDrop(GearComponent targetGear)
@@ -17,8 +20,20 @@ public class InventoryItemUI : BaseItemUI
             case SlotType.Hotbar:
                 HandleHotbarDrop(targetGear, targetIndex);
                 break;
+            case SlotType.Chest:
+                HandleChestrDrop(targetGear, targetIndex);
+                break;
         }
     }
+    private void HandleChestrDrop(GearComponent targetGear, int targetIndex)
+    {
+        if (targetGear.IsFull())
+            return;
+
+        targetGear.AddItem(item, targetIndex);
+        gear.RemoveItem(index);
+    }
+
     private void HandleHotbarDrop(GearComponent targetGear, int targetIndex)
     {
         if (targetGear.ContainsItem(item, out int existingIndex)) 

@@ -1,19 +1,7 @@
-using UnityEngine;
-
-public class InventoryInfo : MonoBehaviour
+public class InventoryInfo : GearInfo 
 {
-    [Header("Components")]
-    [SerializeField] private InventoryComponent inventoryComponent;
-
-    [Header("Inventory storage")]
-    [SerializeField] private GearStorage storage;
-
-    private void Awake()
+    protected override void Initialize()
     {
-        inventoryComponent.OnItemChanged += UpdateStorageInfo;
-    }
-    private void UpdateStorageInfo(int index)
-    {
-        storage = inventoryComponent.GetStorage;
+        component = InventoryComponent.Instance;
     }
 }

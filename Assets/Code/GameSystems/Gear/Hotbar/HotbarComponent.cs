@@ -3,10 +3,18 @@ using UnityEngine;
 public class HotbarComponent : GearComponent
 {
     public InventoryComponent inventory;
+    static public HotbarComponent Instance;
 
     private void Awake() => Initialize();
+    private void Singleton() 
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);  
+    }
     protected override void Initialize()
     {
+        Singleton();
+        
         storage = new GearStorage(maxSize);
         manager = new HotbarManager(storage);
         uiManager = GetComponent<GearUIComponent>();

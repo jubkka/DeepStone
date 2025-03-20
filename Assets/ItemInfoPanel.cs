@@ -14,8 +14,10 @@ public class ItemInfoPanel : MonoBehaviour
 
     public void ToggleItemInfo(GearComponent gear, int indexSlot) 
     {
-       if (gear.GetItem(indexSlot).data != null) canvasGroup.DOFade(1f, duration);
-       else HideItemInfo();
+        if (gear.GetItem(indexSlot).data != null) 
+            canvasGroup.DOFade(1f, duration);
+        else 
+            HideItemInfo();
     }
 
     public void HideItemInfo() 

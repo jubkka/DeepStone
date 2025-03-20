@@ -7,7 +7,7 @@ public class OutlineActivation : MonoBehaviour
 
     private void Awake()
     {
-        outline = GetComponent<Outline>();
+        outline = GetComponentInParent<Outline>();
     }
 
     public OutlineActivation EnableOutline() 
