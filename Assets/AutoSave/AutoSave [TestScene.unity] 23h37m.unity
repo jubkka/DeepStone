@@ -8699,7 +8699,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456028954}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -12164,7 +12164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6ecdb5d80543e4395a7ef24f976b93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 2
+  interactDistance: 2.5
   interactableMask:
     serializedVersion: 2
     m_Bits: 1088
@@ -12507,7 +12507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517e81734e2439d4093435044291154f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 3
 --- !u!1 &2102892018
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,12 @@
+using System;
 using UnityEngine;
 
 public class ToggleInventory : MonoBehaviour
 {
     [SerializeField] private CanvasGroup inventory;
+    [SerializeField] private CanvasGroup chest;
     private PlayerRotate playerRotate;
     private PlayerMovement playerMovement;
-
     private KeyCode toggleInventory;
 
     private void Awake()
@@ -20,13 +21,14 @@ public class ToggleInventory : MonoBehaviour
         if (Input.GetKeyDown(toggleInventory)) Toggle();
     }
 
-    private void Toggle() 
+    //Переделать функцию
+    public void Toggle() 
     {
         bool isInventoryOpen = inventory.alpha == 0;
 
         inventory.alpha = isInventoryOpen ? 1f : 0f;
+        chest.alpha = inventory.alpha;
 
-        //Переделать в функцию, в событие или еще что нибудь
         playerRotate.enabled = !isInventoryOpen;
         playerMovement.enabled = !isInventoryOpen;
 

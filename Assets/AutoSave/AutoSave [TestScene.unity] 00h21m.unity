@@ -2901,7 +2901,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 106b1476c3f727f439cb6f0678849039, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.91
+      value: -4.2392836
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 106b1476c3f727f439cb6f0678849039, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8699,7 +8699,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456028954}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -8924,6 +8924,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1480694353}
   - component: {fileID: 1480694354}
+  - component: {fileID: 1480694355}
   m_Layer: 10
   m_Name: --Scripts--
   m_TagString: Untagged
@@ -8958,6 +8959,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ffa311fbe4947240be7ba8cc2473bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 2050492028}
+--- !u!114 &1480694355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480694352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc3ba3ebf570c74c98d8e096b3070ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - data: {fileID: 11400000, guid: 34ab429fd0be4a04da215b6edcae4acc, type: 2}
+    amount: 1
+    uniqueId: awdawd
+  - data: {fileID: 11400000, guid: f8d0a6747a0d30740bbd71b97fda7077, type: 2}
+    amount: 1
+    uniqueId: sdasdwad
 --- !u!1001 &1489952061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12111,6 +12132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 1456028959}
+  chest: {fileID: 847287254}
 --- !u!114 &2050492029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12164,7 +12186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6ecdb5d80543e4395a7ef24f976b93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 2
+  interactDistance: 2.5
   interactableMask:
     serializedVersion: 2
     m_Bits: 1088
@@ -12507,7 +12529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517e81734e2439d4093435044291154f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 2
 --- !u!1 &2102892018
 GameObject:
   m_ObjectHideFlags: 0
