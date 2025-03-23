@@ -1,11 +1,15 @@
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class ItemInfoPanel : MonoBehaviour
 {
-    private CanvasGroup canvasGroup;
-
+    [SerializeField] TextMeshProUGUI nameTMP;
+    [SerializeField] TextMeshProUGUI desriptionTMP;
+    [SerializeField] TextMeshProUGUI costTMP;
+    [SerializeField] TextMeshProUGUI weightTMP;
     [SerializeField] float duration;
+    private CanvasGroup canvasGroup;
 
     private void Awake()
     {
@@ -14,14 +18,22 @@ public class ItemInfoPanel : MonoBehaviour
 
     public void ToggleItemInfo(GearComponent gear, int indexSlot) 
     {
-        if (gear.GetItem(indexSlot).data != null) 
-            canvasGroup.DOFade(1f, duration);
-        else 
-            HideItemInfo();
+        Item item = gear.GetItem(indexSlot);
+
+        if (item.data != null) 
+        {
+            SetInfo(item);
+            DoFadePanel(1f);
+        }
     }
 
-    public void HideItemInfo() 
+    private void SetInfo(Item item) 
     {
-        canvasGroup.DOFade(0f, duration);
+        nameTMP.text = item.data.GetName;
+    }
+
+    public void DoFadePanel(float value) 
+    {
+        canvasGroup.DOFade(value, duration);
     }
 }

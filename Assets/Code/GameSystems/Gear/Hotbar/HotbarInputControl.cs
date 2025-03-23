@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HotbarInputControl : MonoBehaviour
 {
-    [SerializeField] private HotbarComponent hotbar;
+    private HotbarComponent hotbar;
     private int activeSlot;
     private Item activeItem;
     public Item GetActiveItem => activeItem;
@@ -11,8 +11,10 @@ public class HotbarInputControl : MonoBehaviour
     public event Action<int> OnActiveSlotChanged;
     public event Action OnItemChanged;
 
-    
-
+    private void Start()
+    {
+        hotbar = HotbarComponent.Instance;
+    }
     private void Update()
     {
         ScrollMouse();
@@ -27,11 +29,10 @@ public class HotbarInputControl : MonoBehaviour
                 if (Input.GetKeyDown(KeysManager.GetKeyCodesHotbar[i])) 
                 {
                     activeSlot = i;
+                    OnChanged();
                 }
             }
         }
-
-        OnChanged();
     }
     private void ScrollMouse()
     {
@@ -40,13 +41,13 @@ public class HotbarInputControl : MonoBehaviour
         if (scroll > 0f) 
         {
             activeSlot = activeSlot != 8 ? activeSlot + 1 : 0;
+            OnChanged();
         }
         else if (scroll < 0f)
         {
             activeSlot = activeSlot != 0 ? activeSlot - 1 : 8;
+            OnChanged();
         }
-
-        OnChanged();
     }
     private void OnChanged()
     {

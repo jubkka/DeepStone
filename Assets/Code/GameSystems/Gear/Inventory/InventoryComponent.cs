@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class InventoryComponent : GearComponent 
 {
+    [SerializeField] private DropManager dropManager;
     public static InventoryComponent Instance;
     public event Action<Item> OnItemRemoved;
+
     protected void Awake() => Initialize();
     protected override void Initialize()
     {
@@ -14,24 +16,19 @@ public class InventoryComponent : GearComponent
         manager = new InventoryManager(storage);
         uiManager = GetComponent<GearUIComponent>();
 
+        gearName = "Inventory";
+
         base.Initialize();
     }
-
-    private void Singleton() 
+    protected override void Singleton() 
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);  
     }
-
-    public override bool AddItem(Item item, int index = -1) 
-    { 
-        if (manager.AddItem(item, index)) 
-        {
-            Debug.Log($"Add item in inventory: {item.data.GetName} in slot by index {index}" );
-            return true;
-        }
-        Debug.Log($"Fail add item in inventory: in slot by index {index}");
-        return false;
+    public override void DropItem(int index) 
+    {
+        dropManager.Drop(storage.GetItem(index));
+        RemoveItem(index);
     }
     public override void RemoveItem(int index)
     {
@@ -47,11 +44,9 @@ public class InventoryComponent : GearComponent
             Debug.Log($"Item not delete from inventory by index {index}");
         }
     }
-
     public override bool MoveItems(int fromIndex, int targetIndex)
     {
         if (manager.MoveItems(fromIndex, targetIndex)) return true;
         return false;
     }
-
 }

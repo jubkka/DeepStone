@@ -2,13 +2,21 @@ using UnityEngine;
 
 public class OutlineControl : MonoBehaviour
 {
-    [SerializeField] private InteractRay interactRay;
+    [SerializeField] private Raycaster interactRay;
     [SerializeField] private LayerMask outlineLayerMask;
     private OutlineActivation lastOutline;
+    private Transform cameraPosition;
+    private float outlineDistance;
+
+    private void Start() 
+    {
+        cameraPosition = Camera.main.transform;
+        outlineDistance = Raycaster.Rays["Interact"];
+    }
 
     private void Update()
     {
-        DrawOutline(interactRay.Cast(outlineLayerMask));   
+        DrawOutline(interactRay.Cast(cameraPosition, outlineLayerMask, outlineDistance));   
     }
 
     public void DrawOutline(GameObject obj) 

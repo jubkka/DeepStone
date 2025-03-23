@@ -14,29 +14,37 @@ public class ChestInteractor : Interactor
         chest = ChestComponent.Instance;
         chestContainer = GetComponent<ChestContainer>();
         canvasGroup = chest.GetComponentInParent<CanvasGroup>();
+
+        InputManager.Instance.OnInventoryPressed += Close;
     }
 
     public override void Interact()
     {
         if (canvasGroup.alpha == 1)
+        {
             Close();
+            chestContainer.Items = chest.TakeItems();
+            canvasGroup.blocksRaycasts = canvasGroup.alpha == 1;
+            anim.Play("Closing");
+        }
         else
+        {
             Open();
-
+            chest.GiveItems(chestContainer.Items);
+            canvasGroup.blocksRaycasts = canvasGroup.alpha == 1;
+            anim.Play("Opening");
+        }
+        
         inventory.Toggle();
     }
 
     private void Open() 
     {
-        anim.Play("Opening");
-
         canvasGroup.alpha = 1;
     }
 
     private void Close() 
     {
-        anim.Play("Closing");
-
         canvasGroup.alpha = 0;
     }
 }

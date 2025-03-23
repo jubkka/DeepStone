@@ -75,10 +75,9 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
             icon.color = new Color(255,255,255, alpha); // Прозрачность иконки
             TMP.color = new Color(255,255,255, alpha); // Прозрачность текста
         } 
-
         public void Drop() 
         {
-            gear.RemoveItem(index);
+            gear.DropItem(index);
         }
         public abstract void HandleDrop(GearComponent gear);
     #endregion

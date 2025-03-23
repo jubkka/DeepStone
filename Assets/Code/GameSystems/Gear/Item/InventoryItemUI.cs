@@ -1,6 +1,3 @@
-using System;
-using Unity.Burst;
-
 public class InventoryItemUI : BaseItemUI
 {
     public override void HandleDrop(GearComponent targetGear)

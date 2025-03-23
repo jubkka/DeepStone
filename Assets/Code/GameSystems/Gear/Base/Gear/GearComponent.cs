@@ -10,6 +10,7 @@ public abstract class GearComponent : MonoBehaviour
     protected GearManager manager;
     protected GearUIComponent uiManager;
     public GearStorage GetStorage => storage;
+    protected string gearName;
     protected virtual void Initialize() 
     {
         for (int index = 0; index < storage.Items.Length; index++) storage.Items[index] = new Item(); 
@@ -18,9 +19,26 @@ public abstract class GearComponent : MonoBehaviour
 
         uiManager.Initialize();
     }
+    protected abstract void Singleton();
+    public virtual bool AddItem(Item item, int index) 
+    {   
+        if (manager.AddItem(item, index)) 
+        {
+            Debug.Log($"Add item in {gearName}: + {item.data.GetName} In slot index: {index}");
+            return true;
+        }
 
-    public abstract bool AddItem(Item item, int index); 
-    public abstract void RemoveItem(int index);
+        Debug.Log($"Fail add item in {gearName}: {item.data.GetName} in slot index: {index}");
+        return false;
+    }
+    public virtual void RemoveItem(int index) 
+    {
+        if (manager.RemoveItem(index)) 
+            Debug.Log($"Item delete from {gearName}");
+        else 
+            Debug.Log($"Item not delete from {gearName}");
+    }
+    public virtual void DropItem(int index) {}
     public abstract bool MoveItems(int fromIndex, int targetIndex); 
     public void NotifyItemChanged(int index) => OnItemChanged?.Invoke(index);
     public bool IsFull() => storage.Items.All(item => item.data != null);

@@ -2,6 +2,7 @@ using UnityEngine;
 public abstract class ItemData : ScriptableObject {
     #region Fields
         [Header("Item Data")]
+        [SerializeField] protected GameObject prefab;
         [SerializeField] protected string nameItem;
         [TextArea] [SerializeField] protected string description;
         [SerializeField] protected Sprite icon;
@@ -11,6 +12,7 @@ public abstract class ItemData : ScriptableObject {
     #endregion
 
     #region Properties
+        public GameObject GetPrefab => prefab;
         public string GetName => nameItem;
         public string GetDescription => description;
         public int GetWeight => weight;

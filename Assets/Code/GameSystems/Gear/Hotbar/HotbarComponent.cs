@@ -1,12 +1,13 @@
+using System;
 using UnityEngine;
 
 public class HotbarComponent : GearComponent
 {
-    public InventoryComponent inventory;
+    [SerializeField] private HotbarGameObjects hotbarGameObjects;
+    private InventoryComponent inventory;
     static public HotbarComponent Instance;
-
     private void Awake() => Initialize();
-    private void Singleton() 
+    protected override void Singleton() 
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);  
@@ -14,30 +15,18 @@ public class HotbarComponent : GearComponent
     protected override void Initialize()
     {
         Singleton();
+
+        inventory = InventoryComponent.Instance;
         
         storage = new GearStorage(maxSize);
         manager = new HotbarManager(storage);
         uiManager = GetComponent<GearUIComponent>();
 
+        gearName = "Hotbar";
+
         inventory.OnItemRemoved += HandleItemRemoved;
 
         base.Initialize();
-    }
-    public override bool AddItem(Item item, int index)
-    {
-        if (manager.AddItem(item, index)) 
-        {
-            Debug.Log("Add item in hotbar: " + item.data.GetName + " In slot index: " + index);
-            return true;
-        }
-
-        Debug.Log("Fail add item in equipment: " + item.data.GetName + " In slot index: " + index);
-        return false;
-    }
-    public override void RemoveItem(int index)
-    {
-        if (manager.RemoveItem(index)) Debug.Log("Item delete from hotbar");
-        else Debug.Log("Item not delete from hotbar");
     }
     private void HandleItemRemoved(Item item) 
     {

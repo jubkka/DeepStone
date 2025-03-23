@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class InteractorController : MonoBehaviour
 {
-    [SerializeField] private float interactDistance = 2.5f;
     [SerializeField] private LayerMask interactableMask;
-    [SerializeField] private InteractRay interactRay;
+    [SerializeField] private Raycaster interactRay;
+    private Transform cameraPosition;
+    private float interactDistance;
 
     private void Start()
     {
         InputManager.Instance.OnInteractPressed += TryInteract; 
+        cameraPosition = Camera.main.transform;
+        interactDistance = Raycaster.Rays["Interact"];
     }
 
     private void Update()
@@ -18,7 +21,7 @@ public class InteractorController : MonoBehaviour
 
     private void TryInteract() 
     {
-        GameObject obj = interactRay.Cast(interactableMask, interactDistance);
+        GameObject obj = interactRay.Cast(cameraPosition, interactableMask, interactDistance);
 
         if (obj == null) return;
 

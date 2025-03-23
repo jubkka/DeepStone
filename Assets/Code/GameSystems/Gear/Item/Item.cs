@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 [Serializable]
@@ -7,6 +8,7 @@ public class Item
     public ItemData data;
     [SerializeField] private int amount;
     [SerializeField] private string uniqueId;
+    [SerializeField] private GameObject prefab;
     public string GetUniqueId => uniqueId;
     public bool IsEmpty { get => data == null; }
 

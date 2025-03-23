@@ -20,7 +20,7 @@ public class PickUpInteractor : Interactor
     {
         InventoryComponent inventory = InventoryComponent.Instance;
 
-        if (inventory.AddItem(itemContainer.GetItem))
+        if (inventory.AddItem(itemContainer.CreateItem(), 0))
             Destroy(itemObj);
     }
 }

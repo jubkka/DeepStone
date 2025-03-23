@@ -12,7 +12,7 @@ public class PlayerRotate : MonoBehaviour
 
     private void Awake()
     {
-        player = transform.parent.gameObject;
+        player = GameObject.FindWithTag("Player");
         playerCamera = Camera.main;
     }
     private void Update()

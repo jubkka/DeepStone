@@ -17,7 +17,7 @@ public abstract class TooltipSlotUI : SlotUI
     }
     public override void OnPointerExit(PointerEventData eventData) 
     {
-        itemInfoPanel.HideItemInfo();
+        itemInfoPanel.DoFadePanel(0f);
         activeSlot.HideActiveSlot();
     }
 }

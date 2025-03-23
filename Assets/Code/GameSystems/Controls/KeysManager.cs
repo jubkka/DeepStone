@@ -13,16 +13,16 @@ public static class KeysManager
         {"Back", KeyCode.S},
         {"Left", KeyCode.D},
         {"Right", KeyCode.A},
-        {"ToggleInventory", KeyCode.Tab},
+        {"Inventory", KeyCode.Tab},
         {"PickUp", KeyCode.E},
         {"Interact", KeyCode.E},
         {"Attack", KeyCode.Mouse0},
-        {"CastSpell", KeyCode.F},
-        {"CallMenu", KeyCode.Escape},
+        {"Spell", KeyCode.F},
+        {"Menu", KeyCode.Escape},
 
         //Debug
-        {"ToggleFPS", KeyCode.F10},
-        {"ToggleItemSpawner", KeyCode.F9},
+        {"FPS", KeyCode.F10},
+        {"ItemSpawner", KeyCode.F9},
     };
     private static readonly Dictionary<int, KeyCode> keyCodesHotbar = new Dictionary<int, KeyCode>() 
     {

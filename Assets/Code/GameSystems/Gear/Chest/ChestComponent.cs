@@ -1,10 +1,8 @@
-using System;
 using UnityEngine;
 
 public class ChestComponent : GearComponent {
     [SerializeField] private InventoryComponent inventoryComponent;
     static public ChestComponent Instance;
-    public event Action<Item> OnItemRemoved;
 
     protected void Awake() => Initialize();
     protected override void Initialize() 
@@ -15,42 +13,42 @@ public class ChestComponent : GearComponent {
         manager = new ChestManager(storage);
         uiManager = GetComponent<GearUIComponent>();
 
+        gearName = "Chest";
+
         base.Initialize();
     }
-
-    private void Singleton()
+    protected override void Singleton()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);   
     }
-
-    public override bool AddItem(Item item, int index = -1)
+    public bool GiveItems(Item[] items)
     {
-        if (manager.AddItem(item, index)) 
+        for (int i = 0; i < items.Length; i++)
         {
-            Debug.Log($"Add item in chest: {item.data.GetName} in slot by index {index}" );
-            return true;
-        }
-        Debug.Log($"Fail add item in chest: in slot by index {index}");
-        return false;
+            if(!manager.AddItem(items[i], i)) 
+                return false;
+        }    
+        return true;
     }
-    public override void RemoveItem(int index)
+    public Item[] TakeItems() 
     {
-        Item removedItem = storage.Items[index];
+        Item[] items = new Item[maxSize];
 
-        if (manager.RemoveItem(index)) 
+        for (int i = 0; i < storage.Items.Length; i++)
         {
-            Debug.Log($"Item delete from chest from index {index}");
-            OnItemRemoved?.Invoke(removedItem);
-        }
-        else
-            Debug.Log($"Item not delete from chest by index {index}");
-    }
+            Item item = storage.Items[i];
+            items[i] = new Item(item.data, item.Amount);
+            RemoveItem(i);
+        }   
 
+        return items;
+    }
     public override bool MoveItems(int fromIndex, int targetIndex)
     {
-        if (manager.MoveItems(fromIndex, targetIndex)) return true;
+        if (manager.MoveItems(fromIndex, targetIndex)) 
+            return true;
+
         return false;
     }
-
 }
