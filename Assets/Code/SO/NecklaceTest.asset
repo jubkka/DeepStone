@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c10cd015cf5aa46a10cb3dfb9223c9, type: 3}
   m_Name: NecklaceTest
   m_EditorClassIdentifier: 
-  nameItem: Necklace
+  prefab: {fileID: 0}
+  nameItem: Necklace Test
   description: 
   icon: {fileID: 8517377613232446964, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
-  id: 7
+  id: necklace_test
   weight: 1
   cost: 1
-  armorType: 6
+  isSpendable: 1
+  armorType: 5
   defense: 1

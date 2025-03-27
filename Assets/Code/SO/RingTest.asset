@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c10cd015cf5aa46a10cb3dfb9223c9, type: 3}
   m_Name: RingTest
   m_EditorClassIdentifier: 
-  nameItem: Ring
+  prefab: {fileID: 0}
+  nameItem: Ring Test
   description: 
   icon: {fileID: 3026000095354437995, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
-  id: 6
+  id: ring_test
   weight: 1
   cost: 1
-  armorType: 5
+  isSpendable: 1
+  armorType: 3
   defense: 1

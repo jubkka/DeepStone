@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf595259fab2e3a458e4ab4f3d35bd53, type: 3}
   m_Name: TestSword
   m_EditorClassIdentifier: 
-  nameItem: Test Sword
+  prefab: {fileID: 6126015505722887867, guid: 4acfd0865d21cd64baec1a7356b3ce83, type: 3}
+  nameItem: Sword Test
   description: 
   icon: {fileID: 7072669480932279754, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
-  id: 1
+  id: sword_test
   weight: 1
   cost: 1
+  isSpendable: 0
   damage: 1

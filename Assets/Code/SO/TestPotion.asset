@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: TestPotion
   m_EditorClassIdentifier: 
   prefab: {fileID: 4956422820230839314, guid: c17ae3b429bde8d4795cd766269d58fa, type: 3}
-  nameItem: TestPotion
+  nameItem: PotionTest
   description: 
   icon: {fileID: -4073954384835129369, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
-  id: 0
+  id: potion_test
   weight: 1
   cost: 1
+  isSpendable: 1
   maxStackSize: 5
+  effects:
+  - {fileID: 11400000, guid: 957bca1cce5c42f41b13b14c4059893c, type: 2}

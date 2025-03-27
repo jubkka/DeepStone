@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c10cd015cf5aa46a10cb3dfb9223c9, type: 3}
   m_Name: ChestplateTest
   m_EditorClassIdentifier: 
+  prefab: {fileID: 0}
   nameItem: Chestplate
   description: 
   icon: {fileID: 5993375707892546616, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
-  id: 3
+  id: chestplate_test
   weight: 1
   cost: 1
+  isSpendable: 1
   armorType: 2
   defense: 5
