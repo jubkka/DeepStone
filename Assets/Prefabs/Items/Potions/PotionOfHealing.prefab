@@ -223,11 +223,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5c449b92e1e526546b3f4a64066c27dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.00000006220865
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5c449b92e1e526546b3f4a64066c27dc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 3.8060217
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5c449b92e1e526546b3f4a64066c27dc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -315,13 +315,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4956422820230839314}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineColor: {r: 0.3529412, g: 0.77254903, b: 0.30980393, a: 1}
+  outlineColor: {r: 0.3529412, g: 0.77254903, b: 0.30980393, a: 0}
   outlineWidth: 8
   precomputeOutline: 0
   bakeKeys: []
