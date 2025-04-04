@@ -10,8 +10,9 @@
     public void Execute(Item item)
     {
         if (item.data is PotionData potionData)
+        {
             potionData.Drink(effectComponent);
-
-        item.Amount -= 1;
+            item.Amount -= 1;
+        }
     }
 }

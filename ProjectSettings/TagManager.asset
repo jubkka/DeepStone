@@ -12,11 +12,11 @@ TagManager:
   - Vignette
   - Water
   - UI
-  - Item
+  - Interactable
   - Player
   - Ground
   - Wall
-  - Interactable
+  - 
   - WeaponCamera
   - 
   - 

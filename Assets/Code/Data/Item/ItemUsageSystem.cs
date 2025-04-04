@@ -8,12 +8,17 @@ public class ItemUsageSystem
     private EquipmentComponent equipment;
     private EffectComponent effectComponent;
     private HandComponent handComponent;
+    private AttackComponent attackComponent;
     
-    public ItemUsageSystem(EquipmentComponent equipment, EffectComponent effectComponent, HandComponent handComponent)
+    public ItemUsageSystem(
+        EquipmentComponent equipment, EffectComponent effectComponent, 
+        HandComponent handComponent, AttackComponent attackComponent
+        ) 
     { 
         this.equipment = equipment;
         this.effectComponent = effectComponent;
         this.handComponent = handComponent;
+        this.attackComponent = attackComponent;
 
         AddCommands();
     }
@@ -24,6 +29,7 @@ public class ItemUsageSystem
         commands.Add((typeof(PotionData), ItemSlotType.Inventory), data => new DrinkCommand(effectComponent));
         commands.Add((typeof(PotionData), ItemSlotType.Hotbar), data => new DrinkCommand(effectComponent));
         commands.Add((typeof(WeaponData), ItemSlotType.Inventory), data => new TakeCommand(handComponent));
+        commands.Add((typeof(WeaponData), ItemSlotType.Hotbar), data => new AttackCommand(attackComponent));
     }
 
     public IItemCommand GetCommandByContext(ItemSlotType type, ItemData data)
