@@ -2,19 +2,13 @@ using UnityEngine;
 
 public class GoldController : MonoBehaviour 
 {
+    public static GoldController Instance;
     private GoldModel gold;
-    static public GoldController Instance;
     
     private void Awake()
     {
+        Instance = this;
         gold = new GoldModel(0);
-        Singleton();
-    }
-
-    private void Singleton() 
-    {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
     }
 
     public void Give(int count) 

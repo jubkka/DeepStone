@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class IndicatorController : MonoBehaviour
 {
-    [Header("Values")]
-    [SerializeField] private int healthPoint;
-    [SerializeField] private int manaPoint;
-    [SerializeField] private int staminaPoint;
+    [Header("Current Values")]
+    [SerializeField] private int healthCurrentPoint;
+    [SerializeField] private int manaCurrentPoint;
+    [SerializeField] private int staminaCurrentPoint;
 
-    [Space]
+    [Header("Max Values")]
     
     [SerializeField] private int healtMaxPoint;
     [SerializeField] private int manaMaxPoint;
@@ -17,6 +17,7 @@ public class IndicatorController : MonoBehaviour
     [SerializeField] private IndicatorView healthView;
     [SerializeField] private IndicatorView manaView;
     [SerializeField] private IndicatorView staminaView;
+    
     private Health health;
     private Mana mana;
     private Stamina stamina;
@@ -36,9 +37,9 @@ public class IndicatorController : MonoBehaviour
 
     private void Constructor() 
     {
-        health = new Health(healthPoint, healtMaxPoint, healthView);
-        mana = new Mana(manaPoint, manaMaxPoint, manaView);
-        stamina = new Stamina(staminaPoint, staminaMaxPoint, staminaView);
+        health = new Health(healthCurrentPoint, healtMaxPoint, healthView);
+        mana = new Mana(manaCurrentPoint, manaMaxPoint, manaView);
+        stamina = new Stamina(staminaCurrentPoint, staminaMaxPoint, staminaView);
     }
 
     public void Heal(int value) => health.Increase(value);

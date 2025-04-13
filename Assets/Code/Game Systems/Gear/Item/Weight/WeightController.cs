@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class WeightController : MonoBehaviour
 {
-    private WeightView weightView;
+    [SerializeField] private WeightView weightView;
     
     private WeightModel weightModel;
 
     private void Start()
     {
-        weightView = GetComponent<WeightView>();
         weightModel = new WeightModel(weightView);
         
         InventoryComponent inventory = GameSystems.Instance.GetInventoryComponent;

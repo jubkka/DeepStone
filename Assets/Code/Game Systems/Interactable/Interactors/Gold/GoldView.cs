@@ -1,8 +1,10 @@
 using TMPro;
 using UnityEngine;
 
-public class GoldView : MonoBehaviour {
+public class GoldView : MonoBehaviour 
+{
     [SerializeField] private TextMeshProUGUI textTMP;
+    
     private void Awake()
     {
         GoldModel.OnGoldChanged += ChangeText;
