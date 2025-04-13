@@ -1,22 +1,14 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-
-public class ConstructDamageable : Damageable
+﻿public class ConstructDamageable : Damageable
 {
-    private DoorConstruct doorConstruct;
-
-    [SerializeField] private Slider health;
+    private Construct construct;
 
     private void Awake()
     {
-        doorConstruct = GetComponent<DoorConstruct>();
-        health.maxValue = 3;
-        health.value = health.maxValue;
+        construct = GetComponent<Construct>();
     }
 
     public override void GetDamage(int damage)
     {
-        doorConstruct.GetDamage(damage);
-        health.value -= damage;
+        construct.GetDamage(damage);
     }
 }

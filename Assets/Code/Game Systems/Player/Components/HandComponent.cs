@@ -62,7 +62,7 @@ public class HandComponent : MonoBehaviour
     private void SpawnItem()
     {
         activeItemGameObject = Instantiate(activeItem.data.GetPrefab, handContainer);
-        activeItemGameObject.layer = LayerMask.NameToLayer("WeaponCamera");
+        activeItemGameObject.layer = LayerMask.NameToLayer("Weapon");
     }
 
     private void CreateItem(Item item)
