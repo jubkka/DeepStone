@@ -5,7 +5,7 @@ public class ChestConstruct : Construct
     [SerializeField] private int chanceToDropItem;
     private ChestContainer chestContainer;
     
-    protected void Start()
+    protected override void Start()
     {
         parent = transform.parent.gameObject;
         chestContainer = GetComponent<ChestContainer>();

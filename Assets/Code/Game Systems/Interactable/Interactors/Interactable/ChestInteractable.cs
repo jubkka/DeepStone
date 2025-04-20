@@ -1,48 +1,74 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ChestInteractable : Interactable
 {
-    [SerializeField] private ToggleInventory inventory;
+    [SerializeField] private InventoryInput inventoryInput;
     [SerializeField] private CanvasGroup canvasGroup;
     
-    //private ChestInteractManager chestInteractManager;
     private ChestComponent chest;
     private ChestContainer chestContainer;
     private Animation anim;
     
+    private InputManager inputManager;
+    private PlayerControls controls;
+    
     private bool isOpen = false;
 
+    private void Awake()
+    {
+        inputManager = InputManager.instance;
+        controls = inputManager.controls;
+    }
+    
     private void Start()
     {
         chest = GameSystems.Instance.GetChestComponent;
         
         anim = GetComponentInParent<Animation>();
         chestContainer = GetComponent<ChestContainer>();
-        
-        inventory.OnInventoryClosed += Close;
+    }
+
+    private void OnEnable()
+    {
+        controls.Chest.Close.performed += OnClose;
+        controls.Chest.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Chest.Close.performed -= OnClose;
+        controls.Chest.Disable();
+    }
+
+    private void OnClose(InputAction.CallbackContext context)
+    {
+        Close();
     }
     
     public override void Interact()
     {
-        if (canvasGroup.alpha == 0f)
-            Open();
-        else
-            Close();
-        
-        inventory.Toggle();
+        Open();
     }
 
     private void Open()
     {
+        inventoryInput.Toggle();
+        
         ChangeState(true);
         chest.GiveItems(chestContainer.Items);
         anim.Play("Opening");
+        
+        inputManager.SwitchToChest();
     }
 
     private void Close()
     {
         if (!isOpen)
             return;
+        
+        inventoryInput.Toggle();
         
         ChangeState(false);
         chestContainer.Items = chest.TakeItems();

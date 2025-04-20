@@ -7,9 +7,11 @@ public abstract class State : MonoBehaviour
     [Header("Transition to States")]
     [SerializeField] protected StateChances[] chancesStates;
     [SerializeField] protected List<StateEntry> conditionStatesList = new List<StateEntry>();
+    
     protected Dictionary<StateType, State> conditionStates;
     protected State nextState;
     protected Coroutine coroutine;
+    
     public abstract State RunCurrentState();
     protected abstract IEnumerator ExecuteActions();
 
@@ -22,7 +24,7 @@ public abstract class State : MonoBehaviour
         foreach (var entry in conditionStatesList) 
             conditionStates.Add(entry.type, entry.state);
     }
-    protected void SelectState() 
+    protected void SelectRandomState() 
     {
         float roll = Random.value;
         float cumulativeChange = 0f;

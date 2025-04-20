@@ -30,7 +30,7 @@ public class RotateState : State
 
         yield return new WaitForSeconds(nextStateDelay);
 
-        SelectState();
+        SelectRandomState();
     }
 
     private float RandomAngle() 

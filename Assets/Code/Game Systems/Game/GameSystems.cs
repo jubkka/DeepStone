@@ -13,6 +13,7 @@ public class GameSystems : MonoBehaviour
     private HandComponent hand;
     private ChestComponent chest;
     private AttackComponent attack;
+    private IndicatorController indicator;
     
     private ItemUsageSystem itemUsageSystem;
     public ItemUsageSystem GetItemUsageSystem => itemUsageSystem;
@@ -22,6 +23,8 @@ public class GameSystems : MonoBehaviour
     public HandComponent GetHandComponent => hand;
     public ChestComponent GetChestComponent => chest;
     public AttackComponent GetAttackComponent => attack;
+    public IndicatorController GetIndicator => indicator;
+
 
     private void Awake()
     {
@@ -41,5 +44,6 @@ public class GameSystems : MonoBehaviour
         effect = components.GetComponentInChildren<EffectComponent>();
         hand = components.GetComponentInChildren<HandComponent>();
         attack = components.GetComponentInChildren<AttackComponent>();
+        indicator = components.GetComponentInChildren<IndicatorController>();
     }
 }

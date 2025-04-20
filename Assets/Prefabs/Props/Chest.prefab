@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5822184670888206739}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: base-Global
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1447642011024468349}
   - component: {fileID: 7692669152348977200}
   - component: {fileID: 329670286179510478}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: Jar-Local
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 1868241358369954216}
   - component: {fileID: 1098487053353222381}
   - component: {fileID: 6845154104410543562}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,9 @@ GameObject:
   - component: {fileID: 8105436500441271744}
   - component: {fileID: 4474377438951434621}
   - component: {fileID: 2128772314536297176}
-  m_Layer: 10
+  - component: {fileID: 2935096604085602261}
+  - component: {fileID: 6764858934407305104}
+  m_Layer: 6
   m_Name: --Scripts--
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 0}
+  canvasGroup: {fileID: 0}
 --- !u!114 &2128772314536297176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +253,32 @@ MonoBehaviour:
   - data: {fileID: 11400000, guid: f8d0a6747a0d30740bbd71b97fda7077, type: 2}
     amount: 1
     uniqueId: sdasdwad
+--- !u!114 &2935096604085602261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2358766520795832812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba971dc996674effb250e9ef4a9f78a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  durability: 5
+  chanceToDropItem: 100
+--- !u!114 &6764858934407305104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2358766520795832812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c8d0a563114ba0b7b7a4bf207ee8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5523591140251087486
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 839212815443773658}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: Jar-Global
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +323,7 @@ GameObject:
   - component: {fileID: 8796215643403366079}
   - component: {fileID: 582862817023473210}
   - component: {fileID: 3526464565537827617}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: base-Local
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1480857133452842025}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: World-Global
   m_TagString: Untagged
   m_Icon: {fileID: 0}

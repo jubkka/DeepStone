@@ -5,7 +5,7 @@ using UnityEngine;
 public class HandComponent : MonoBehaviour
 {
     [SerializeField] private Transform handContainer;
-    [SerializeField] private HotbarInputControl inputControl;
+    [SerializeField] private HotbarInput input;
     [SerializeField] private DropManager dropManager;
     
     private HotbarComponent hotbar;
@@ -21,10 +21,10 @@ public class HandComponent : MonoBehaviour
     {
         hotbar = GameSystems.Instance.GetHotbarComponent;
         
-        inputControl.OnActiveSlotChanged += PutInHandByIndex;
+        input.OnActiveSlotChanged += PutInHandByIndex;
         dropManager.OnItemDropped += PutInHand;
         
-        PutInHandByIndex(inputControl.ActiveSlotIndex);
+        PutInHandByIndex(input.ActiveSlotIndex);
     }
 
     private void PutInHandByIndex(int index)

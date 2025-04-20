@@ -201,7 +201,7 @@ Animator:
   m_GameObject: {fileID: 5132611774682698621}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bbcdf4884f15d5a47b7e2187c3072221, type: 2}
+  m_Controller: {fileID: 9100000, guid: b0a746eab1097d74dbd74bb5c950c0fd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3864d322dfca4df9bb2516a19549d9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrow: {fileID: 2803137248438528463, guid: 29367c4458636cd41ab0ab5ddeba293e, type: 3}
+  arrow: {fileID: 1782173167111555008, guid: 29367c4458636cd41ab0ab5ddeba293e, type: 3}
 --- !u!4 &5508293338857687495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 218c022ee0cc6644dbe896c98ba9eb57, type: 3}

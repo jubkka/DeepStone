@@ -4,6 +4,6 @@ public class StartupGameManager : MonoBehaviour
 {
     private void Awake()
     {
-        PlayerMovementControl.CursorStateChange(false);
+        CursorManager.ChangeState(false);
     }
 }

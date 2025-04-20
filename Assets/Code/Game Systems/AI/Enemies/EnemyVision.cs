@@ -5,8 +5,6 @@ public class EnemyVision : MonoBehaviour
     [Header("Settings Vision")]
     [SerializeField] private float visionRange = 10f;
     [SerializeField] private float visionAngle = 45f;
-    [SerializeField] private float attackRange = 2f;
-    [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask obstaclesLayer;
     
     private GameObject player;
@@ -16,34 +14,48 @@ public class EnemyVision : MonoBehaviour
         player = GameObject.FindWithTag("Player");
     }
 
-    public bool CanSeePlayer() 
-    {           
-        float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+    public bool CanSeePlayer()
+    {
+        if (!IsPlayerInRange(out float distanceToPlayer))
+            return false;
+        
+        if (!IsPlayerInAngle(out Vector3 directionToPlayer))
+            return false;
+
+        if (!CanRayReachPlayer(distanceToPlayer, directionToPlayer))
+            return false;
+            
+        return true;
+    }
+    
+    private bool IsPlayerInRange(out float distanceToPlayer)
+    {
+        distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
         if (distanceToPlayer > visionRange) 
             return false;
         
-        Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+        return true;
+    }
+
+    private bool IsPlayerInAngle(out Vector3 directionToPlayer)
+    {
+        directionToPlayer = (player.transform.position - transform.position).normalized;
         float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
 
         if (angleToPlayer > visionAngle)
             return false;
 
+        return true;
+    }
+
+    private bool CanRayReachPlayer(float distanceToPlayer, Vector3 directionToPlayer)
+    {
         if (Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstaclesLayer))
             return false;
 
         return true;
     }
-
-    public bool CanAttackPlayer() 
-    {
-        float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-
-        if (distanceToPlayer > attackRange)
-            return false;
-
-        return Physics.Raycast(transform.position, transform.forward, attackRange, playerMask);
-    } 
 
     private void OnDrawGizmosSelected()
     {   
@@ -53,10 +65,5 @@ public class EnemyVision : MonoBehaviour
 
         Gizmos.DrawLine(transform.position, transform.position + rightLimit);
         Gizmos.DrawLine(transform.position, transform.position + leftLimit);
-
-        Vector3 forwardLimit = transform.forward * attackRange;
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position + forwardLimit);
     }
 }

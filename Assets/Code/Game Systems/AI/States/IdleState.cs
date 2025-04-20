@@ -21,6 +21,6 @@ public class IdleState : State
     {
         yield return new WaitForSeconds(1f);
 
-        SelectState();
+        SelectRandomState();
     }
 }

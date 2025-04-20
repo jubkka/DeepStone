@@ -4,7 +4,7 @@ public class HotbarInfo : GearInfo
 {
 
     [Header("Components")]
-    [SerializeField] private HotbarInputControl hotbarControl;
+    [SerializeField] private HotbarInput hotbar;
     
     [Header("Active Slot")]
     [SerializeField] private int activeSlot;
@@ -29,6 +29,6 @@ public class HotbarInfo : GearInfo
     private void UpdateActiveSlotInfo() 
     {
         //activeItem = hotbarControl.ActiveItem;
-        activeSlot = hotbarControl.ActiveSlotIndex;
+        activeSlot = hotbar.ActiveSlotIndex;
     }
 }

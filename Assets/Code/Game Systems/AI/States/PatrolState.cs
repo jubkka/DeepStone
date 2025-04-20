@@ -31,7 +31,7 @@ public class PatrolState : State
 
         yield return new WaitForSeconds(nextStateDelay);
         
-        SelectState();
+        SelectRandomState();
     }
 
     private Vector3 GetRandomWalkPoint() 

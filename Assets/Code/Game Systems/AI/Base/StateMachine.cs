@@ -20,6 +20,7 @@ public enum StateType
 {
     Attack,
     Chase,
+    Search,
     Patrol,
     Rotate,
     Idle
