@@ -11,9 +11,9 @@ public class EffectComponent : MonoBehaviour
         instance = this;
     }
 
-    private void Start() 
+    private void Start()
     {
-        controller = IndicatorController.Instance;
+        controller = GameSystems.Instance.GetIndicator;
     }
 
     public void Heal(int healAmount) 

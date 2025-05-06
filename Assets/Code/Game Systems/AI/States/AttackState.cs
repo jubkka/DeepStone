@@ -9,8 +9,7 @@ public class AttackState : State
     
     public override State RunCurrentState()
     {
-        if (!enemyVision.CanSeePlayer() &&
-            !enemyAttack.CanAttackPlayer()) 
+        if (!enemyAttack.CanAttackPlayer()) 
             return conditionStates[StateType.Search];
         
         if (coroutine == null)

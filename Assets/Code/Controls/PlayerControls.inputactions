@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleInventory",
+                    "type": "Button",
+                    "id": "3a799719-cca1-4c17-ae24-c19d1acf14b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -130,6 +139,17 @@
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77073f75-7405-45d3-bc12-3d214680df8c",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "ToggleInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -137,15 +157,6 @@
             "name": "Inventory",
             "id": "8835571d-7169-4288-8c2d-4f2cccd98275",
             "actions": [
-                {
-                    "name": "ToggleInventory",
-                    "type": "Button",
-                    "id": "987e843d-5cf1-4a48-8efc-381a43601229",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
                 {
                     "name": "Close",
                     "type": "Button",
@@ -165,17 +176,6 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Close",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "735d0a6a-5349-405a-8cd9-7208885ba108",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "ToggleInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

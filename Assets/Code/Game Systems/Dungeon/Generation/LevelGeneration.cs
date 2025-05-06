@@ -25,7 +25,7 @@ public class LevelGeneration : MonoBehaviour
     private FloorLevel floorLevel;
     private RoomsLevel roomsLevel;
     
-    private void Start()
+    private void Awake()
     {
         Init();
     }

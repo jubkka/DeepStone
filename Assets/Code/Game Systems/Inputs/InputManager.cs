@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
@@ -50,6 +49,13 @@ public class InputManager : MonoBehaviour
     {
         controls.Disable();
         controls.Chest.Enable();
+        
+        CursorManager.ChangeState(true);
+    }
+
+    public void SwitchToDeathScreen()
+    {
+        controls.Disable();
         
         CursorManager.ChangeState(true);
     }

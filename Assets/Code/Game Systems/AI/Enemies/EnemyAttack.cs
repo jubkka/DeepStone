@@ -26,7 +26,7 @@ public class EnemyAttack : MonoBehaviour
 
         if (distanceToPlayer > attackRange)
             return false;
-
+        
         return Physics.Raycast(transform.position, transform.forward, attackRange, playerMask);
     } 
     

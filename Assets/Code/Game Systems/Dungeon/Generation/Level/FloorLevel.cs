@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class FloorLevel : MonoBehaviour
 {
+    [SerializeField] private Transform container;
     [SerializeField] private Material floorMaterial;
     
     private GridLevel gridLevel;
@@ -91,6 +92,8 @@ public class FloorLevel : MonoBehaviour
         mesh.RecalculateNormals();
         
         GameObject floorObj = new GameObject("Floor", typeof(MeshFilter), typeof(MeshRenderer));
+        floorObj.layer = LayerMask.NameToLayer("Ground");
+        floorObj.transform.SetParent(container);
         floorObj.transform.position = new Vector3();
         floorObj.GetComponent<MeshFilter>().mesh = mesh;
         floorObj.GetComponent<MeshRenderer>().material = floorMaterial;

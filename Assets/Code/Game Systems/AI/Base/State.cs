@@ -24,6 +24,7 @@ public abstract class State : MonoBehaviour
         foreach (var entry in conditionStatesList) 
             conditionStates.Add(entry.type, entry.state);
     }
+    
     protected void SelectRandomState() 
     {
         float roll = Random.value;

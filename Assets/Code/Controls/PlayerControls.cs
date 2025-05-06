@@ -62,6 +62,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""3a799719-cca1-4c17-ae24-c19d1acf14b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77073f75-7405-45d3-bc12-3d214680df8c"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ToggleInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -159,15 +179,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""name"": ""Inventory"",
             ""id"": ""8835571d-7169-4288-8c2d-4f2cccd98275"",
             ""actions"": [
-                {
-                    ""name"": ""ToggleInventory"",
-                    ""type"": ""Button"",
-                    ""id"": ""987e843d-5cf1-4a48-8efc-381a43601229"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
                 {
                     ""name"": ""Close"",
                     ""type"": ""Button"",
@@ -187,17 +198,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Close"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""735d0a6a-5349-405a-8cd9-7208885ba108"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""ToggleInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -498,9 +498,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_ToggleInventory = m_Player.FindAction("ToggleInventory", throwIfNotFound: true);
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
-        m_Inventory_ToggleInventory = m_Inventory.FindAction("ToggleInventory", throwIfNotFound: true);
         m_Inventory_Close = m_Inventory.FindAction("Close", throwIfNotFound: true);
         // PauseGame
         m_PauseGame = asset.FindActionMap("PauseGame", throwIfNotFound: true);
@@ -586,6 +586,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Rotate;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_ToggleInventory;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -594,6 +595,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @ToggleInventory => m_Wrapper.m_Player_ToggleInventory;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -615,6 +617,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @ToggleInventory.started += instance.OnToggleInventory;
+            @ToggleInventory.performed += instance.OnToggleInventory;
+            @ToggleInventory.canceled += instance.OnToggleInventory;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -631,6 +636,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @ToggleInventory.started -= instance.OnToggleInventory;
+            @ToggleInventory.performed -= instance.OnToggleInventory;
+            @ToggleInventory.canceled -= instance.OnToggleInventory;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -652,13 +660,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Inventory
     private readonly InputActionMap m_Inventory;
     private List<IInventoryActions> m_InventoryActionsCallbackInterfaces = new List<IInventoryActions>();
-    private readonly InputAction m_Inventory_ToggleInventory;
     private readonly InputAction m_Inventory_Close;
     public struct InventoryActions
     {
         private @PlayerControls m_Wrapper;
         public InventoryActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @ToggleInventory => m_Wrapper.m_Inventory_ToggleInventory;
         public InputAction @Close => m_Wrapper.m_Inventory_Close;
         public InputActionMap Get() { return m_Wrapper.m_Inventory; }
         public void Enable() { Get().Enable(); }
@@ -669,9 +675,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_InventoryActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_InventoryActionsCallbackInterfaces.Add(instance);
-            @ToggleInventory.started += instance.OnToggleInventory;
-            @ToggleInventory.performed += instance.OnToggleInventory;
-            @ToggleInventory.canceled += instance.OnToggleInventory;
             @Close.started += instance.OnClose;
             @Close.performed += instance.OnClose;
             @Close.canceled += instance.OnClose;
@@ -679,9 +682,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IInventoryActions instance)
         {
-            @ToggleInventory.started -= instance.OnToggleInventory;
-            @ToggleInventory.performed -= instance.OnToggleInventory;
-            @ToggleInventory.canceled -= instance.OnToggleInventory;
             @Close.started -= instance.OnClose;
             @Close.performed -= instance.OnClose;
             @Close.canceled -= instance.OnClose;
@@ -966,10 +966,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnRotate(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnToggleInventory(InputAction.CallbackContext context);
     }
     public interface IInventoryActions
     {
-        void OnToggleInventory(InputAction.CallbackContext context);
         void OnClose(InputAction.CallbackContext context);
     }
     public interface IPauseGameActions

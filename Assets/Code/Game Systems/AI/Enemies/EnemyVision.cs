@@ -16,6 +16,9 @@ public class EnemyVision : MonoBehaviour
 
     public bool CanSeePlayer()
     {
+        if (!PlayerExists())
+            return false;
+        
         if (!IsPlayerInRange(out float distanceToPlayer))
             return false;
         
@@ -27,7 +30,15 @@ public class EnemyVision : MonoBehaviour
             
         return true;
     }
-    
+
+    private bool PlayerExists()
+    {
+        if (player == null) 
+            return false;
+        
+        return true;
+    }
+
     private bool IsPlayerInRange(out float distanceToPlayer)
     {
         distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);

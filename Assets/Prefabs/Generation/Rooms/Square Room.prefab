@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3512125861407875519}
   - component: {fileID: 7250880127948311103}
   - component: {fileID: 7184118237919688873}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 101
+  m_VersionIndex: 140
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -362,7 +362,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3122790497874004570}
-  m_Layer: 0
+  - component: {fileID: 1580551870888855728}
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,6 +389,25 @@ Transform:
   - {fileID: 3746680668176002747}
   m_Father: {fileID: 3572913522183637234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1580551870888855728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951747024518506187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &3181535265606335750
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +663,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 628
+  m_VersionIndex: 667
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1003,7 +1023,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 628
+  m_VersionIndex: 667
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1117,7 +1137,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2644674489800719404}
-  m_Layer: 0
+  - component: {fileID: 4200540213158812315}
+  m_Layer: 8
   m_Name: Floors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1140,6 +1161,25 @@ Transform:
   - {fileID: 1314116450384795909}
   m_Father: {fileID: 3572913522183637234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4200540213158812315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795927334756400059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &4801468390146101601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,7 +1435,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 628
+  m_VersionIndex: 667
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1581,7 +1621,7 @@ GameObject:
   - component: {fileID: 5790621137737143435}
   - component: {fileID: 9172920006744777804}
   - component: {fileID: 7543020898049832088}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2332,7 +2372,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 414
+  m_VersionIndex: 453
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2451,7 +2491,7 @@ GameObject:
   - component: {fileID: 62845834504083194}
   - component: {fileID: 1869182680017161922}
   - component: {fileID: 339551199310548782}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3202,7 +3242,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 509
+  m_VersionIndex: 548
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3321,7 +3361,7 @@ GameObject:
   - component: {fileID: 2683628157816501856}
   - component: {fileID: 5896268081713806621}
   - component: {fileID: 5449511658825491097}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4072,7 +4112,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 662
+  m_VersionIndex: 701
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4191,7 +4231,7 @@ GameObject:
   - component: {fileID: 163967445678251055}
   - component: {fileID: 6845369407665755155}
   - component: {fileID: 752812242253259771}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4942,7 +4982,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 567
+  m_VersionIndex: 606
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5302,7 +5342,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 628
+  m_VersionIndex: 667
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

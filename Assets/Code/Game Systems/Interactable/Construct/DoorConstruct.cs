@@ -1,7 +1,8 @@
-﻿using System;
-using UnityEngine;
-
+﻿
 public class DoorConstruct : Construct
 {
-    
+    protected override void Deconstruct()
+    {
+        Destroy(gameObject);
+    }
 }

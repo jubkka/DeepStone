@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class StateManager : MonoBehaviour
 {
-    public State currentState;
+    [SerializeField] private State currentState;
+    [SerializeField] private Enemy enemy;
+
+    private void Start()
+    {
+        enemy.OnTakeDamage += SwitchToTheNextState;
+    }
 
     private void Update()
     {
@@ -19,7 +25,7 @@ public class StateManager : MonoBehaviour
         } 
     }
 
-    private void SwitchToTheNextState(State nextState) 
+    public void SwitchToTheNextState(State nextState) 
     {
         currentState = nextState;
     }

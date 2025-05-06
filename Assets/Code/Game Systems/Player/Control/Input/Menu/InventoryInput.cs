@@ -9,15 +9,19 @@ public class InventoryInput : InputControl
 
     protected override void SubscribeToControls()
     {
-        controls.Inventory.ToggleInventory.performed += OnToggle;
+        controls.Player.ToggleInventory.performed += OnToggle;
         controls.Inventory.Close.performed += OnClose;
+        
+        controls.Player.Enable();
         controls.Inventory.Enable();
     }
     
     protected override void UnsubscribeFromControls()
     {
-        controls.Inventory.ToggleInventory.performed -= OnToggle;
+        controls.Player.ToggleInventory.performed -= OnToggle;
         controls.Inventory.Close.performed -= OnClose;
+        
+        controls.Player.Enable();
         controls.Inventory.Disable();
     }
 

@@ -1,45 +1,61 @@
-using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class DoorInteractable : Interactable
 {
     [SerializeField] private float duration;
+    
     private BoxCollider boxCollider;
     private Transform door;
     private Coroutine coroutine;
 
+    private GameObject player;
+
+    private bool isOpen = false;
+
     private void Start()
     {  
        door = transform.parent; 
-       boxCollider = transform.parent.GetComponent<BoxCollider>();
+       boxCollider = door.GetComponent<BoxCollider>();
+       
+       player = GameObject.FindWithTag("Player");
     }
 
     public override void Interact()
     {
-        if (coroutine == null)
-        {
-            float targetAngle = transform.rotation.y > 0 ? -90f : 90f;
-            boxCollider.enabled = transform.rotation.y > 0 ? true : false;
-
-            coroutine = StartCoroutine(SmoothMovementDoor(targetAngle));
-        }
+        ToggleDoor();
     }
-    
-    public IEnumerator SmoothMovementDoor(float targetAngle)
+
+    private void ToggleDoor()
     {
-        Quaternion startRotation = door.transform.rotation;
-        Quaternion endRotation = Quaternion.Euler(0, startRotation.eulerAngles.y + targetAngle, 0);
-        float timeElapsed = 0f;
+        float dot = GetDot();
+        float rotate = GetRotate(dot);
 
-        while (timeElapsed < duration) 
-        {
-            door.transform.rotation = Quaternion.Lerp(startRotation, endRotation, timeElapsed / duration);
-            timeElapsed += Time.deltaTime;
+        Rotate(rotate);
+        ToggleStates();
+    }
 
-            yield return null;
-        }
+    private void ToggleStates()
+    {
+        boxCollider.enabled = isOpen;
+        isOpen = !isOpen;
+    }
 
-        door.transform.rotation = endRotation;
-        coroutine = null;
+    private void Rotate(float rotate) => door.transform.DOLocalRotate(new Vector3(0, rotate, 0), duration);
+
+    private float GetRotate(float dot)
+    {
+        float rotationDirection = isOpen ? -90 : 90;
+        float localAngle = door.transform.localEulerAngles.y;
+        
+        return dot > 0 ? 
+            localAngle + rotationDirection :
+            localAngle - rotationDirection;
+    }
+
+    private float GetDot()
+    {
+        Vector3 toPlayer = (player.transform.position - door.transform.position).normalized;
+        return Vector3.Dot(door.transform.right, toPlayer);
     }
 }

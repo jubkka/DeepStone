@@ -14,25 +14,25 @@ public abstract class Indicator
     {
         this.current = current;
         this.max = max;
-        this.view = view; 
+        this.view = view;
 
-        view.ChangeCurrent(this.current, this.max);
+        view.Init(current, max);
     }
 
     public void Increase(int value) 
     {
         current = Math.Min(max, current + value);
-        view.ChangeCurrent(current, max);
+        view.ChangeValue(current, max);
     }
     public void Decrease(int value) 
     {
         current = Math.Max(0, current - value);
-        view.ChangeCurrent(current, max);
+        view.ChangeValue(current, max);
     } 
     public void ChangeMax(int value) 
     { 
         max = Math.Max(0, value);
-        view.ChangeCurrent(current, max);
+        view.ChangeValue(current, max);
     }
 }
 

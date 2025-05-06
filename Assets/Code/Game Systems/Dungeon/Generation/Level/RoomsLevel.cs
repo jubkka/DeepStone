@@ -13,7 +13,6 @@ public class RoomsLevel : MonoBehaviour
     private List<Room> prefabRooms;
 
     private List<Room> placedRooms = new List<Room>();
-    public List<Room> PlacedRooms => placedRooms;
 
     public void Init(Room startRoom, int levelSize, List<Room> prefabRooms)
     {
@@ -60,10 +59,10 @@ public class RoomsLevel : MonoBehaviour
         for (int i = 0; i < tries; i++)
             TryPlaceRoom();
         
-        gridLevel.SetWallCells(PlacedRooms);
+        gridLevel.SetWallCells(placedRooms);
     }
      
-    public bool TryPlaceRoom()
+    private bool TryPlaceRoom()
     {
         Vector3 pos = new Vector3(Random.Range(0, levelSize * 2), -0.5f, Random.Range(0, levelSize * 2));
         Quaternion rotation = Quaternion.Euler(0, Random.Range(0,4) * 90, 0);

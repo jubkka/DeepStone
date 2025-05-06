@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 9062653399268969376}
   - component: {fileID: 2169139183595979119}
   - component: {fileID: 2239507821173876982}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 730
+  m_VersionIndex: 778
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 3422875641984968653}
   - component: {fileID: 5430686093046632222}
   - component: {fileID: 3090818332317890555}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -648,7 +648,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 730
+  m_VersionIndex: 778
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 5495179833298208506}
   - component: {fileID: 5713146993641385024}
   - component: {fileID: 858665560288954070}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 74
+  m_VersionIndex: 119
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1120,7 +1120,7 @@ GameObject:
   - component: {fileID: 7574502612255503748}
   - component: {fileID: 6267873367851681806}
   - component: {fileID: 767567366884514673}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1354,7 +1354,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 730
+  m_VersionIndex: 778
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1473,7 +1473,7 @@ GameObject:
   - component: {fileID: 3280050496773706529}
   - component: {fileID: 7288448500074977596}
   - component: {fileID: 546866927427290138}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2253,7 +2253,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1132
+  m_VersionIndex: 1180
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2367,7 +2367,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2088414129720395346}
-  m_Layer: 0
+  - component: {fileID: 1094762312808697093}
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2393,6 +2394,25 @@ Transform:
   - {fileID: 4004946240446227454}
   m_Father: {fileID: 4033394282469852966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1094762312808697093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5623620915662963340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &7339278171635449142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2402,7 +2422,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5802503967770369075}
-  m_Layer: 0
+  - component: {fileID: 3465821354511602819}
+  m_Layer: 8
   m_Name: Floors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2425,6 +2446,25 @@ Transform:
   - {fileID: 5218164015331929423}
   m_Father: {fileID: 4033394282469852966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3465821354511602819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7339278171635449142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &8112290946027759617
 GameObject:
   m_ObjectHideFlags: 0

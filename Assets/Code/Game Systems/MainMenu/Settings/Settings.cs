@@ -1,43 +1,67 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
-public class Settings
+public class Settings : MonoBehaviour
 {
+    //Instance
+    public static Settings Instance { get; private set; }
+    
     //Common
-    public static Language SelectedLanguage {get; set;} = Language.Russian;
-    public enum Language
-    {
-        Russian,
-        English
-    }
+    [SerializeField] private CommonSetting commonSetting = new();
+    public CommonSetting CommonSetting => commonSetting;
 
     //Graphics
-    public static Dictionary<string, int> Resolution = new Dictionary<string, int>() 
-    {
-        {"width", 0},
-        {"height", 0},
-    };
-    public static int FramerateLimit {get; set;} = 60;
-    public static GraphicsQualities SelectedGraphicsQuality {get; set;} = GraphicsQualities.Medium;
-    public static FullScreenMode SelectedFullScreenMode {get; set;} = FullScreenMode.MaximizedWindow;
-    public static FramerateMode SelectedFramerateMode {get; set;} = FramerateMode.Limited;
-    public static int IsSync;
-    public enum FramerateMode 
-    {
-        Unlimited,
-        Limited
-    }
-    public enum GraphicsQualities 
-    {
-        Low,
-        Medium,
-        High
-    }
+    [SerializeField] private VideoSetting videoSetting = new();
+    public VideoSetting VideoSetting => videoSetting;
     
     //Volume
-    public static int Effects {get; set;} = 50;
-    public static int Music {get; set;} = 50;
-
+    [SerializeField] private VolumeSetting volumeSetting = new();
+    public VolumeSetting VolumeSetting => volumeSetting;
+    
     //Controls
-    public static int MouseSensivity {get; set;} = 100;
+    [SerializeField] private ControlSetting controlSetting = new();
+    public ControlSetting ControlSetting => controlSetting;
+
+    public event Action OnResetAction;
+    
+    private void Awake() => Instance = this;
+
+    private void Start()
+    {
+        LoadAllSettings();
+        OnApply();
+    }
+
+    public void OnApply()
+    {
+        CommonSetting.Apply();
+        VideoSetting.Apply();
+        VolumeSetting.Apply();
+        ControlSetting.Apply();
+    }
+
+    public void OnDefault()
+    {
+        CommonSetting.Default();
+        VideoSetting.Default();
+        VolumeSetting.Default();
+        ControlSetting.Default();
+        
+        OnResetAction?.Invoke();
+    }
+
+    public void OnReturn()
+    {
+        LoadAllSettings();
+        OnResetAction?.Invoke();
+    }
+
+    private void LoadAllSettings()
+    {
+        CommonSetting.Load();
+        VideoSetting.Load();
+        VolumeSetting.Load();
+        ControlSetting.Load();
+    }
 }

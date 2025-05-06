@@ -412,7 +412,6 @@ GameObject:
   - component: {fileID: 5538045192120383751}
   - component: {fileID: 6754216993249066002}
   - component: {fileID: 2318280703168253197}
-  - component: {fileID: 1509028468948642319}
   m_Layer: 6
   m_Name: --Scripts--
   m_TagString: Untagged
@@ -461,17 +460,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   durability: 3
-  hackDifficulty: 5
---- !u!114 &1509028468948642319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4018297890535133708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5c8d0a563114ba0b7b7a4bf207ee8d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 1851770355758467103}

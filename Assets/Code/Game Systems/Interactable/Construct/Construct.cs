@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public abstract class Construct : MonoBehaviour
+public abstract class Construct : Damageable
 {
     [SerializeField] protected int durability;
 
@@ -12,7 +12,7 @@ public abstract class Construct : MonoBehaviour
         parent = transform.parent.gameObject;
     }
 
-    public void GetDamage(int damage)
+    public override void GetDamage(int damage)
     {
         durability = Math.Max(0, durability - damage);
 
@@ -20,8 +20,5 @@ public abstract class Construct : MonoBehaviour
             Deconstruct();
     }
 
-    protected virtual void Deconstruct()
-    {
-        Destroy(parent);
-    }
+    protected abstract void Deconstruct();
 }

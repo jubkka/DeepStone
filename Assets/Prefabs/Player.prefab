@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storage:
     items: []
-  hotbarControl: {fileID: 0}
+  hotbar: {fileID: 0}
   activeSlot: 0
   activeItem:
     data: {fileID: 0}
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handContainer: {fileID: 5981015160357345304}
-  inputControl: {fileID: 8349968916153975085}
+  input: {fileID: 0}
   dropManager: {fileID: 1739191349138933931}
 --- !u!114 &5901659227280064215
 MonoBehaviour:
@@ -533,8 +533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpsCounter: {fileID: 2324369607789529834}
-  ItemSpawner: {fileID: 5105196096032746523}
-  enemy: {fileID: 0}
+  itemSpawner: {fileID: 0}
 --- !u!1 &1920194294698059809
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,7 +879,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3489279777135779636}
-  - component: {fileID: 5572475836141841281}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Untagged
@@ -903,18 +901,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3666952593135561236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5572475836141841281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4211487609677998421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48ec944292704cada126f4dd7f11197e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4289431586011847363
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,7 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c66634e96c80bb44bae580ab380006e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gear: {fileID: 3564971879226392208}
+  gearUI: {fileID: 0}
 --- !u!1 &4410417117743811218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,7 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e2b4388adfd1e4594ac840d02ed010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  moveSpeed: 5
 --- !u!1 &5707216557052911658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,7 +1685,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1614820927122424029}
-  - component: {fileID: 4127557629959686811}
   m_Layer: 7
   m_Name: Input
   m_TagString: Untagged
@@ -1722,18 +1707,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 659232493170775625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4127557629959686811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6517993574996357924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be802419df0ad454e9c699bf815788c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6538080506970348205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,7 +1897,7 @@ MonoBehaviour:
   healthCurrentPoint: 0
   manaCurrentPoint: 0
   staminaCurrentPoint: 0
-  healtMaxPoint: 20
+  healthMaxPoint: 0
   manaMaxPoint: 20
   staminaMaxPoint: 20
   healthView: {fileID: 6101979639950018211}
@@ -3368,16 +3341,6 @@ MonoBehaviour:
 --- !u!225 &3209906202983507774 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 4451265362256823488, guid: 1c70dfb250124ea42a0942790af393ef, type: 3}
-  m_PrefabInstance: {fileID: 1246919767570654206}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &3564971879226392208 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 2320657713710603630, guid: 1c70dfb250124ea42a0942790af393ef, type: 3}
-  m_PrefabInstance: {fileID: 1246919767570654206}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5105196096032746523 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6310878027161538533, guid: 1c70dfb250124ea42a0942790af393ef, type: 3}
   m_PrefabInstance: {fileID: 1246919767570654206}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &5157773789940900050 stripped

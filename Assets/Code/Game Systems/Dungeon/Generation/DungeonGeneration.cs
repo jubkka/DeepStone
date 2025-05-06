@@ -1,13 +1,24 @@
-﻿using UnityEngine;
+﻿using Unity.AI.Navigation;
+using UnityEngine;
 
 public class DungeonGeneration : MonoBehaviour
 {
-    [SerializeField] private ItemGeneration itemGeneration;
+    [Header("Generation")]
     [SerializeField] private LevelGeneration levelGeneration;
+    
+    [Header("Spawners")]
+    [SerializeField] private ItemSpawner itemSpawner;
+    [SerializeField] private EnemySpawner enemySpawner;
+    
+    [Header("NavMesh")]
+    [SerializeField] private NavMeshSurface navMeshSurface;
     
     private void Start()
     {
         levelGeneration.GenerateLevel();
-        itemGeneration.ItemsSpawn();
+        navMeshSurface.BuildNavMesh();
+        
+        itemSpawner.Spawn();
+        enemySpawner.Spawn();
     }
 }
