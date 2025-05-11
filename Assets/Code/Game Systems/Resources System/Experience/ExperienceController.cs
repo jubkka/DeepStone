@@ -3,15 +3,15 @@ using UnityEngine;
 public class ExperienceController : MonoBehaviour
 {
     [SerializeField] private ExperienceView view;
-    [SerializeField] private CharacterList characterList;
     private ExperienceModel model;
     
     private void Start()
     {
+        LevelComponent levelComponent = CharacterStatsSystems.Instance.LevelComponent;
         model = new ExperienceModel(view);
 
-        characterList.levelSystem.OnExpChanged += SetExp;
-        characterList.levelSystem.OnCountExpToNextLevelChanged += SetCountExpToLevelUp;
+        levelComponent.OnExpChanged += SetExp;
+        levelComponent.OnCountExpToNextLevelChanged += SetCountExpToLevelUp;
     }
 
     private void SetExp(int value)

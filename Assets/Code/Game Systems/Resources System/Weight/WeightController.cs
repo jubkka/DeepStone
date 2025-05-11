@@ -10,7 +10,7 @@ public class WeightController : MonoBehaviour
     {
         weightModel = new WeightModel(weightView);
         
-        InventoryComponent inventory = GameSystems.Instance.GetInventoryComponent;
+        InventoryComponent inventory = GearSystems.Instance.GetInventoryComponent;
         inventory.OnItemAdded += GiveWeight;
         inventory.OnItemRemoved += TakeWeight;
     }

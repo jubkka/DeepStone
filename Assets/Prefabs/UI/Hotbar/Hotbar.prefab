@@ -45,7 +45,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6859168298366976196}
-  - component: {fileID: 3176592711201478942}
   m_Layer: 5
   m_Name: Slots
   m_TagString: Untagged
@@ -81,32 +80,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.00001502, y: -4.5635}
   m_SizeDelta: {x: 721.0567, y: 83.7335}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3176592711201478942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4456923671929994361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 5
-    m_Right: 0
-    m_Top: 5
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!1 &5872677070136703084
 GameObject:
   m_ObjectHideFlags: 0

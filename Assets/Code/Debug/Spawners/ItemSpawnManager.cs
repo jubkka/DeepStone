@@ -5,20 +5,20 @@ public class ItemSpawnManager : MonoBehaviour
 {
     private InventoryComponent inventory;
     
-    public ItemData sword;
-    public ItemData potion;
-    public ItemData helmet;
-    public ItemData helmet2;
-    public ItemData chestplate;
-    public ItemData pants;
-    public ItemData boots;
-    public ItemData ring;
-    public ItemData necklace;
+    public ElementData sword;
+    public ElementData potion;
+    public ElementData helmet;
+    public ElementData helmet2;
+    public ElementData chestplate;
+    public ElementData pants;
+    public ElementData boots;
+    public ElementData ring;
+    public ElementData necklace;
     public int amount;
 
     private void Start()
     {
-        inventory = GameSystems.Instance.GetInventoryComponent;
+        inventory = GearSystems.Instance.GetInventoryComponent;
     }
 
     public void AddSword() => inventory.AddItem(new Item(sword, amount), 0);

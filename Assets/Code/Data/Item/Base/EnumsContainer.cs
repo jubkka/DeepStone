@@ -21,5 +21,6 @@ public enum ItemSlotType
     Inventory, 
     Equipment, 
     Hotbar,
-    Chest
+    Chest,
+    Spells
 } 

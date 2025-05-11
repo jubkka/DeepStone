@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class LevelView : MonoBehaviour
 {
-    [SerializeField] private CharacterList characterList;
     [SerializeField] private TextMeshProUGUI tmp;
 
     private void Start()
     {
-        characterList.levelSystem.OnLevelUp += UpdateLevel;
+        CharacterStatsSystems.Instance.LevelComponent.OnLevelUp += UpdateLevel;
     }
 
     private void UpdateLevel(int level)

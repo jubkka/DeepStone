@@ -7,7 +7,7 @@ public class InventoryTypeManager : GearManager {
 
     public override bool AddItem(Item item, int index = -1) 
     {
-        if (item.data is StackableItemData)
+        if (item.data is StackableElementData)
         {
             bool stacked = StackItem(item);
             
@@ -27,11 +27,11 @@ public class InventoryTypeManager : GearManager {
     {
         bool added = false;
 
-        for (int index = 0; index < storage.Items.Length; index++) // пробегаемся по всему инвенторю
+        for (int index = 0; index < Storage.Items.Length; index++) // пробегаемся по всему инвенторю
         {
             if (item.Amount <= 0) break;
 
-            Item itemInInv = storage.Items[index];
+            Item itemInInv = Storage.Items[index];
             
             bool match = 
                 !itemInInv.IsEmpty && //Пустая ли ячейка
@@ -59,7 +59,7 @@ public class InventoryTypeManager : GearManager {
 
     private bool PlaceItem(Item item, int index) 
     {
-        int freeIndex = Array.FindIndex(storage.Items, itemNull => itemNull.IsEmpty);
+        int freeIndex = Array.FindIndex(Storage.Items, itemNull => itemNull.IsEmpty);
         
         bool added = 
             index != -1 && //Индекс не должен быть отрицательным
@@ -82,7 +82,7 @@ public class InventoryTypeManager : GearManager {
     {
         int countToPut = Math.Min(item.Amount, item.GetMaxStackSize);
         item.Amount = countToPut;
-        storage.SetItem(item, index);
+        Storage.SetItem(item, index);
         item.OnItemCountZero += Remove;
 
         InvokeItemChanged(index);
@@ -92,18 +92,18 @@ public class InventoryTypeManager : GearManager {
 
     private void Remove(Item item) 
     {
-        for (int i = 0; i < storage.Items.Length; i++)
+        for (int i = 0; i < Storage.Items.Length; i++)
         {
-            if (storage.GetItem(i) == item) 
+            if (Storage.GetItem(i) == item) 
                 RemoveItem(i);
         }
     }
 
     public override bool RemoveItem(int index)
     {
-        if (storage.Items[index] == null) return false;
+        if (Storage.Items[index] == null) return false;
 
-        storage.Items[index] = new Item();
+        Storage.Items[index] = new Item();
         InvokeItemChanged(index);
 
         return true;
@@ -113,8 +113,8 @@ public class InventoryTypeManager : GearManager {
     {
         if (fromIndex == targetIndex) return false;
 
-        Item fromItem = storage.Items[fromIndex];
-        Item targetItem = storage.Items[targetIndex];
+        Item fromItem = Storage.Items[fromIndex];
+        Item targetItem = Storage.Items[targetIndex];
 
         IMoveCommand moveCommand;
 
@@ -131,7 +131,7 @@ public class InventoryTypeManager : GearManager {
             moveCommand = new SwapItemsCommand(fromIndex, targetIndex);
         }   
 
-        if (moveCommand.Execute(storage.Items)) 
+        if (moveCommand.Execute(Storage.Items)) 
         {
             InvokeItemChanged(fromIndex);
             InvokeItemChanged(targetIndex);

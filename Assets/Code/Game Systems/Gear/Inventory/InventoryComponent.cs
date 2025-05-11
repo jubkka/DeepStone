@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryComponent : GearComponent 
@@ -6,7 +7,7 @@ public class InventoryComponent : GearComponent
     public event Action<Item> OnItemAdded;
     public event Action<Item> OnItemRemoved;
     
-    protected override void Initialize()
+    public override void Initialize()
     {
         Storage = new GearStorage(maxSize);
         Manager = new InventoryManager(Storage);
@@ -24,12 +25,12 @@ public class InventoryComponent : GearComponent
     {   
         if (Manager.AddItem(item, index)) 
         {
-            Debug.Log($"Add item in {gearName}: + {item.data.GetName} In slot index: {index}");
+            Debug.Log($"Add item in {gearName}: + {item.data.GetItemName} In slot index: {index}");
             OnItemAdded?.Invoke(item);
             return true;
         }
 
-        Debug.Log($"Fail add item in {gearName}: {item.data.GetName} in slot index: {index}");
+        Debug.Log($"Fail add item in {gearName}: {item.data.GetItemName} in slot index: {index}");
         return false;
     }
 
@@ -44,5 +45,11 @@ public class InventoryComponent : GearComponent
     public override bool MoveItems(int fromIndex, int targetIndex)
     {
         return Manager.MoveItems(fromIndex, targetIndex);
+    }
+
+    public void AddItems(List<Item> items)
+    {
+        foreach (var item in items)
+            AddItem(item, 0); //Создаем новую копию, чтобы не менять оригинал
     }
 }

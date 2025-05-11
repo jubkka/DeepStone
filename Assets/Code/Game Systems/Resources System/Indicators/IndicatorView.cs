@@ -5,14 +5,8 @@ using DG.Tweening;
 
 public class IndicatorView : MonoBehaviour 
 {
-    protected TextMeshProUGUI textTMP;
-    protected Slider slider;
-    
-    protected virtual void Awake()
-    {
-        textTMP = GetComponentInChildren<TextMeshProUGUI>();
-        slider = GetComponentInChildren<Slider>();
-    }
+    [SerializeField] protected TextMeshProUGUI textTMP;
+    [SerializeField] protected Slider slider;
 
     public void ChangeValue(int current, int max) 
     { 
@@ -20,7 +14,7 @@ public class IndicatorView : MonoBehaviour
         slider.DOValue(current, 0.25f);
     }
 
-    public void ChangeSliderMax(int max)
+    private void ChangeSliderMax(int max)
     {
         slider.maxValue = max;
     }

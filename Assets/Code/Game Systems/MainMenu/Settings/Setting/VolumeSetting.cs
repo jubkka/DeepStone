@@ -50,6 +50,6 @@ public class VolumeSetting : Setting
 
     public override void Apply()
     {
-        MusicManager.instance.ChangeVolume(music / 100f);
+        AudioSystems.Instance.GetMusic.ChangeVolume(music / 100f);
     }
 }

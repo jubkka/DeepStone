@@ -223,6 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce56336a278c1744a88b99a5a87c6cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TMP: {fileID: 5992981036726189624}
+  icon: {fileID: 6823687857170664608}
   gear: {fileID: 0}
   index: 0
   alphaInDrag: 0.7

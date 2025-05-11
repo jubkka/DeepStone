@@ -6,7 +6,7 @@ public class RangeAttack : ItemAttack
     
     protected override void DealDamage()
     {
-        if (itemContainer.ItemData is not WeaponData)
+        if (itemContainer.ElementData is not WeaponData)
             return;
         
         Instantiate(arrow, cam.position, Quaternion.identity);

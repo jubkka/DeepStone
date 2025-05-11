@@ -8,10 +8,8 @@ public class EnemyIndicatorView : IndicatorView
     [SerializeField] private float timeToDisappear = 1f;
     private CanvasGroup canvasGroup;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
-        
         canvasGroup = GetComponent<CanvasGroup>();
 
        transform.localScale = new Vector3(

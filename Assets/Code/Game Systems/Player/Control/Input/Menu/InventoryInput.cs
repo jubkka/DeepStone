@@ -12,7 +12,7 @@ public class InventoryInput : InputControl
         controls.Player.ToggleInventory.performed += OnToggle;
         controls.Inventory.Close.performed += OnClose;
         
-        controls.Player.Enable();
+        controls.Player.ToggleInventory.Enable();
         controls.Inventory.Enable();
     }
     
@@ -21,7 +21,7 @@ public class InventoryInput : InputControl
         controls.Player.ToggleInventory.performed -= OnToggle;
         controls.Inventory.Close.performed -= OnClose;
         
-        controls.Player.Enable();
+        controls.Player.ToggleInventory.Disable();
         controls.Inventory.Disable();
     }
 

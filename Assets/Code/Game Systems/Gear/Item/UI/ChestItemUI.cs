@@ -8,8 +8,6 @@ public class ChestItemUI : BaseItemUI
 
         int targetIndex = afterDragParent.GetSiblingIndex();
 
-        Debug.Log("Hi");
-
         switch (slot.itemSlotType)
         {
             case ItemSlotType.Chest:

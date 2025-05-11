@@ -2,7 +2,7 @@
 
 public class EnemyAttack : MonoBehaviour
 {
-    private IndicatorController indicator;
+    private IndicatorComponent indicator;
     
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private LayerMask playerMask;
@@ -12,7 +12,7 @@ public class EnemyAttack : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
-        indicator = GameSystems.Instance.GetIndicator;
+        indicator = CharacterStatsSystems.Instance.GetIndicator;
     }
 
     public void Attack()

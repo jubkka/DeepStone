@@ -24,7 +24,7 @@ public class ChestInteractable : Interactable
     
     private void Start()
     {
-        chest = GameSystems.Instance.GetChestComponent;
+        chest = GearSystems.Instance.GetChestComponent;
         
         anim = GetComponentInParent<Animation>();
         chestContainer = GetComponent<ChestContainer>();

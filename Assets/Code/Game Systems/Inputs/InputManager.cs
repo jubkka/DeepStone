@@ -25,8 +25,9 @@ public class InputManager : MonoBehaviour
     {
         controls.Disable();
         controls.Inventory.Enable();
+        controls.Player.ToggleInventory.Enable();
         
-        CursorManager.ChangeState(true);
+        GameManager.CursorChangeState(true);
     }
 
     public void SwitchToPlayer()
@@ -34,7 +35,7 @@ public class InputManager : MonoBehaviour
         controls.Enable();
         controls.Inventory.Close.Disable();
         
-        CursorManager.ChangeState(false);
+        GameManager.CursorChangeState(false);
     }
 
     public void SwitchToPause()
@@ -42,7 +43,7 @@ public class InputManager : MonoBehaviour
         controls.Disable();
         controls.PauseGame.Enable();
         
-        CursorManager.ChangeState(true);
+        GameManager.CursorChangeState(true);
     }
 
     public void SwitchToChest()
@@ -50,13 +51,13 @@ public class InputManager : MonoBehaviour
         controls.Disable();
         controls.Chest.Enable();
         
-        CursorManager.ChangeState(true);
+        GameManager.CursorChangeState(true);
     }
 
     public void SwitchToDeathScreen()
     {
         controls.Disable();
         
-        CursorManager.ChangeState(true);
+        GameManager.CursorChangeState(true);
     }
 }

@@ -7,26 +7,26 @@ public class DropManager : MonoBehaviour
     
     private void Start()
     {
-        InventoryComponent inventory = GameSystems.Instance.GetInventoryComponent;
+        InventoryComponent inventory = GearSystems.Instance.GetInventoryComponent;
         inventory.OnItemRemoved += Drop;
     }
 
-    public void Drop(Item item) 
+    private void Drop(Item item) 
     {
         SpawnItem(item.data, item.Amount);
         
         OnItemDropped?.Invoke(new Item());
     }
 
-    private void SpawnItem(ItemData itemData, int amount)
+    private void SpawnItem(ElementData elementData, int amount)
     {
-        GameObject newitem = Instantiate(itemData.GetPrefab, transform.position, new Quaternion());
-        ItemContainer container = newitem.GetComponentInChildren<ItemContainer>();
+        GameObject newItem = Instantiate(elementData.GetPrefab, transform.position, new Quaternion());
+        ItemContainer container = newItem.GetComponentInChildren<ItemContainer>();
         
-        container.ItemData = itemData;
+        container.ElementData = elementData;
         container.Amount = amount;
 
-        CorrectTransform(newitem);
+        CorrectTransform(newItem);
     }
 
     private void CorrectTransform(GameObject item)

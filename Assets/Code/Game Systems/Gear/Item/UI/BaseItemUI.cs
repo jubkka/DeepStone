@@ -7,8 +7,8 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
 {
     #region Varibales
         [Header("Game Objects")]
-        protected TextMeshProUGUI TMP;
-        protected Image icon;
+        [SerializeField] protected TextMeshProUGUI TMP;
+        [SerializeField] protected Image icon;
         public GearComponent gear;
     
         [Header("Properties")]
@@ -23,11 +23,6 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
     #endregion
     
     #region Functions
-        private void Awake() 
-        {
-            TMP = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            icon = GetComponent<Image>();
-        }
         public void Initialize(Item item, int index) 
         {
             this.index = index;
@@ -39,7 +34,7 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
-            ChangeStateIcon(false, alphaInDrag);
+            ToggleStateIcon(false, alphaInDrag);
     
             beforeDragParent = transform.parent;
             transform.SetParent(dragContainer);
@@ -51,7 +46,7 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
         public void OnEndDrag(PointerEventData eventData) 
         {
             SetTransformParent(beforeDragParent);
-            ChangeStateIcon(true, 1f);
+            ToggleStateIcon(true, 1f);
         }
         public virtual void OnPointerClick(PointerEventData eventData) 
         {
@@ -63,14 +58,14 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
         protected void UpdateItem()
         {
             icon.sprite = item.data.GetIcon;
-            TMP.text = item.data is StackableItemData ? item.Amount.ToString() : "";
+            TMP.text = item.data is StackableElementData ? item.Amount.ToString() : "";
         }
         protected void SetTransformParent(Transform newParent)
         {
             transform.SetParent(newParent);
             transform.position = newParent.position;
         }
-        protected void ChangeStateIcon(bool raycastState, float alpha)
+        protected void ToggleStateIcon(bool raycastState, float alpha)
         {
             icon.raycastTarget = raycastState; // Взаимодействие с иконкой
             icon.color = new Color(255,255,255, alpha); // Прозрачность иконки

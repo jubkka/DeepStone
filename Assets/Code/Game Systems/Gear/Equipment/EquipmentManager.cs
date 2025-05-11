@@ -6,7 +6,7 @@ public class EquipmentManager : GearManager
     {
         if (item == null) return false;
 
-        storage.SetItem(item, index);
+        Storage.SetItem(item, index);
         InvokeItemChanged(index);
 
         return true;
@@ -14,9 +14,9 @@ public class EquipmentManager : GearManager
 
     public override bool RemoveItem(int index)
     {
-        if (storage.Items[index] == null) return false;
+        if (Storage.Items[index] == null) return false;
 
-        storage.Items[index] = new Item();
+        Storage.Items[index] = new Item();
         InvokeItemChanged(index);
 
         return true;

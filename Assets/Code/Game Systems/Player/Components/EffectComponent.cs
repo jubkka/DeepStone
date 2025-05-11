@@ -4,7 +4,7 @@ public class EffectComponent : MonoBehaviour
 {
     public static EffectComponent instance;
     
-    private IndicatorController controller;
+    private IndicatorComponent component;
 
     private void Awake()
     {
@@ -13,11 +13,11 @@ public class EffectComponent : MonoBehaviour
 
     private void Start()
     {
-        controller = GameSystems.Instance.GetIndicator;
+        component = CharacterStatsSystems.Instance.GetIndicator;
     }
 
     public void Heal(int healAmount) 
     {
-        controller.Heal(healAmount);
+        component.Heal(healAmount);
     }
 }

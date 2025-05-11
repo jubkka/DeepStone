@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ItemContainer : MonoBehaviour
 {
-    [SerializeField] private ItemData itemData;
+    [SerializeField] private ElementData elementData;
     [SerializeField] private int amount;
     
     private Item item = new Item();
@@ -12,10 +12,10 @@ public class ItemContainer : MonoBehaviour
         get => amount;
         set => amount = item.Amount + value;
     }
-    public ItemData ItemData 
+    public ElementData ElementData 
     {
-        get => itemData;
-        set => itemData = item.data = value;
+        get => elementData;
+        set => elementData = item.data = value;
     }
 
     public void CreateNewItem(Item item)
@@ -25,6 +25,6 @@ public class ItemContainer : MonoBehaviour
 
     private void Start()
     {
-        item = new Item(itemData, amount);
+        item = new Item(elementData, amount);
     }
 }

@@ -4,7 +4,7 @@ public class MeleeAttack : ItemAttack
 {
     protected override void DealDamage()
     {
-        if (itemContainer.ItemData is not WeaponData weaponData)
+        if (itemContainer.ElementData is not WeaponData weaponData)
             return;
         
         if(!Raycaster.Cast(cam.position, cam.forward, weaponData.GetRange, out GameObject hitObject))

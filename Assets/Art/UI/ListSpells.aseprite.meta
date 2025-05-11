@@ -150,9 +150,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
+      y: 21
       width: 87
-      height: 87
+      height: 70
     spriteID: 62a80adf359d8f44e8bb36c033c40f6a
     spriteBone: []
     spriteOutline: []
@@ -175,9 +175,9 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 9
-        y: 4
+        y: 6
         width: 179
-        height: 87
+        height: 85
       spriteId: 62a80adf359d8f44e8bb36c033c40f6a
     linkedCells: []
     parentIndex: -1

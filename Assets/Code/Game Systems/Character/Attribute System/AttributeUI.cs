@@ -5,14 +5,15 @@ using UnityEngine.EventSystems;
 
 public class AttributeUI : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private CharacterList characterList;
     [SerializeField] private TextMeshProUGUI tmp;
+    [SerializeField] private AttributeType attributeType;
     
-    public AttributeType AttributeType;
+    private AttributeComponent attributeComponent;
 
     private void Start()
     {
-        characterList.attributeSystem.SubscribeAttribute(AttributeType, this);
+        attributeComponent = CharacterStatsSystems.Instance.GetAttribute;
+        attributeComponent.SubscribeAttribute(attributeType, this);
     }
 
     public void UpdateValue(int value)
@@ -22,6 +23,6 @@ public class AttributeUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        characterList.AttributeIncrease(AttributeType);
+        attributeComponent.AttributeIncrease(attributeType);
     }
 }

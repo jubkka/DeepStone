@@ -13,10 +13,10 @@ public abstract class GearComponent : MonoBehaviour
     public GearStorage GetStorage => Storage;
 
     public event Action<int> OnItemChanged;
-    protected void Awake() => Initialize();
+    
     protected void Start() => PostInitialize();
 
-    protected virtual void Initialize() 
+    public virtual void Initialize() 
     {
         for (int index = 0; index < Storage.Items.Length; index++) Storage.Items[index] = new Item(); 
 
@@ -27,15 +27,15 @@ public abstract class GearComponent : MonoBehaviour
     
     protected virtual void PostInitialize() { }
     
-    public virtual bool AddItem(Item item, int index) 
+    public virtual bool AddItem(InventoryElement element, int index) 
     {   
-        if (Manager.AddItem(item, index)) 
+        if (Manager.AddItem(element, index)) 
         {
-            Debug.Log($"Add item in {gearName}: + {item.data.GetName} In slot index: {index}");
+            Debug.Log($"Add item in {gearName}: + {element.data.GetItemName} In slot index: {index}");
             return true;
         }
 
-        Debug.Log($"Fail add item in {gearName}: {item.data.GetName} in slot index: {index}");
+        Debug.Log($"Fail add item in {gearName}: {element.data.GetItemName} in slot index: {index}");
         return false;
     }
     public virtual void RemoveItem(int index) 

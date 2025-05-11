@@ -1,5 +1,5 @@
 public class ChestComponent : GearComponent {
-    protected override void Initialize() 
+    public override void Initialize() 
     {
         Storage = new GearStorage(maxSize);
         Manager = new ChestManager(Storage);

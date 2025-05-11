@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HotbarComponent : GearComponent
@@ -6,7 +7,7 @@ public class HotbarComponent : GearComponent
     private InventoryComponent inventory;
     private HandComponent hand;
 
-    protected override void Initialize()
+    public override void Initialize()
     {
         Storage = new GearStorage(maxSize);
         Manager = new HotbarManager(Storage);
@@ -18,7 +19,7 @@ public class HotbarComponent : GearComponent
     {
         base.PostInitialize();
 
-        inventory = GameSystems.Instance.GetInventoryComponent;
+        inventory = GearSystems.Instance.GetInventoryComponent;
         inventory.OnItemRemoved += HandleItemRemoved;
     }
 
@@ -34,12 +35,12 @@ public class HotbarComponent : GearComponent
     {   
         if (Manager.AddItem(item, index)) 
         {
-            Debug.Log($"Add item in {gearName}: + {item.data.GetName} In slot index: {index}");
+            Debug.Log($"Add item in {gearName}: + {item.data.GetItemName} In slot index: {index}");
             item.OnItemCountZero += HandleItemRemoved;
             return true;
         }
 
-        Debug.Log($"Fail add item in {gearName}: {item.data.GetName} in slot index: {index}");
+        Debug.Log($"Fail add item in {gearName}: {item.data.GetItemName} in slot index: {index}");
         return false;
     }
 
@@ -70,4 +71,14 @@ public class HotbarComponent : GearComponent
         return false;
     }
 
+    public void AddItems(List<Item> items)
+    {
+        foreach (var item in items)
+        {
+            if (item.data is not WeaponData weaponData)
+                continue;
+
+            AddItem(item, 0);
+        }
+    }
 }

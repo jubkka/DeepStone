@@ -5,7 +5,6 @@ using UnityEngine;
 [Serializable]
 public class Attribute
 {
-    [SerializeField] private AttributeType attributeType;
     [SerializeField] private int value;
     [SerializeField] private int baseValue;
 

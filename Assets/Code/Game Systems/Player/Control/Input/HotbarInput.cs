@@ -19,7 +19,7 @@ public class HotbarInput : InputControl
 
     protected override void Start()
     {
-        HotbarComponent hotbar = GameSystems.Instance.GetHotbarComponent;
+        HotbarComponent hotbar = GearSystems.Instance.GetHotbarComponent;
         hotbar.OnItemChanged += SelectSlot;
         
         base.Start();

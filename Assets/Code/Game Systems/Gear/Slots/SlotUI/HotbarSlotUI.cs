@@ -3,7 +3,7 @@ public class HotbarSlotUI : SlotUI
 {
     protected override void Initialization()
     {
-        gear = GameSystems.Instance.GetHotbarComponent;
+        gear = GearSystems.Instance.GetHotbarComponent;
     }
 
     public override void OnPointerEnter(PointerEventData eventData) {}

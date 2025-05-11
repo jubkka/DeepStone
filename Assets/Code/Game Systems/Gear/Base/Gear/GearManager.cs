@@ -2,12 +2,12 @@ using System;
 
 public abstract class GearManager
 {
-    protected GearStorage storage;
+    protected GearStorage Storage;
     public event Action<int> OnItemChanged;
 
-    public GearManager(GearStorage storage) 
+    protected GearManager(GearStorage storage) 
     {
-        this.storage = storage;
+        this.Storage = storage;
     }
 
     protected void InvokeItemChanged(int index) => OnItemChanged?.Invoke(index);

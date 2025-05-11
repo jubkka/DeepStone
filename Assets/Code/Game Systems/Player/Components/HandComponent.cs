@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class HandComponent : MonoBehaviour
@@ -19,10 +18,10 @@ public class HandComponent : MonoBehaviour
 
     private void Start()
     {
-        hotbar = GameSystems.Instance.GetHotbarComponent;
+        hotbar = GearSystems.Instance.GetHotbarComponent;
         
         input.OnActiveSlotChanged += PutInHandByIndex;
-        dropManager.OnItemDropped += PutInHand;
+        dropManager.OnItemDropped += DropItemInHand;
         
         PutInHandByIndex(input.ActiveSlotIndex);
     }
@@ -40,19 +39,35 @@ public class HandComponent : MonoBehaviour
     public virtual void PutInHand(Item item)
     {
         activeItem = item;
-        
-        if(handContainer.childCount > 0) 
-            Destroy(handContainer.GetChild(0).gameObject);
+
+        DestroyGameObject();
 
         if (activeItem.data != null)
         {
             SpawnItem();
             CreateItem(item);
-            
-            OnActiveItemChanged?.Invoke(activeItem);
         }
+        
+        OnActiveItemChanged?.Invoke(activeItem);
     }
-    
+
+    private void DropItemInHand(Item item)
+    {
+        if (item != activeItem)
+            return;
+        
+        DestroyGameObject();
+        
+        activeItem = new Item();
+        OnActiveItemChanged?.Invoke(activeItem);
+    }
+
+    private void DestroyGameObject()
+    {
+        if(handContainer.childCount > 0) 
+            Destroy(handContainer.GetChild(0).gameObject);
+    }
+
     public virtual void UseItemInHand()
     {
         if (activeItem.data != null)

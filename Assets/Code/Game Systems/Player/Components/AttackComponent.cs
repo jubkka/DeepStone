@@ -9,12 +9,17 @@ public class AttackComponent : MonoBehaviour
     
     private void Start()
     {
-        handComponent = GameSystems.Instance.GetHandComponent;
+        handComponent = CombatSystems.Instance.GetHandComponent;
         handComponent.OnActiveItemChanged += GetComponents;
+
+        GetComponents(handComponent.GetActiveItem);
     }
 
     private void GetComponents(Item item)
     {
+        if (item.data == null)
+            return;
+        
         activeItemGameObject = handComponent.GetActiveItemGameObject;
         animator = activeItemGameObject.GetComponent<Animator>();
     }

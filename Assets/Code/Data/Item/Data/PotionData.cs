@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "TestPotion", menuName = "Items/Potions/TestWeapon")]
-public class PotionData : StackableItemData
+public class PotionData : StackableElementData
 {
     [SerializeField] private List<ItemEffectData> effects = new List<ItemEffectData>();
 

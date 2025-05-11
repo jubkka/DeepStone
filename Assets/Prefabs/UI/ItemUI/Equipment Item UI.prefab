@@ -223,9 +223,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649630e8d4691044c877934221ccd7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TMP: {fileID: 7710774293258211533}
+  icon: {fileID: 8928264858881807728}
   gear: {fileID: 0}
   index: 0
   alphaInDrag: 0.7
+  item:
+    data: {fileID: 0}
+    amount: 0
+    uniqueId: 
   beforeDragParent: {fileID: 0}
   afterDragParent: {fileID: 0}
   dragContainer: {fileID: 0}

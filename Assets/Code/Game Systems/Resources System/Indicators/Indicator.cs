@@ -36,16 +36,19 @@ public abstract class Indicator
     }
 }
 
+[Serializable]
 public class Health : Indicator
 {
     public Health(int current, int max, IndicatorView view) : base(current, max, view) {}
 }
 
+[Serializable]
 public class Mana : Indicator 
 {
     public Mana(int current, int max, IndicatorView view) : base(current, max, view) {}
 }
 
+[Serializable]
 public class Stamina : Indicator 
 {
     public Stamina(int current, int max, IndicatorView view) : base(current, max, view) {}

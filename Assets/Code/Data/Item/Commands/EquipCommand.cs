@@ -12,9 +12,6 @@ public class EquipCommand : IItemCommand
 
     public void Execute(Item item)
     {
-        if(item.data is not ArmorData armorData)
-            return;
-        
-        equipment.Equip(item, (int)armorData.GetArmorType);
+        equipment.Equip(item);
     }
 }

@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638753089462498172
+  platformSettingsDirtyTick: 638823935442309772
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -142,58 +142,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: SmallElements_0
+  - name: Crosshair
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 5
-      width: 8
-      height: 8
+      x: 3
+      y: 21
+      width: 6
+      height: 6
     spriteID: 16491b46dd66af64fbd4cfb7c078868c
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Coin
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 21
-      y: 4
-      width: 9
-      height: 9
-    spriteID: 160d703c77540114c8545702f17a7b2f
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Weigth
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 21
-      y: 19
-      width: 9
-      height: 9
-    spriteID: b5b96d0fb83d1e542aa41200afc8a451
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -214,9 +174,9 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 19
+        x: 21
         y: 9
-        width: 26
+        width: 24
         height: 24
       spriteId: ac52be97f58f9134a94597fd823d96a5
     linkedCells: []
@@ -239,7 +199,7 @@ ScriptedImporter:
     ignorePlatformSupport: 0
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     forceMaximumCompressionQuality_BC6H_BC7: 0

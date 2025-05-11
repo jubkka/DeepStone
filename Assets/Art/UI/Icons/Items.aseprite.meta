@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638665108926476132
+  platformSettingsDirtyTick: 638823935489141308
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -334,6 +334,26 @@ ScriptedImporter:
       width: 12
       height: 15
     spriteID: 3c5163b8b49ec9e4bb913f6993813ea3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: ItemInHand
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 70
+      y: 145
+      width: 11
+      height: 12
+    spriteID: 041a88243b1b73e4eaac4b084d97a94e
     spriteBone: []
     spriteOutline: []
     vertices: []

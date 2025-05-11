@@ -6,7 +6,7 @@ public class AttackInput : InputControl
     
     protected override void Start()
     {
-        hand = GameSystems.Instance.GetHandComponent;
+        hand = CombatSystems.Instance.GetHandComponent;
 
         base.Start();
     }

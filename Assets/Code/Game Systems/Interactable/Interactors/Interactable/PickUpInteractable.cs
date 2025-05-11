@@ -19,7 +19,7 @@ public class PickUpInteractable : Interactable
 
     private void AddItem(ItemContainer itemContainer) 
     {
-        InventoryComponent inventory = GameSystems.Instance.GetInventoryComponent;
+        InventoryComponent inventory = GearSystems.Instance.GetInventoryComponent;
 
         if (inventory.AddItem(itemContainer.GetItem, 0))
             Destroy(itemObj);

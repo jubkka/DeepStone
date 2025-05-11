@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "TestArmor", menuName = "Items/Armor/TestArmor")]
-public class ArmorData : SimpleItemData
+public class ArmorData : SimpleElementData
 {
     [Header("Armor Data")]
     [SerializeField] private ArmorType armorType;

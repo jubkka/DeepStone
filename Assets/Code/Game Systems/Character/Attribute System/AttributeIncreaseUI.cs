@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class AttributeIncreaseUI : MonoBehaviour
 {
-    [SerializeField] private CharacterList characterList;
     [SerializeField] private Sprite activeIncrease;
     [SerializeField] private Sprite nonActiveIncrease;
     
@@ -12,7 +11,7 @@ public class AttributeIncreaseUI : MonoBehaviour
 
     private void Start()
     {
-        characterList.levelSystem.OnCountFreePointsChanged += ChangeIcon;
+        CharacterStatsSystems.Instance.LevelComponent.OnCountFreePointsChanged += ChangeIcon;
         images = GetComponentsInChildren<Image>();
     }
 
