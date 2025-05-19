@@ -1,44 +1,34 @@
 ﻿using System;
 using UnityEngine;
 
-public class HandComponent : MonoBehaviour
+public abstract class HandComponent : MonoBehaviour
 {
-    [SerializeField] private Transform handContainer;
-    [SerializeField] private HotbarInput input;
-    [SerializeField] private DropManager dropManager;
+    [Header("Components")]
+    [SerializeField] protected Transform handContainer;
+    [SerializeField] protected HotbarInput input;
+    [SerializeField] protected DropComponent dropComponent;
+    
+    [Header("Item")]
+    [SerializeField] protected Item activeItem = new Item();
+    [SerializeField] private GameObject activeItemGameObject;
     
     private HotbarComponent hotbar;
-
-    private GameObject activeItemGameObject;
-    private Item activeItem = new Item();
+    
     public Item GetActiveItem => activeItem;
     public GameObject GetActiveItemGameObject => activeItemGameObject;
-    
     public event Action<Item> OnActiveItemChanged; 
 
-    private void Start()
+    protected void Start()
     {
-        hotbar = GearSystems.Instance.GetHotbarComponent;
+        hotbar = GearSystems.Instance.Hotbar;
         
-        input.OnActiveSlotChanged += PutInHandByIndex;
-        dropManager.OnItemDropped += DropItemInHand;
         
-        PutInHandByIndex(input.ActiveSlotIndex);
+        dropComponent.OnItemDropped += DropItemInHand;
     }
-
-    private void PutInHandByIndex(int index)
-    {
-        Item item = hotbar.GetItem(index);
-        
-        if (activeItem == item)
-            return;
-            
-        PutInHand(item);
-    }
-
+    
     public virtual void PutInHand(Item item)
     {
-        activeItem = item;
+        activeItem = activeItem.GetUniqueId == item.GetUniqueId ? new Item() : item;
 
         DestroyGameObject();
 
@@ -51,9 +41,9 @@ public class HandComponent : MonoBehaviour
         OnActiveItemChanged?.Invoke(activeItem);
     }
 
-    private void DropItemInHand(Item item)
+    protected void DropItemInHand(Item item)
     {
-        if (item != activeItem)
+        if (item.GetUniqueId != activeItem.GetUniqueId)
             return;
         
         DestroyGameObject();
@@ -62,27 +52,41 @@ public class HandComponent : MonoBehaviour
         OnActiveItemChanged?.Invoke(activeItem);
     }
 
-    private void DestroyGameObject()
+    protected void DestroyGameObject()
     {
-        if(handContainer.childCount > 0) 
-            Destroy(handContainer.GetChild(0).gameObject);
+        foreach (Transform child in handContainer)
+            Destroy(child.gameObject);
     }
 
-    public virtual void UseItemInHand()
+    public void UseItemInHand()
     {
         if (activeItem.data != null)
             activeItem.Use(ItemSlotType.Hotbar);
+
+        if (activeItem.Amount <= 0)
+            ClearHand();
+    }
+    
+    public void ClearHand()
+    {
+        if (activeItem.data != null)
+        {
+            DestroyGameObject();
+            activeItem = new Item();
+            
+            OnActiveItemChanged?.Invoke(activeItem);
+        }
     }
 
-    private void SpawnItem()
+    protected void SpawnItem()
     {
         activeItemGameObject = Instantiate(activeItem.data.GetPrefab, handContainer);
         activeItemGameObject.layer = LayerMask.NameToLayer("Weapon");
     }
 
-    private void CreateItem(Item item)
+    protected void CreateItem(Item item)
     {
-        ItemContainer itemContainer = activeItemGameObject.GetComponentInChildren<ItemContainer>();
+        GenericContainer itemContainer = activeItemGameObject.GetComponentInChildren<GenericContainer>();
         itemContainer?.CreateNewItem(item);
     }
 }

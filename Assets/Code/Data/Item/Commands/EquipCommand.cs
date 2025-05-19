@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.Serialization;
-
-public class EquipCommand : IItemCommand
+﻿public class EquipCommand : IItemCommand
 {
     private EquipmentComponent equipment;
     

@@ -1,26 +1,14 @@
 using System.Collections;
 using UnityEngine;
 
-public class IdleState : State
+public class IdleState : StateDecision
 {
-    [Header("Components")]
-    [SerializeField] private EnemyVision enemyVision;
-
-    public override State RunCurrentState()
-    {
-        if (enemyVision.CanSeePlayer()) 
-            return conditionStates[StateType.Chase];
-
-        if (coroutine == null)
-            coroutine = StartCoroutine(ExecuteActions());
-
-        return nextState;
-    }
-
     protected override IEnumerator ExecuteActions() 
     {
-        yield return new WaitForSeconds(1f);
-
+        yield return new WaitForSeconds(nextStateDelay);
+        
         SelectRandomState();
+        
+        coroutine = null;
     }
 }

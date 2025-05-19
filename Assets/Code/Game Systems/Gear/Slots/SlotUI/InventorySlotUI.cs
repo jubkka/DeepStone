@@ -2,6 +2,6 @@ public class InventorySlotUI : TooltipSlotUI
 {
     protected override void Initialization()
     {
-        gear = GearSystems.Instance.GetInventoryComponent;
+        gear = GearSystems.Instance.Inventory;
     }
 }

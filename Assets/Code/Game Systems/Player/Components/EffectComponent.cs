@@ -13,7 +13,7 @@ public class EffectComponent : MonoBehaviour
 
     private void Start()
     {
-        component = CharacterStatsSystems.Instance.GetIndicator;
+        component = CharacterStatsSystems.Instance.Indicator;
     }
 
     public void Heal(int healAmount) 

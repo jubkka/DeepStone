@@ -1,37 +1,74 @@
-using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class DoorInteractable : Interactable
 {
     [SerializeField] private float duration;
     
-    private BoxCollider boxCollider;
-    private Transform door;
+    [Header("Components")]
+    [SerializeField] private BoxCollider boxCollider;
+    [SerializeField] private Transform pivot;
+    
     private Coroutine coroutine;
-
     private GameObject player;
 
     private bool isOpen = false;
+    private bool blockInteract = false;
+
+    private Vector3 startRotation;
+    private Vector3 forward;
+
+    private Quaternion start;
+    private Quaternion target;
 
     private void Start()
-    {  
-       door = transform.parent; 
-       boxCollider = door.GetComponent<BoxCollider>();
-       
-       player = GameObject.FindWithTag("Player");
+    { 
+        start = pivot.rotation;
+        player = GameObject.FindWithTag("Player");
+    }
+    
+    private void Close()
+    {
+        StartCoroutine(DoRotation(pivot.rotation, start));
+    }
+
+    private void Open()
+    {
+        float dot = GetDot();
+
+        float angle = (dot <= 0) ? -90f : 90f;
+        
+        target = Quaternion.Euler(0f, start.eulerAngles.y + angle, 0f);
+        
+        coroutine = StartCoroutine(DoRotation(pivot.rotation, target));
+    }
+
+    private IEnumerator DoRotation(Quaternion start, Quaternion end)
+    {
+        float timer = 0;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            
+            pivot.rotation = Quaternion.Slerp(start, end, timer / duration);
+            yield return null;
+        }
+
+        blockInteract = false;
+        coroutine = null;
     }
 
     public override void Interact()
     {
-        ToggleDoor();
-    }
-
-    private void ToggleDoor()
-    {
-        float dot = GetDot();
-        float rotate = GetRotate(dot);
-
-        Rotate(rotate);
+        if (blockInteract)
+            return;
+        
+        if (isOpen)
+            Close();
+        else
+            Open();
+        
         ToggleStates();
     }
 
@@ -39,23 +76,12 @@ public class DoorInteractable : Interactable
     {
         boxCollider.enabled = isOpen;
         isOpen = !isOpen;
-    }
-
-    private void Rotate(float rotate) => door.transform.DOLocalRotate(new Vector3(0, rotate, 0), duration);
-
-    private float GetRotate(float dot)
-    {
-        float rotationDirection = isOpen ? -90 : 90;
-        float localAngle = door.transform.localEulerAngles.y;
-        
-        return dot > 0 ? 
-            localAngle + rotationDirection :
-            localAngle - rotationDirection;
+        blockInteract = true;
     }
 
     private float GetDot()
     {
-        Vector3 toPlayer = (player.transform.position - door.transform.position).normalized;
-        return Vector3.Dot(door.transform.right, toPlayer);
+        Vector3 toPlayer = (player.transform.position - pivot.transform.position).normalized;
+        return Vector3.Dot(pivot.right, toPlayer);
     }
 }

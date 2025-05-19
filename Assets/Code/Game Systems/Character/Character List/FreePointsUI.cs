@@ -7,7 +7,7 @@ public class FreePointsUI : MonoBehaviour
 
     private void Start()
     {
-        CharacterStatsSystems.Instance.LevelComponent.OnCountFreePointsChanged += UpdateFreePoints;
+        CharacterStatsSystems.Instance.Level.OnCountFreePointsChanged += UpdateFreePoints;
     }
 
     private void UpdateFreePoints(int value)

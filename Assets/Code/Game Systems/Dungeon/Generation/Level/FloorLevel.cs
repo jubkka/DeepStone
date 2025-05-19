@@ -6,16 +6,12 @@ public class FloorLevel : MonoBehaviour
     [SerializeField] private Transform container;
     [SerializeField] private Material floorMaterial;
     
-    private GridLevel gridLevel;
+    [Header("Components")]
+    [SerializeField] private GridLevel gridLevel;
     
     private bool[,] floorMap;
     public bool[,] FloorMap => floorMap;
     
-    private void Start()
-    {
-        gridLevel = GetComponent<GridLevel>();
-    }
-
     public void Init(int levelSize)
     {
         floorMap = new bool[levelSize, levelSize];

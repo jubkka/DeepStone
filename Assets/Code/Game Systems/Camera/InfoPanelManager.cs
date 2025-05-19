@@ -33,7 +33,7 @@ public class InfoPanelManager : MonoBehaviour
         if (infoPanel == null)
             return;
         
-        if (infoPanel.Visible)
+        if (infoPanel.IsVisible)
             return;
 
         if (lastInfoPanel && infoPanel != lastInfoPanel)

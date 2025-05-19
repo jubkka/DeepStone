@@ -23,4 +23,5 @@ public class EquipmentManager : GearManager
     }
 
     public override bool MoveItems(int fromIndex, int targetIndex) { return false;}
+    
 }

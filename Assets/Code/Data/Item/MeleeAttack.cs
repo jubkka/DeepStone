@@ -2,17 +2,22 @@
 
 public class MeleeAttack : ItemAttack
 {
+    private WeaponData data;
+
+    protected override void Start()
+    {
+        cam = Camera.main;
+        data = (WeaponData)container.GetItem.data;
+    }
+
     protected override void DealDamage()
     {
-        if (itemContainer.ElementData is not WeaponData weaponData)
-            return;
-        
-        if(!Raycaster.Cast(cam.position, cam.forward, weaponData.GetRange, out GameObject hitObject))
+        if(!Raycaster.Cast(cam.transform.position, cam.transform.forward, data.GetRange, out GameObject hitObject))
             return;
         
         Damageable damageable = hitObject.GetComponentInChildren<Damageable>();
 
         if (damageable != null)
-            damageable.GetDamage(weaponData.GetDamage);
+            damageable.GetDamage(data.GetDamage);
     }
 }

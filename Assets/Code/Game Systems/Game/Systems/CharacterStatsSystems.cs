@@ -1,18 +1,13 @@
-﻿public class CharacterStatsSystems : Systems
+﻿using UnityEngine;
+
+public class CharacterStatsSystems : Systems
 {
     public static CharacterStatsSystems Instance;
     
-    private IndicatorComponent indicator;
-    private EffectComponent effect;
-    
-    private AttributeComponent attribute;
-    private LevelComponent levelComponent;
-    
-    public IndicatorComponent GetIndicator => indicator;
-    public EffectComponent GetEffectComponent => effect;
-    public AttributeComponent GetAttribute => attribute;
-
-    public LevelComponent LevelComponent => levelComponent;
+    public IndicatorComponent Indicator { get; private set; }
+    public EffectComponent Effect { get; private set; }
+    public AttributeComponent Attribute { get; private set; }
+    public LevelComponent Level { get; private set; }
 
     private void Awake()
     {
@@ -28,15 +23,15 @@
 
     protected override void GetComponents()
     {
-        indicator = components.GetComponentInChildren<IndicatorComponent>();
-        effect = components.GetComponentInChildren<EffectComponent>();
-        attribute = components.GetComponentInChildren<AttributeComponent>();
-        levelComponent = components.GetComponentInChildren<LevelComponent>();
+        Indicator = components.GetComponentInChildren<IndicatorComponent>();
+        Effect = components.GetComponentInChildren<EffectComponent>();
+        Attribute = components.GetComponentInChildren<AttributeComponent>();
+        Level = components.GetComponentInChildren<LevelComponent>();
     }
 
     private void Initialization(Origin origin)
     {
-        indicator.Init(origin);
-        attribute.Init(origin);
+        Indicator.Init(origin);
+        Attribute.Init(origin);
     }
 }

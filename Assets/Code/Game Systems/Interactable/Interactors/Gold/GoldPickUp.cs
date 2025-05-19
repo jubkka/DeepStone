@@ -2,12 +2,8 @@ using UnityEngine;
 
 public class GoldPickUp : Interactable
 {
-    private GameObject itemObj;
-
-    private void Awake()
-    {
-        itemObj = transform.parent.gameObject;
-    }
+    [SerializeField] private GoldContainer goldContainer;
+    [SerializeField] private GameObject itemObj;
     
     public override void Interact()
     {
@@ -16,7 +12,7 @@ public class GoldPickUp : Interactable
 
     private void AddGold() 
     {
-        int goldAmount = GetComponent<GoldContainer>().GetAmount;
+        int goldAmount = goldContainer.GetAmount;
 
         GoldController goldController = GoldController.Instance;
 

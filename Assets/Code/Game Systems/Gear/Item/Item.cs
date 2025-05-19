@@ -2,20 +2,20 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class Item : GenericElementData
+public class Item
 {
     #region Varibales
-    public ElementData data;
+    public GenericElementData data;
     [SerializeField] private int amount;
     [SerializeField] private string uniqueId;
-
-    public string GetUniqueId => uniqueId;
+    
     public bool IsEmpty => data == null;
+    public string GetUniqueId => uniqueId;
     public int GetMaxStackSize 
     {
         get 
         {
-            if (data is StackableElementData stackableItem) 
+            if (data is StackableItemData stackableItem) 
                 return stackableItem.GetMaxStackSize;
             else 
                 return 1; 
@@ -41,16 +41,26 @@ public class Item : GenericElementData
     #endregion
 
     public Item() {}
-    public Item(ElementData data, int amount) 
+
+    public Item(GenericElementData data)
+    {
+        this.data = data;
+        amount = 1;
+        
+        uniqueId = Guid.NewGuid().ToString();
+    }
+
+    public Item(GenericElementData data, int amount) 
     {
         this.data = data;
         this.amount = amount;
-        this.uniqueId = Guid.NewGuid().ToString();
+        
+        uniqueId = Guid.NewGuid().ToString();
     }
 
     public void Use(ItemSlotType type)
     {
-        var command = GearSystems.Instance.GetItemUsageComponent.GetCommandByContext(type, data);
+        var command = GearSystems.Instance.ItemsUsage.GetCommandByContext(type, data);
         command?.Execute(this);
     }
 }

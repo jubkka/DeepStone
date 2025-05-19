@@ -145,16 +145,6 @@ public class RoomsLevel : MonoBehaviour
 
         roomDoorwayLevel.OccupyRoomDoorways(rooms);
     }
-     
-    private void TestPlaceRoom()
-    {
-        // Vector3 pos = new Vector3(50, 0, 50);
-        // Quaternion rotation = Quaternion.Euler(0,90,0);
-        //  
-        // Room room = PlaceRoom(testRoom, pos, rotation);
-        //  
-        // grid.AddRoomToGrid(room);
-    }
     
     private bool CanPlaceRoom(Room room)
     {

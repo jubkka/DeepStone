@@ -8,7 +8,6 @@ public struct StateChances
     [Range(0f, 1f)] public float chance;
 }
 
-
 [Serializable]
 public struct StateEntry
 {

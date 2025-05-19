@@ -15,7 +15,7 @@ public class EquipmentComponent : GearComponent
     {
         base.PostInitialize();
 
-        inventory = GearSystems.Instance.GetInventoryComponent;
+        inventory = GearSystems.Instance.Inventory;
     }
 
     public bool CanEquipArmor(Item item, ArmorType armorType) 
@@ -46,9 +46,25 @@ public class EquipmentComponent : GearComponent
             inventory.AddItem(targetItem, -1); // Добавляем старый предмет в инвентарь
     }
 
-    public void TryEquipItems(List<Item> items)
+    private void TryEquipItems(List<Item> items)
     {
         foreach (var item in items)
             Equip(item);
     }
+
+    public void UnequipItem(Item currentItem)
+    {
+        for (int i = 0; i < Storage.Items.Length; i++)
+        {
+            if (Storage.Items[i] == currentItem)
+                RemoveItem(i);
+        }
+    }
+
+    public override void AddItems(List<Item> items)
+    {
+        TryEquipItems(items);
+    }
+
+    public override void DropItem(int index) { }
 }

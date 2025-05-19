@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class RoomDoorwayLevel : MonoBehaviour
 {
+    [Header("Properties")]
     [SerializeField] private GameObject door;
     [SerializeField] private int chanceSpawnDoor;
     
-    private int levelSize;
+    [Header("Components")]
+    [SerializeField] private GridLevel gridLevel;
+    [SerializeField] private FloorLevel floorLevel;
 
-    private GridLevel gridLevel;
-    private FloorLevel floorLevel;
+    private int levelSize;
 
     public void Init(int levelSize)
     {
         this.levelSize = levelSize;
-
-        gridLevel = GetComponentInParent<GridLevel>();
-        floorLevel = GetComponentInParent<FloorLevel>();
     }
 
     public void EnableDoorway(Room room, GameObject doorway)
@@ -25,7 +24,8 @@ public class RoomDoorwayLevel : MonoBehaviour
         room.posibleDoorways.Remove(doorway);
         room.activeDoorways.Add(doorway);
         
-        doorway.SetActive(false);
+        doorway.GetComponent<MeshRenderer>().enabled = false;
+        doorway.GetComponent<MeshCollider>().enabled = false;
     }
     
     public bool CreateExitDoorway(Room room)
@@ -77,7 +77,7 @@ public class RoomDoorwayLevel : MonoBehaviour
         //     doorPosition += offset;
         // }
 
-        Instantiate(door, doorPosition, doorway.rotation, doorway.parent);
+        GameObject newDoor = Instantiate(door, doorPosition, doorway.transform.rotation, doorway.transform);
     }
 
     public void OccupyCellsNearDoorways(Room room, List<Vector3> positions)

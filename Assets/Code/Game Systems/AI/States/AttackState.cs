@@ -1,21 +1,16 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class AttackState : State
 {
-    [SerializeField] private EnemyVision enemyVision;
     [SerializeField] private EnemyAttack enemyAttack;
     
     public override State RunCurrentState()
     {
         if (!enemyAttack.CanAttackPlayer()) 
-            return conditionStates[StateType.Search];
-        
-        if (coroutine == null)
-            coroutine = StartCoroutine(ExecuteActions());
+            return StateManager.stateDict.GetState(StateType.Chase);
 
-        return this;
+        return base.RunCurrentState();
     }
 
     protected override IEnumerator ExecuteActions()

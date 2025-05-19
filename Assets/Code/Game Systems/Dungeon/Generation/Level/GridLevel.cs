@@ -9,6 +9,7 @@ public class GridLevel : MonoBehaviour
     private List<Vector3> occupiedCells = new List<Vector3>();
     public List<Vector3> GetOccupiedCells => occupiedCells;
     
+    
     private List<Vector3> occupiedCellsByWalls = new List<Vector3>();
     public List<Vector3> GetOccupiedCellsByWalls => occupiedCellsByWalls;
 

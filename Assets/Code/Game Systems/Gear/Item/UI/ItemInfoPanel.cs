@@ -29,7 +29,7 @@ public class ItemInfoPanel : MonoBehaviour
 
     private void SetInfo(Item item) 
     {
-        nameTMP.text = item.data.GetItemName;
+        nameTMP.text = item.data.GetName;
     }
 
     public void DoFadePanel(float value) 

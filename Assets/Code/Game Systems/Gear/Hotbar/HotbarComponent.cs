@@ -19,7 +19,7 @@ public class HotbarComponent : GearComponent
     {
         base.PostInitialize();
 
-        inventory = GearSystems.Instance.GetInventoryComponent;
+        inventory = GearSystems.Instance.Inventory;
         inventory.OnItemRemoved += HandleItemRemoved;
     }
 
@@ -35,12 +35,12 @@ public class HotbarComponent : GearComponent
     {   
         if (Manager.AddItem(item, index)) 
         {
-            Debug.Log($"Add item in {gearName}: + {item.data.GetItemName} In slot index: {index}");
+            Debug.Log($"Add item in {gearName}: + {item.data.GetName} In slot index: {index}");
             item.OnItemCountZero += HandleItemRemoved;
             return true;
         }
 
-        Debug.Log($"Fail add item in {gearName}: {item.data.GetItemName} in slot index: {index}");
+        Debug.Log($"Fail add item in {gearName}: {item.data.GetName} in slot index: {index}");
         return false;
     }
 

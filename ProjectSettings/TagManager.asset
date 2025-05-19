@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - DragContainer
+  - ProjectilePointLauncher
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,3 @@
-using UnityEngine.EventSystems;
-
 public class EquipmentItemUI : BaseItemUI
 {
     public override void HandleDrop(GearComponent inventory)
@@ -16,5 +14,10 @@ public class EquipmentItemUI : BaseItemUI
             inventory.AddItem(item, targetIndex);
             gear.RemoveItem(index);
         } 
+    }
+    
+    protected override void Use()
+    {
+        item.Use(ItemSlotType.Equipment);
     }
 }

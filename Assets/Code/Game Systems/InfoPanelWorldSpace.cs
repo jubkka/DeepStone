@@ -7,8 +7,9 @@ public class InfoPanelWorldSpace : MonoBehaviour
     
     private Camera cam;
     private CanvasGroup canvasGroup;
+    private bool isVisible;
 
-    public bool Visible => canvasGroup.alpha == 1f;
+    public bool IsVisible => isVisible;
 
     private void Start()
     {
@@ -18,17 +19,21 @@ public class InfoPanelWorldSpace : MonoBehaviour
 
     private void Update()
     {
-        transform.LookAt(cam.transform);
+        if (isVisible)
+            transform.LookAt(cam?.transform);
     }
 
     public InfoPanelWorldSpace Show()
     {
         canvasGroup.DOFade(1f, doFadeDuration);
+        isVisible = true;
+        
         return this;
     }
 
     public void Hide()
     {
         canvasGroup.DOFade(0f, doFadeDuration);
+        isVisible = false;
     }
 }

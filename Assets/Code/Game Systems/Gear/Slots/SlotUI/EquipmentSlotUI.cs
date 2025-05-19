@@ -5,6 +5,6 @@ public class EquipmentSlotUI : TooltipSlotUI
     public ArmorType armorType;
     protected override void Initialization()
     {
-        gear = GearSystems.Instance.GetEquipmentComponent;
+        gear = GearSystems.Instance.Equipment;
     }
 }

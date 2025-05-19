@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class Construct : Damageable
 {
-    [SerializeField] protected int durability;
+    [SerializeField] protected float durability;
 
     protected GameObject parent;
 
@@ -12,7 +12,7 @@ public abstract class Construct : Damageable
         parent = transform.parent.gameObject;
     }
 
-    public override void GetDamage(int damage)
+    public override void GetDamage(float damage)
     {
         durability = Math.Max(0, durability - damage);
 

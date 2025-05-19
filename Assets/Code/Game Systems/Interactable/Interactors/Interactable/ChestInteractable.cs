@@ -24,7 +24,7 @@ public class ChestInteractable : Interactable
     
     private void Start()
     {
-        chest = GearSystems.Instance.GetChestComponent;
+        chest = GearSystems.Instance.Chest;
         
         anim = GetComponentInParent<Animation>();
         chestContainer = GetComponent<ChestContainer>();
@@ -58,7 +58,7 @@ public class ChestInteractable : Interactable
         
         ChangeState(true);
         chest.GiveItems(chestContainer.Items);
-        anim.Play("Opening");
+        //anim.Play("Opening");
         
         inputManager.SwitchToChest();
     }
@@ -72,7 +72,7 @@ public class ChestInteractable : Interactable
         
         ChangeState(false);
         chestContainer.Items = chest.TakeItems();
-        anim.Play("Closing");
+        //anim.Play("Closing");
     }
 
     private void ChangeState(bool state)

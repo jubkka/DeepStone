@@ -3,6 +3,6 @@
 [System.Serializable]
 public class LootItem
 {
-    public ElementData data;
+    public ItemData data;
     [Range(0, 1000)] public float weight;
 }

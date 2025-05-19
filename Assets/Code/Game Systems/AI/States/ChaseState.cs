@@ -7,7 +7,6 @@ public class ChaseState : State
 
     [Header("Components")]
     [SerializeField] private EnemyMove enemyMove;
-    [SerializeField] private EnemyVision enemyVision;
     [SerializeField] private EnemyAttack enemyAttack;
 
     protected override void Start()
@@ -20,22 +19,16 @@ public class ChaseState : State
     public override State RunCurrentState()
     {
         if (enemyAttack.CanAttackPlayer()) 
-            return conditionStates[StateType.Attack];
+            return StateManager.stateDict.GetState(StateType.Attack);
 
-        if (!enemyVision.CanSeePlayer()) 
-            return conditionStates[StateType.Search];
-
-        if (coroutine == null)
-            coroutine = StartCoroutine(ExecuteActions());
-        
-        return this;
+        return base.RunCurrentState();
     }
 
     protected override IEnumerator ExecuteActions()
     {
         enemyMove.MoveToDestination(player.transform.position);
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.15f);
 
         coroutine = null;
     }

@@ -2,6 +2,6 @@
 {
     protected override void Initialize()
     {
-        component = GearSystems.Instance.GetSpellComponent;
+        component = GearSystems.Instance.Spell;
     }
 }

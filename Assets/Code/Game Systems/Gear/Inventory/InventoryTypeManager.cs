@@ -3,11 +3,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class InventoryTypeManager : GearManager {
-    public InventoryTypeManager(GearStorage storage) : base(storage) {}
+    protected InventoryTypeManager(GearStorage storage) : base(storage) {}
 
     public override bool AddItem(Item item, int index = -1) 
     {
-        if (item.data is StackableElementData)
+        if (item.data is StackableItemData)
         {
             bool stacked = StackItem(item);
             
@@ -27,7 +27,7 @@ public class InventoryTypeManager : GearManager {
     {
         bool added = false;
 
-        for (int index = 0; index < Storage.Items.Length; index++) // пробегаемся по всему инвенторю
+        for (int index = 0; index < Storage.Items.Length; index++) // пробегаемся по всему инвентарю
         {
             if (item.Amount <= 0) break;
 
@@ -65,7 +65,7 @@ public class InventoryTypeManager : GearManager {
             index != -1 && //Индекс не должен быть отрицательным
             freeIndex != -1 && // В слоте не должен быть предмет
             PlaceItemByIndex(item, freeIndex); //Размещаем
-
+        
         // while (--amount > 0)
         // {
         //     int freeIndex = Array.FindIndex(storage.Items, itemNull => itemNull.IsEmpty); //Ищем индекс пустой ячейки в инвентаре

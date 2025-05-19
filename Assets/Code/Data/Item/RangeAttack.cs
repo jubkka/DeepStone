@@ -2,13 +2,15 @@
 
 public class RangeAttack : ItemAttack
 {
-    [SerializeField] private GameObject arrow;
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private float distanceToLaunch = 1.5f; 
     
     protected override void DealDamage()
     {
-        if (itemContainer.ElementData is not WeaponData)
-            return;
+        GameObject newProjectile = Instantiate(projectile, cam.transform.position, Quaternion.identity);
+        LauncherProjectile launcherProjectile = newProjectile.GetComponentInChildren<LauncherProjectile>();
         
-        Instantiate(arrow, cam.position, Quaternion.identity);
+        launcherProjectile?.SetData(container);
+        launcherProjectile?.Init(cam.transform);
     }
 }

@@ -1,14 +1,20 @@
-﻿using UnityEngine;
-
-public class CombatSystems : Systems
+﻿public class CombatSystems : Systems
 {
     public static CombatSystems Instance;
     
-    private HandComponent hand;
-    private AttackComponent attack;
+    private LeftHandComponent leftHand;
+    private RightHandComponent rightHand;
+    private MagicHandComponent magicHand;
     
-    public HandComponent GetHandComponent => hand;
+    private AttackComponent attack;
+    private SpellCastingComponent spell;
+
+    public LeftHandComponent GetLeftHand => leftHand;
+    public RightHandComponent GetRightHand => rightHand;
+    public MagicHandComponent GetMagicHand => magicHand;
+    
     public AttackComponent GetAttackComponent => attack;
+    public SpellCastingComponent GetSpell => spell;
 
     private void Awake()
     {
@@ -18,7 +24,11 @@ public class CombatSystems : Systems
 
     protected override void GetComponents()
     {
-        hand = components.GetComponentInChildren<HandComponent>();
+        leftHand = components.GetComponentInChildren<LeftHandComponent>();
+        rightHand = components.GetComponentInChildren<RightHandComponent>();
+        magicHand = components.GetComponentInChildren<MagicHandComponent>();
+        
         attack = components.GetComponentInChildren<AttackComponent>();
+        spell = components.GetComponentInChildren<SpellCastingComponent>();
     }
 }

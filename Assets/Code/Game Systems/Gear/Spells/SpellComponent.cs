@@ -8,13 +8,10 @@ public class SpellComponent : GearComponent
         base.Initialize();
     }
 
-    public override bool AddItem(Item item, int index)
-    {
-        return false;
-    }
+    public override void DropItem(int index) {}
 
     public override bool MoveItems(int fromIndex, int targetIndex)
     {
-        throw new System.NotImplementedException();
+        return Manager.MoveItems(fromIndex, targetIndex);
     }
 }

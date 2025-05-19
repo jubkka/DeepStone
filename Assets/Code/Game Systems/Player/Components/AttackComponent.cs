@@ -2,17 +2,17 @@
 
 public class AttackComponent : MonoBehaviour
 {
-    private HandComponent handComponent;
+    private RightHandComponent rightHand;
     
     private GameObject activeItemGameObject;
     private Animator animator;
     
     private void Start()
     {
-        handComponent = CombatSystems.Instance.GetHandComponent;
-        handComponent.OnActiveItemChanged += GetComponents;
+        rightHand = CombatSystems.Instance.GetRightHand;
+        rightHand.OnActiveItemChanged += GetComponents;
 
-        GetComponents(handComponent.GetActiveItem);
+        GetComponents(rightHand.GetActiveItem);
     }
 
     private void GetComponents(Item item)
@@ -20,7 +20,7 @@ public class AttackComponent : MonoBehaviour
         if (item.data == null)
             return;
         
-        activeItemGameObject = handComponent.GetActiveItemGameObject;
+        activeItemGameObject = rightHand.GetActiveItemGameObject;
         animator = activeItemGameObject.GetComponent<Animator>();
     }
 

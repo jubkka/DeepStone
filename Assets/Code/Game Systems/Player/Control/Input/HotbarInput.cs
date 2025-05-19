@@ -11,15 +11,19 @@ public class HotbarInput : InputControl
        private set
        {
            activeSlotIndex = value;
-           OnActiveSlotChanged?.Invoke(activeSlotIndex);
+           OnSlotSelected?.Invoke(activeSlotIndex);
        }
     }
+
+    private HotbarComponent hotbar;
     
-    public event Action<int> OnActiveSlotChanged;
+    public event Action<int> OnSlotSelected;
+    public event Action<int> OnKeyPressed;
+    public event Action<float> OnMouseScrolled;
 
     protected override void Start()
     {
-        HotbarComponent hotbar = GearSystems.Instance.GetHotbarComponent;
+        hotbar = GearSystems.Instance.Hotbar;
         hotbar.OnItemChanged += SelectSlot;
         
         base.Start();
@@ -62,17 +66,23 @@ public class HotbarInput : InputControl
         
         switch (keyName)
         {
-            case "1": 
-                SelectSlot(0); break;
-            case "2": 
-                SelectSlot(1); break;
+            case "1":
+                KeyPressed(0); break;
+            case "2":
+                KeyPressed(1); break;
             case "3":
-                SelectSlot(2); break;
-            case "4": 
-                SelectSlot(3); break;
-            case "5": 
-                SelectSlot(4); break;
+                KeyPressed(2); break;
+            case "4":
+                KeyPressed(3); break;
+            case "5":
+                KeyPressed(4); break;
         }
+    }
+
+    private void KeyPressed(int index)
+    {
+        OnKeyPressed?.Invoke(index);
+        OnSlotSelected?.Invoke(index);
     }
 
     private void SelectSlot(int index)
@@ -82,12 +92,9 @@ public class HotbarInput : InputControl
     
     private void ScrollMouse(float scrollValue)
     {
-        if (scrollValue == 0) return;
-
-        if (scrollValue < 0f) 
-            ActiveSlotIndex = ActiveSlotIndex != 4 ? ActiveSlotIndex + 1 : 0;
-
-        else if (scrollValue > 0f)
-            ActiveSlotIndex = ActiveSlotIndex != 0 ? ActiveSlotIndex - 1 : 4;
+        if (scrollValue == 0) 
+            return;
+        
+        OnMouseScrolled?.Invoke(scrollValue);
     }
 }

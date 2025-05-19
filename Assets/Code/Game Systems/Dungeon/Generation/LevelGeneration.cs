@@ -13,17 +13,17 @@ public class LevelGeneration : MonoBehaviour
     [SerializeField] private GameObject borders;
     [SerializeField] private Room startRoom;
     
+    [Header("Level Components")]
+    [SerializeField] private GridLevel gridLevel;
+    [SerializeField] private FloorLevel floorLevel;
+    [SerializeField] private RoomsLevel roomsLevel;
+    
     [Header("Rooms")]
     [SerializeField] private List<Room> prefabRooms;
 
     [Space(25)]
     [Header("TESTING")]
-    [SerializeField] private Room testRoom;
     [SerializeField] private bool canGenerateFloor;
-    
-    private GridLevel gridLevel;
-    private FloorLevel floorLevel;
-    private RoomsLevel roomsLevel;
     
     private void Awake()
     {
@@ -32,10 +32,6 @@ public class LevelGeneration : MonoBehaviour
 
     private void Init()
     {
-        gridLevel = GetComponentInChildren<GridLevel>();
-        floorLevel = GetComponentInChildren<FloorLevel>();
-        roomsLevel = GetComponentInChildren<RoomsLevel>();
-        
         gridLevel.Init(levelSize);
         floorLevel.Init(levelSize);
         roomsLevel.Init(startRoom, levelSize, prefabRooms);

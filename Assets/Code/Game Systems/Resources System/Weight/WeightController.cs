@@ -10,19 +10,22 @@ public class WeightController : MonoBehaviour
     {
         weightModel = new WeightModel(weightView);
         
-        InventoryComponent inventory = GearSystems.Instance.GetInventoryComponent;
+        InventoryComponent inventory = GearSystems.Instance.Inventory;
+        
         inventory.OnItemAdded += GiveWeight;
         inventory.OnItemRemoved += TakeWeight;
     }
 
-    public void GiveWeight(Item item)
+    private void GiveWeight(Item item)
     {
-        weightModel.Current += item.data.GetWeight;
+        if (item.data is ItemData data)
+            weightModel.Current += data.GetWeight;
     }
     
-    public void TakeWeight(Item item)
+    private void TakeWeight(Item item)
     {
-        weightModel.Current -= item.data.GetWeight;
+        if (item.data is ItemData data)
+            weightModel.Current -= data.GetWeight;
     }
 
     public void SetWeightMax(int weightMax)

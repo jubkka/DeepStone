@@ -37,4 +37,6 @@ public class ChestComponent : GearComponent {
 
         return false;
     }
+
+    public override void DropItem(int index) { }
 }

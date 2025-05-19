@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,15 +6,24 @@ public class InventoryItemUI : BaseItemUI
     [Header("Components")]
     [SerializeField] protected Image itemInHandIcon;
 
+    private RightHandComponent rightHand;
+    private LeftHandComponent leftHand;
+
     private void Start()
     {
-        CombatSystems.Instance.GetHandComponent.OnActiveItemChanged += ToggleItemInHandIcon;
-        ToggleItemInHandIcon(CombatSystems.Instance.GetHandComponent.GetActiveItem);
+        rightHand = CombatSystems.Instance.GetRightHand;
+        leftHand = CombatSystems.Instance.GetLeftHand;
+        
+        rightHand.OnActiveItemChanged += OnHandItemChanged;
+        leftHand.OnActiveItemChanged += OnHandItemChanged;
+        
+        UpdateHandIcon();
     }
 
     private void OnDestroy()
     {
-        CombatSystems.Instance.GetHandComponent.OnActiveItemChanged -= ToggleItemInHandIcon;
+        rightHand.OnActiveItemChanged -= OnHandItemChanged;
+        leftHand.OnActiveItemChanged -= OnHandItemChanged;
     }
 
     public override void HandleDrop(GearComponent targetGear)
@@ -67,10 +75,18 @@ public class InventoryItemUI : BaseItemUI
         if (isEquip)
             equipment.Equip(gear.GetItem(index));
     }
-
-    private void ToggleItemInHandIcon(Item itemInHand)
+    
+    private void OnHandItemChanged(Item _)
     {
-        itemInHandIcon.enabled = itemInHand?.GetUniqueId == item.GetUniqueId;
+        UpdateHandIcon();
+    }
+
+    private void UpdateHandIcon()
+    {
+        bool isInRightHand = rightHand.GetActiveItem?.GetUniqueId == item.GetUniqueId;
+        bool isInLeftHand = leftHand.GetActiveItem?.GetUniqueId == item.GetUniqueId;
+        
+        itemInHandIcon.enabled = isInRightHand || isInLeftHand;
     }
 
     protected override void Use()

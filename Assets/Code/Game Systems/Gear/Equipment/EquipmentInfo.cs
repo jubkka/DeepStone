@@ -2,6 +2,6 @@ public class EquipmentInfo : GearInfo
 {
     protected override void Initialize()
     {
-        component = GearSystems.Instance.GetEquipmentComponent;
+        component = GearSystems.Instance.Equipment;
     }
 }

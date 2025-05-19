@@ -12,7 +12,7 @@ public class HotbarInfo : GearInfo
 
     protected override void Initialize()
     {
-        component = GearSystems.Instance.GetHotbarComponent;
+        component = GearSystems.Instance.Hotbar;
     }
 
     protected override void Start()

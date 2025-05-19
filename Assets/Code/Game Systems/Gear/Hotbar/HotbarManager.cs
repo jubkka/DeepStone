@@ -8,17 +8,17 @@ public class HotbarManager : GearManager
         
         Storage.SetItem(item, index);
         InvokeItemChanged(index);
-
+        
         return true;
     }
 
     public override bool RemoveItem(int index) 
     {
         if (Storage.Items[index] == null) return false;
-
+        
         Storage.Items[index] = new Item();
         InvokeItemChanged(index);
-
+        
         return true;
     }
 

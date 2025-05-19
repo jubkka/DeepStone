@@ -8,6 +8,8 @@ public class PlayerMovement : InputControl
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector3 moveDirection;
+    
+    [SerializeField] private CameraShaker shaker;
 
     protected override void Start()
     {
@@ -42,5 +44,10 @@ public class PlayerMovement : InputControl
         Vector3 move = controller.transform.right * moveInput.x + controller.transform.forward * moveInput.y;
         
         controller.Move(move * moveSpeed * Time.deltaTime);
+        
+        if (moveInput.sqrMagnitude > 0.01f)
+            shaker.StartShaking();
+        else
+            shaker.StopShaking();
     }
 }

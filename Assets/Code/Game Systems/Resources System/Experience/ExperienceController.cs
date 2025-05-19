@@ -7,7 +7,7 @@ public class ExperienceController : MonoBehaviour
     
     private void Start()
     {
-        LevelComponent levelComponent = CharacterStatsSystems.Instance.LevelComponent;
+        LevelComponent levelComponent = CharacterStatsSystems.Instance.Level;
         model = new ExperienceModel(view);
 
         levelComponent.OnExpChanged += SetExp;

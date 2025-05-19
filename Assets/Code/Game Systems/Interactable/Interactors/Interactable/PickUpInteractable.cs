@@ -2,25 +2,21 @@ using UnityEngine;
 
 public class PickUpInteractable : Interactable
 {
-    private GameObject itemObj;
-
-    private void Awake()
-    {
-        itemObj = transform.parent.gameObject;
-    }
+    [SerializeField] private GenericContainer container;
+    [SerializeField] private GameObject itemObj;
+    
+    private InventoryComponent inventory;
 
     public override void Interact()
     {
-        ItemContainer itemContainer = GetComponentInChildren<ItemContainer>();
-        
-        if (itemContainer != null)
-            AddItem(itemContainer);
+        AddItem(container);
     }
 
-    private void AddItem(ItemContainer itemContainer) 
+    private void AddItem(GenericContainer itemContainer) 
     {
-        InventoryComponent inventory = GearSystems.Instance.GetInventoryComponent;
-
+        if (inventory == null)
+            inventory = GearSystems.Instance.Inventory;
+        
         if (inventory.AddItem(itemContainer.GetItem, 0))
             Destroy(itemObj);
     }

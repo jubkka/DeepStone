@@ -12,13 +12,14 @@ public abstract class Spawner : MonoBehaviour
     [Header("Generation Settings")] 
     [SerializeField] protected int maxObj;
     [SerializeField] protected int maxTriesSpawn;
+
+    [Header("Components")] 
+    [SerializeField] protected GridLevel gridLevel;
     
-    protected GridLevel gridLevel;
-    protected int levelSize;
+    private int levelSize;
     
-    protected void Awake()
+    protected void Start()
     {
-        gridLevel = GetComponentInChildren<GridLevel>();
         levelSize = gridLevel.Grid.GetLength(0);
     }
     
@@ -40,13 +41,13 @@ public abstract class Spawner : MonoBehaviour
         }
     }
     
-    protected void Create(GameObject prefab, Vector3 spawnPos)
+    private void Create(GameObject prefab, Vector3 spawnPos)
     {
         Instantiate(prefab, spawnPos, Quaternion.identity, container);
         spawnedPos.Add(spawnPos);
     }
     
-    protected bool CheckFreeCells(Vector3 spawnPosition)
+    private bool CheckFreeCells(Vector3 spawnPosition)
     {
         foreach (var cells in gridLevel.GetOccupiedCellsByWalls)
         {
@@ -57,7 +58,7 @@ public abstract class Spawner : MonoBehaviour
         return true;
     }
     
-    protected Vector3 GetRandomSpawnPosition()
+    private Vector3 GetRandomSpawnPosition()
     {
         int x = Random.Range(0, levelSize);
         int z = Random.Range(0, levelSize);

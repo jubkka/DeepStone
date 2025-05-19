@@ -2,6 +2,6 @@ public class ChestSlotUI : TooltipSlotUI
 {
     protected override void Initialization()
     {
-        gear = GearSystems.Instance.GetChestComponent;
+        gear = GearSystems.Instance.Chest;
     }
 }

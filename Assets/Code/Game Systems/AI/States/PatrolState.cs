@@ -1,27 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-public class PatrolState : State
+public class PatrolState : StateDecision
 {
     [Header("Properties")]
     [SerializeField] private float walkPointRange = 5f;
-    [SerializeField] private float nextStateDelay = 5f;
 
     [Header("Components")]
     [SerializeField] private EnemyMove enemyMove;
     [SerializeField] private EnemyVision enemyVision;
-
-    public override State RunCurrentState()
-    {
-        if (enemyVision.CanSeePlayer()) 
-            return conditionStates[StateType.Chase];
-
-        if (coroutine == null)
-            coroutine = StartCoroutine(ExecuteActions());
-
-        return nextState;
-    }
-
+    
     protected override IEnumerator ExecuteActions()
     {
         if(!enemyMove.IsDestinationReached())
@@ -32,6 +20,8 @@ public class PatrolState : State
         yield return new WaitForSeconds(nextStateDelay);
         
         SelectRandomState();
+        
+        coroutine = null;
     }
 
     private Vector3 GetRandomWalkPoint() 

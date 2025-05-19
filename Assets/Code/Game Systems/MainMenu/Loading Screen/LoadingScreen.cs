@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScreen : MonoBehaviour
 {
-    [SerializeField] private string sceneName;
+    [SerializeField] private string playerSceneName;
+    [SerializeField] private string generationSceneName;
     
     private void Start()
     {
@@ -14,11 +15,10 @@ public class LoadingScreen : MonoBehaviour
     private IEnumerator LoadSceneASync()
     {
         yield return new WaitForSeconds(1f);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        
+        AsyncOperation player = SceneManager.LoadSceneAsync(playerSceneName);
+        AsyncOperation generation = SceneManager.LoadSceneAsync(generationSceneName, LoadSceneMode.Additive);
 
-        while (!operation.isDone)
-        {
-            yield return null; 
-        }
+        yield return new WaitUntil(() => player.isDone && generation.isDone);
     }
 }

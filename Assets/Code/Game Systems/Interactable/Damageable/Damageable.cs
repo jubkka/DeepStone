@@ -2,5 +2,5 @@
 
 public abstract class Damageable : MonoBehaviour
 {
-    public abstract void GetDamage(int damage);
+    public abstract void GetDamage(float damage);
 }

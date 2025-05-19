@@ -1,10 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class RotateState : State
+public class RotateState : StateDecision
 {   
-    [Header("Properities")]
-    [SerializeField] private float nextStateDelay = 5f;
+    [Header("Properties")]
     [SerializeField] private float angleMaxRotate = 90f;
     [SerializeField] private float angleMinRotate = 75f;
     [SerializeField] private float durationRotate = 0.75f; 
@@ -13,24 +12,14 @@ public class RotateState : State
     [SerializeField] private EnemyRotate enemyRotate;
     [SerializeField] private EnemyVision enemyVision;
     
-    public override State RunCurrentState()
-    {
-        if (enemyVision.CanSeePlayer()) 
-            return conditionStates[StateType.Chase];
-        
-        if (coroutine == null)
-            coroutine = StartCoroutine(ExecuteActions());
-
-        return nextState;
-    }
-
     protected override IEnumerator ExecuteActions()
     {
         enemyRotate.StartRotate(RandomAngle(), durationRotate);
-
+        
         yield return new WaitForSeconds(nextStateDelay);
-
         SelectRandomState();
+        
+        coroutine = null;
     }
 
     private float RandomAngle() 
