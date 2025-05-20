@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c54887cc0d94e4dac98b18ca1cdb33, type: 3}
+  m_Name: Knight
+  m_EditorClassIdentifier: 
+  nameOrigin: Knight
+  health: 10
+  stamina: 20
+  mana: 10
+  attributesData: {fileID: 11400000, guid: 4d3941c026a7f4c41b938fa16b4b0301, type: 2}
+  items:
+  - data: {fileID: 11400000, guid: 9ad4f8be1441a404e9c882cef628eae8, type: 2}
+    amount: 1
+    uniqueId: 219c005f-161b-4042-92ec-005c5b93c8c5
+  - data: {fileID: 11400000, guid: f8d0a6747a0d30740bbd71b97fda7077, type: 2}
+    amount: 5
+    uniqueId: ce163786-0d0b-4188-b3f5-7ea86466c579

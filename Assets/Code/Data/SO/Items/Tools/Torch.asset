@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2bed3260d1eb24c81b1ef7848e54a8, type: 3}
+  m_Name: Torch
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2073659524064165484, guid: f17d2d835684e7745a34f59476b78a5d, type: 3}
+  itemName: torch
+  description: 
+  id: torch
+  icon: {fileID: -5937927743165269708, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
+  weight: 1
+  cost: 1
+  isLeftHanded: 1

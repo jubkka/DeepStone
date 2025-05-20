@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb228e3517f0f54dae5b3d22c26042b, type: 3}
+  m_Name: TestPotion
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4956422820230839314, guid: c17ae3b429bde8d4795cd766269d58fa, type: 3}
+  itemName: potion of healing
+  description: 
+  id: potion_test
+  icon: {fileID: -4073954384835129369, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
+  weight: 1
+  cost: 1
+  isLeftHanded: 0
+  maxStackSize: 5
+  effects:
+  - {fileID: 11400000, guid: 957bca1cce5c42f41b13b14c4059893c, type: 2}
