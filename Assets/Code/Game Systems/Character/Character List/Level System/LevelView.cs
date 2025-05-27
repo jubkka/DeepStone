@@ -5,10 +5,13 @@ public class LevelView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI tmp;
 
-    private void Start()
+    public void Init(LevelComponent levelComponent)
     {
-        CharacterStatsSystems.Instance.Level.OnLevelUp += UpdateLevel;
+        Subscribe(levelComponent);
+        UpdateLevel(levelComponent.Level);
     }
+
+    private void Subscribe(LevelComponent levelComponent) => levelComponent.OnLevelUp += UpdateLevel;
 
     private void UpdateLevel(int level)
     {

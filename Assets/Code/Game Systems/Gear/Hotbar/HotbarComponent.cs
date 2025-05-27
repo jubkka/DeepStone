@@ -1,25 +1,30 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HotbarComponent : GearComponent
 {
-    private InventoryComponent inventory;
-    private HandComponent hand;
+    [Header("Hotbar Components")]
+    [SerializeField] private HotbarInput hotbarInput;
+    [SerializeField] private TextItemHotbar textItemHotbar;
 
+    private InventoryComponent inventory;
+    
     public override void Initialize()
     {
         Storage = new GearStorage(maxSize);
         Manager = new HotbarManager(Storage);
 
         base.Initialize();
+        
+        hotbarInput.Init(this);
+        textItemHotbar.Init(this);
     }
 
-    protected override void PostInitialize() 
+    public void Initialize(InventoryComponent inventoryComponent)
     {
-        base.PostInitialize();
-
-        inventory = GearSystems.Instance.Inventory;
+        Initialize();
+        
+        inventory = inventoryComponent;
         inventory.OnItemRemoved += HandleItemRemoved;
     }
 

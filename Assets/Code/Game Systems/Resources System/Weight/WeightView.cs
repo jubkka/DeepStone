@@ -3,16 +3,10 @@ using UnityEngine;
 
 public class WeightView : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI TMP;
-    private Color colorOverlimit = new Color(234,50,60);
+    [SerializeField] private TextMeshProUGUI weightView;
     
-    public void UpdateText(int current, int max)
+    public void UpdateText(int current)
     {
-        TMP.text = current + "/" + max;
-    }
-
-    public void SetColorOverlimit(bool overlimit)
-    {
-        TMP.color = overlimit ? colorOverlimit : Color.white;
+        weightView.text = current.ToString();
     }
 }

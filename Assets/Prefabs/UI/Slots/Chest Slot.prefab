@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gear: {fileID: 0}
-  slotType: 3
+  itemSlotType: 0
   itemInfoPanel: {fileID: 0}
   activeSlot: {fileID: 0}
+  localScale: {x: 1, y: 1, z: 1}

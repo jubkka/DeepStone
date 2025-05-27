@@ -2,35 +2,33 @@ using UnityEngine;
 
 public class GearUIComponent : MonoBehaviour
 {
-    [SerializeField] protected GameObject itemUIPrefab;
+    [SerializeField] private GameObject itemUIPrefab;
     
-    protected Transform dragContainer;
-    protected GearComponent gear;
-    protected Transform slotsParent;
-    protected BaseItemUI[] itemUIs;
+    private Transform dragContainer;
+    private GearComponent gear;
+    private Transform slotsParent;
+    private BaseItemUI[] itemUIs;
 
-    public virtual void Initialize(GearComponent gear)
+    public void Initialize(GearComponent newGear)
     {
+        gear = newGear;
         slotsParent = transform.Find("Slots");
         dragContainer = GameObject.FindWithTag("DragContainer").transform;
         
-        itemUIs = new BaseItemUI[gear.maxSize];
+        itemUIs = new BaseItemUI[newGear.maxSize];
 
-        this.gear = gear;
-        gear.OnItemChanged += UpdateSlotUI;
+        newGear.OnItemChanged += UpdateSlotUI;
     }
 
-    protected void AddSlotUI(int index) 
+    private void AddSlotUI(int index) 
     {
         BaseItemUI itemUI = Instantiate(itemUIPrefab, slotsParent.GetChild(index)).GetComponent<BaseItemUI>();
-
-        itemUI.dragContainer = dragContainer;
-        itemUI.gear = gear;
+        
         itemUIs[index] = itemUI;
-        itemUI.Initialize(gear.GetItem(index), index);
+        itemUI.Initialize(gear.GetItem(index), index, gear, dragContainer);
     }
 
-    protected void RemoveSlotUI(int index) 
+    private void RemoveSlotUI(int index) 
     {
         if (itemUIs[index] == null) 
             return;
@@ -38,7 +36,8 @@ public class GearUIComponent : MonoBehaviour
         Destroy(itemUIs[index].gameObject);
         itemUIs[index] = null;
     }
-    public void UpdateSlotUI(int index)
+    
+    private void UpdateSlotUI(int index)
     {
         Item item = gear.GetItem(index);
 
@@ -47,7 +46,7 @@ public class GearUIComponent : MonoBehaviour
         else 
         {
             if (itemUIs[index] == null) AddSlotUI(index);
-            else itemUIs[index].Initialize(item, index);
+            else itemUIs[index].Initialize(item, index, gear, dragContainer);
         }
     }
 }

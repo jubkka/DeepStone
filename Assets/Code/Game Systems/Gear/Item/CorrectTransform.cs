@@ -7,12 +7,11 @@ public class CorrectTransform : MonoBehaviour
     [SerializeField] private Vector3 angle;
     [SerializeField] private float positionY;
 
-    private Transform parent;
+    [SerializeField] private Transform model;
 
     public void Setup()
     {
-        parent = transform.parent;
-        parent.eulerAngles = angle;
-        parent.position = new Vector3(parent.position.x, positionY, parent.position.z);
+        model.eulerAngles = angle;
+        transform.position = new Vector3(model.position.x, positionY, model.position.z);
     }
 }

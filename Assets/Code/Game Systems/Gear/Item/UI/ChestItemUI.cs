@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class ChestItemUI : BaseItemUI
 {
     public override void HandleDrop(GearComponent targetGear)

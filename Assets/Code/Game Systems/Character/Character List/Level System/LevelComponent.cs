@@ -3,75 +3,74 @@ using UnityEngine;
 
 public class LevelComponent : MonoBehaviour
 {
-    [SerializeField] private int level = 1;
-    [SerializeField] private int exp = 0;
-    [SerializeField] private int countFreePoints = 0;
+    [Header("UI Elements")]
+    [SerializeField] private FreePointsUI freePointsUI;
+    [SerializeField] private LevelView levelView;
+    [SerializeField] private ExperienceView experienceView;
     
-    [SerializeField] private int countPointsPerLevel;
-    [SerializeField] private int countExpToNextLevel;
-
-    public int Level
-    {
-        get => level;
-        private set
-        {
-            level = value;
-            OnLevelUp?.Invoke(value);
-            OnCountExpToNextLevelChanged?.Invoke(DefaultXpFormula());
-        }
-    }
-
-    public int Exp
-    {
-        get => exp;
-        private set
-        {
-            exp = value;
-            OnExpChanged?.Invoke(value);
-        }
-    }
-
-    public int CountFreePoints
-    {
-        get => countFreePoints;
-        set
-        {
-            countFreePoints = value;
-            OnCountFreePointsChanged?.Invoke(value);
-        }
-    }
-
-    public int CountPointsPerLevel => countPointsPerLevel;
-
-    public int CountExpToNextLevel => countExpToNextLevel;
-
-    public event Action<int> OnLevelUp;
-    public event Action<int> OnExpChanged;
-    public event Action<int> OnCountExpToNextLevelChanged;
-    public event Action<int> OnCountFreePointsChanged;
+    [Header("Level")]
+    [SerializeField] private LevelModel model;
     
-    private void Update() //remove
+    public int Exp => model.Exp;
+    public int ExpToNextLevel => model.ExpToNextLevel;
+    public int Level => model.Level;
+    public int FreePoints => model.FreePoints;
+    public int PointsPerLevel => model.PointsPerLevel;
+
+    public event Action<int> OnLevelUp
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            AddExp(100);
+        add => model.OnLevelUp += value;
+        remove => model.OnLevelUp -= value;
+    }
+    
+    public event Action<int> OnExpChanged
+    {
+        add => model.OnExpChanged += value;
+        remove => model.OnExpChanged -= value;
     }
 
-    public void AddExp(int amount)
+    public event Action<int> OnExpGained
     {
-        Exp += amount;
+        add => model.OnExpGained += value;
+        remove => model.OnExpGained -= value;
+    }
 
-        while (exp >= DefaultXpFormula())
-        {
-            Exp -= DefaultXpFormula();
-            Level++;
-            CountFreePoints += countPointsPerLevel;
-        }
+    public event Action<int> OnExpToNextLevelChanged
+    {
+        add => model.OnExpToNextLevelChanged += value;
+        remove => model.OnExpToNextLevelChanged -= value;
+    }
+    
+    public event Action<int> OnFreePointsChanged
+    {
+        add => model.OnFreePointsChanged += value;
+        remove => model.OnFreePointsChanged -= value;
+    }
+
+    public void InitFromOrigin(Origin origin, AttributeComponent attributeComponent)
+    {
+        model = new LevelModel(origin);
+        attributeComponent.OnAttributeIncreased += SpendFreePoints;
+
+        InitUI();
+    }
+
+    private void InitUI()
+    {
+        freePointsUI.Init(this);
+        levelView.Init(this);
+        experienceView.Init(this);
+    }
+    
+    public void InitFromSave() //TODO
+    {
         
-        countExpToNextLevel = DefaultXpFormula() - exp;
     }
 
-    private int DefaultXpFormula()
+    public void AddExp(int exp)
     {
-        return 100 + (level - 1) * 50;
+        model.AddExp(exp);
     }
+    
+    public void SpendFreePoints(int amount) => model.FreePoints -= amount;
 }

@@ -5,7 +5,8 @@ public abstract class Indicator
 {
     [SerializeField] private float current;
     [SerializeField] private float max;
-    [SerializeField] private IndicatorView view;
+    
+    private IndicatorView view;
 
     public float Current => current;
     public float Max => max;
@@ -22,17 +23,17 @@ public abstract class Indicator
     public void Increase(float value) 
     {
         current = Math.Min(max, current + value);
-        view.ChangeValue(current, max);
+        view.ChangeSliderValue(current, max);
     }
-    public void Decrease(float value) 
+    public void Decrease(float value)
     {
-        current = Math.Max(0, current - value);
-        view.ChangeValue(current, max);
+        current -= value;
+        view.ChangeSliderValue(current, max);
     } 
     public void ChangeMax(float value) 
     { 
-        max = Math.Max(0, value);
-        view.ChangeValue(current, max);
+        max = Math.Max(1, value);
+        view.ChangeSliderValueMax(max);
     }
 }
 

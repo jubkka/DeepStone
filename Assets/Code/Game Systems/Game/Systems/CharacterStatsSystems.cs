@@ -3,35 +3,37 @@
 public class CharacterStatsSystems : Systems
 {
     public static CharacterStatsSystems Instance;
-    
-    public IndicatorComponent Indicator { get; private set; }
-    public EffectComponent Effect { get; private set; }
-    public AttributeComponent Attribute { get; private set; }
-    public LevelComponent Level { get; private set; }
 
-    private void Awake()
+    [SerializeField] private IndicatorComponent indicator;
+    [SerializeField] private EffectComponent effect;
+    [SerializeField] private AttributeComponent attribute;
+    [SerializeField] private LevelComponent level;
+    
+    [SerializeField] private WeightComponent weight;
+    
+    public IndicatorComponent Indicator => indicator;
+    public EffectComponent Effect => effect;
+    public AttributeComponent Attribute => attribute;
+
+    protected override void Init()
     {
         Instance = this;
+    }
+
+    public override void LoadFromOrigin(Origin origin)
+    {
+        Init();
+
+        level.InitFromOrigin(origin, attribute);
+        attribute.InitFromOrigin(origin, level);
+        indicator.InitFromOrigin(origin);
+        effect = new(origin, indicator);
         
-        GetComponents();
+        weight.InitFromOrigin(origin, attribute);
     }
 
-    private void Start()
+    public override void LoadFromSave()
     {
-        Initialization(PlayerSetup.Instance.SelectedOrigin);
-    }
-
-    protected override void GetComponents()
-    {
-        Indicator = components.GetComponentInChildren<IndicatorComponent>();
-        Effect = components.GetComponentInChildren<EffectComponent>();
-        Attribute = components.GetComponentInChildren<AttributeComponent>();
-        Level = components.GetComponentInChildren<LevelComponent>();
-    }
-
-    private void Initialization(Origin origin)
-    {
-        Indicator.Init(origin);
-        Attribute.Init(origin);
+        Init();
     }
 }

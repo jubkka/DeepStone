@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ItemUsageSystem
 {
+    public static ItemUsageSystem Instance { get; private set; }
+
     private readonly Dictionary<(Type, ItemSlotType), Func<GenericElementData, IItemCommand>> commands = new();
     
     private readonly InventoryComponent inventory;
@@ -12,14 +14,16 @@ public class ItemUsageSystem
     private readonly AttackComponent attackComponent;
     private readonly SpellCastingComponent spellCastingComponent;
     
-    public ItemUsageSystem()
+    public ItemUsageSystem(GearSystems gear, CharacterStatsSystems character, CombatSystems combat)
     {
-        inventory = GearSystems.Instance.Inventory;
-        equipment = GearSystems.Instance.Equipment;
-        effectComponent = CharacterStatsSystems.Instance.Effect;
+        Instance = this;
+        
+        inventory = gear.Inventory;
+        equipment = gear.Equipment;
+        effectComponent = character.Effect;
         //handComponent = CombatSystems.Instance.GetHandComponent;
-        attackComponent = CombatSystems.Instance.GetAttackComponent;
-        spellCastingComponent = CombatSystems.Instance.GetSpell;
+        attackComponent = combat.GetAttackComponent;
+        spellCastingComponent = combat.GetSpell;
 
         AddCommands();
     }

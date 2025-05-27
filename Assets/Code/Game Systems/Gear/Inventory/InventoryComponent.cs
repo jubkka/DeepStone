@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryComponent : GearComponent 
@@ -14,7 +13,7 @@ public class InventoryComponent : GearComponent
 
         base.Initialize();
     }
-
+    
     public override void DropItem(int index) 
     {
         OnItemRemoved?.Invoke(GetItem(index));

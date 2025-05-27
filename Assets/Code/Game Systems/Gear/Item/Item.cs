@@ -60,7 +60,7 @@ public class Item
 
     public void Use(ItemSlotType type)
     {
-        var command = GearSystems.Instance.ItemsUsage.GetCommandByContext(type, data);
+        var command = ItemUsageSystem.Instance.GetCommandByContext(type, data);
         command?.Execute(this);
     }
 }

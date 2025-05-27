@@ -1,31 +1,5 @@
-using UnityEngine;
-using UnityEngine.UI;
-
 public class InventoryItemUI : BaseItemUI
 {
-    [Header("Components")]
-    [SerializeField] protected Image itemInHandIcon;
-
-    private RightHandComponent rightHand;
-    private LeftHandComponent leftHand;
-
-    private void Start()
-    {
-        rightHand = CombatSystems.Instance.GetRightHand;
-        leftHand = CombatSystems.Instance.GetLeftHand;
-        
-        rightHand.OnActiveItemChanged += OnHandItemChanged;
-        leftHand.OnActiveItemChanged += OnHandItemChanged;
-        
-        UpdateHandIcon();
-    }
-
-    private void OnDestroy()
-    {
-        rightHand.OnActiveItemChanged -= OnHandItemChanged;
-        leftHand.OnActiveItemChanged -= OnHandItemChanged;
-    }
-
     public override void HandleDrop(GearComponent targetGear)
     {
         if (!afterDragParent.TryGetComponent(out SlotUI slot)) return;
@@ -74,19 +48,6 @@ public class InventoryItemUI : BaseItemUI
 
         if (isEquip)
             equipment.Equip(gear.GetItem(index));
-    }
-    
-    private void OnHandItemChanged(Item _)
-    {
-        UpdateHandIcon();
-    }
-
-    private void UpdateHandIcon()
-    {
-        bool isInRightHand = rightHand.GetActiveItem?.GetUniqueId == item.GetUniqueId;
-        bool isInLeftHand = leftHand.GetActiveItem?.GetUniqueId == item.GetUniqueId;
-        
-        itemInHandIcon.enabled = isInRightHand || isInLeftHand;
     }
 
     protected override void Use()

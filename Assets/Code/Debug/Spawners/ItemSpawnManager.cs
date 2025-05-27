@@ -1,10 +1,11 @@
-using System;
 using UnityEngine;
 
 public class ItemSpawnManager : MonoBehaviour
 {
-    private InventoryComponent inventory;
+    [Header("Inventory")]
+    [SerializeField] private InventoryComponent inventory;
     
+    [Header("Item Data")]
     public ItemData sword;
     public ItemData potion;
     public ItemData helmet;
@@ -15,12 +16,7 @@ public class ItemSpawnManager : MonoBehaviour
     public ItemData ring;
     public ItemData necklace;
     public int amount;
-
-    private void Start()
-    {
-        inventory = GearSystems.Instance.Inventory;
-    }
-
+    
     public void AddSword() => inventory.AddItem(new Item(sword, amount), 0);
     public void AddPotion() => inventory.AddItem(new Item(potion, amount), 0);
     public void AddHelmet() => inventory.AddItem(new Item(helmet, amount), 0);

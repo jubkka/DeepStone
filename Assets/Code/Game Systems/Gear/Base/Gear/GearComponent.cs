@@ -5,19 +5,18 @@ using UnityEngine;
 
 public abstract class GearComponent : MonoBehaviour 
 {
+    [Header("Gear")]
     [SerializeField] protected string gearName;
     [SerializeField] protected GearUIComponent uiManager;
     public int maxSize = 1;
     
     protected GearStorage Storage;
     protected GearManager Manager;
-    public GearStorage GetStorage => Storage;
-
-    public event Action<int> OnItemChanged;
     
-    protected void Start() => PostInitialize();
+    public GearStorage GetStorage => Storage;
+    public event Action<int> OnItemChanged;
 
-    public virtual void Initialize() 
+    public virtual void Initialize()
     {
         for (int index = 0; index < Storage.Items.Length; index++) Storage.Items[index] = new Item(); 
 
@@ -25,8 +24,6 @@ public abstract class GearComponent : MonoBehaviour
         
         uiManager.Initialize(this);
     }
-    
-    protected virtual void PostInitialize() { }
     
     public virtual bool AddItem(Item item, int index) 
     {   

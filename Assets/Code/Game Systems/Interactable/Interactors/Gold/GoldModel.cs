@@ -1,30 +1,29 @@
-using System;
 using UnityEngine;
 
 public class GoldModel
 {
-    private int count;
-    private int maxCount = 100000;
-    public int GetCount => count;
-    public int GetMaxCount => maxCount;
-    public static event Action<int> OnGoldChanged;
+    private readonly GoldView goldView;
 
-    public GoldModel(int count)
+    private int count;
+    public int GetCount => count;
+    
+    public GoldModel(int count, GoldView goldView)
     {
         this.count = count;
+        this.goldView = goldView;
     }
 
     public void Increase(int amount) 
     {
-        count = Mathf.Min(maxCount, count + amount);
+        count = Mathf.Min(100000, count + amount);
 
-        OnGoldChanged?.Invoke(count);
+        goldView.ChangeText(count);
     }
 
     public void Decrease(int amount) 
     {
         count = Mathf.Max(0, count - amount);
 
-        OnGoldChanged?.Invoke(count);
+        goldView.ChangeText(count);
     }
 }

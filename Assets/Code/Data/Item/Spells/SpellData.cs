@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Spell", menuName = "Spells/New Spell")]
-public class SpellData : GenericElementData, ISpellBehavior
+public class SpellData : GenericElementData, ISpellBehavior, IInfoDisplayable
 {
     [Header("Spell Data")]
     [SerializeField] protected int manaCost;
@@ -10,6 +11,11 @@ public class SpellData : GenericElementData, ISpellBehavior
     
     public int GetManaCost => manaCost;
     public float GetCooldown => cooldown;
+    
+    public string GetNameString => itemName;
+    public string GetDescriptionString => description;
+    public string GetCostString => $"<sprite name=\"mana\"> {manaCost}";
+    public string GetWeightString => String.Empty;
     
     public void Cast(GameObject target)
     {

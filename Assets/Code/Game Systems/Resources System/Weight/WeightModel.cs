@@ -2,34 +2,38 @@
 
 public class WeightModel
 {
+    private readonly WeightView weightCurrentView;
+    private readonly WeightView weightMaxView;
+    
     private int weightCurrent;
     private int weightMax;
-    
-    private WeightView weightView;
-    
+
     public int Current
     {
         get => weightCurrent;
         set
         {
-            weightCurrent = Math.Max(0, value);
-            weightView.UpdateText(weightCurrent, weightMax);
-            weightView.SetColorOverlimit(weightCurrent > weightMax);
+            weightCurrent = value;
+            weightCurrentView.UpdateText(weightCurrent);
         }
     }
-    
+
     public int Max
     {
         get => weightMax;
         set
         {
-            weightMax = Math.Max(0, value);
-            weightView.UpdateText(weightCurrent, weightMax);
+            weightMax = Math.Max(1, value);
+            weightMaxView.UpdateText(weightMax);
         }
     }
-
-    public WeightModel(WeightView weightView)
+    
+    public WeightModel(int weightMax, WeightView weightCurrentView, WeightView weightMaxView)
     {
-        this.weightView = weightView;
+        weightCurrent = 0;
+        this.weightMax = weightMax;
+        
+        this.weightCurrentView = weightCurrentView;
+        this.weightMaxView = weightMaxView;
     }
 }

@@ -6,17 +6,19 @@
     private EffectsAudioManager effects;
     
     public MusicManager GetMusic => music;
-
-    private void Awake()
+    public EffectsAudioManager GetEffects => effects;
+    protected override void Init()
     {
         Instance = this;
-        
-        GetComponents();
     }
 
-    protected override void GetComponents()
+    public override void LoadFromOrigin(Origin origin)
     {
-        music = components.GetComponentInChildren<MusicManager>();
-        effects = components.GetComponentInChildren<EffectsAudioManager>();
+        throw new System.NotImplementedException();
+    }
+
+    public override void LoadFromSave()
+    {
+        throw new System.NotImplementedException();
     }
 }

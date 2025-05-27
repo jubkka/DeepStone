@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TestWeapon", menuName = "Items/Weapons/TestWeapon")]
 public class WeaponData : SimpleItemData, ICombatElement
 {
+    [Header("Weapon Data")]
     [SerializeField] private float damage;
     [SerializeField] private float range;
     [SerializeField] private GripType gripType;

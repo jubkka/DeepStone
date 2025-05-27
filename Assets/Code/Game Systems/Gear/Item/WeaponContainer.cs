@@ -7,5 +7,6 @@ public class WeaponContainer : GenericContainer
     protected override void Start()
     {
         item = new(data);
+        infoPanel.SetData(data);
     }
 }

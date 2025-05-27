@@ -1,13 +1,14 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GoldInfo : MonoBehaviour {
-    [SerializeField] private int gold;
-    private void Awake()
+public class GoldInfo : MonoBehaviour
+{
+    [SerializeField] private GoldComponent goldComponent;
+    [SerializeField] private int goldAmount = 0;
+    
+    private void Start()
     {
-        GoldModel.OnGoldChanged += GoldCountChange;
+        goldComponent.OnGoldChanged += ChangeGold;
     }
-    private void GoldCountChange(int count) 
-    {
-        gold = count;
-    }
+
+    private void ChangeGold(int amount) => goldAmount = amount;
 }

@@ -4,7 +4,14 @@ public class GoldPickUp : Interactable
 {
     [SerializeField] private GoldContainer goldContainer;
     [SerializeField] private GameObject itemObj;
-    
+
+    private int goldAmount;
+
+    private void Awake()
+    {
+        goldAmount = goldContainer.GetAmount;
+    }
+
     public override void Interact()
     {
         AddGold();
@@ -12,12 +19,9 @@ public class GoldPickUp : Interactable
 
     private void AddGold() 
     {
-        int goldAmount = goldContainer.GetAmount;
+        GoldComponent goldComponent = ResourceSystems.Instance.Gold;
 
-        GoldController goldController = GoldController.Instance;
-
-        goldController.Give(goldAmount);
-
+        goldComponent.Give(goldAmount);
         Destroy(itemObj);
     }
 }

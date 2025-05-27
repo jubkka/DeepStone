@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class EquipmentComponent : GearComponent
 {
@@ -11,11 +12,12 @@ public class EquipmentComponent : GearComponent
 
         base.Initialize();
     }
-    protected override void PostInitialize()
-    {
-        base.PostInitialize();
 
-        inventory = GearSystems.Instance.Inventory;
+    public void Initialize(InventoryComponent inventoryComponent)
+    {
+        Initialize();
+        
+        inventory = inventoryComponent;
     }
 
     public bool CanEquipArmor(Item item, ArmorType armorType) 

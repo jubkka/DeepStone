@@ -28,7 +28,7 @@ public class InfoPanelManager : MonoBehaviour
             return;
         }
         
-        InfoPanelWorldSpace infoPanel = target?.GetComponentInChildren<InfoPanelWorldSpace>();
+        InfoPanelWorldSpace infoPanel = target.transform.root?.GetComponentInChildren<InfoPanelWorldSpace>();
         
         if (infoPanel == null)
             return;

@@ -2,24 +2,22 @@
 
 public class HandManager : MonoBehaviour
 {
+    [Header("Hotbar Components")]
+    [SerializeField] private HotbarComponent hotbar;
+    [SerializeField] private HotbarInput hotbarInput;
+    
+    [Header("Hands")]
     [SerializeField] private RightHandComponent rightHand;
     [SerializeField] private LeftHandComponent leftHand;
     [SerializeField] private MagicHandComponent magicHand;
-    
-    private HotbarComponent hotbar;
-    private HotbarInput hotbarInput;
-    private DropComponent dropComponent;
 
     private HandEquipContext handEquipContext;
     
     private void Start()
     {
-        hotbar = GearSystems.Instance.Hotbar;
-        hotbarInput = InputSystems.Instance.GetHotbarInput;
         handEquipContext = new HandEquipContext(rightHand, leftHand, magicHand);
         
         hotbarInput.OnKeyPressed += OnSlotSelected;
-        
         OnSlotSelected(hotbarInput.ActiveSlotIndex);
     }
 

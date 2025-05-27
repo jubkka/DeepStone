@@ -1,3 +1,1 @@
-﻿using UnityEngine;
-
-public class RightHandComponent : HandComponent { }
+﻿public class RightHandComponent : HandComponent { }

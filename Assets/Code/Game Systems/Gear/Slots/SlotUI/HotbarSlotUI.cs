@@ -1,11 +1,3 @@
-using UnityEngine.EventSystems;
-public class HotbarSlotUI : SlotUI
+public class HotbarSlotUI : TooltipSlotUI
 {
-    protected override void Initialization()
-    {
-        gear = GearSystems.Instance.Hotbar;
-    }
-
-    public override void OnPointerEnter(PointerEventData eventData) {}
-    public override void OnPointerExit(PointerEventData eventData) {}
 }

@@ -5,9 +5,8 @@ public class DropComponent : MonoBehaviour
 {
     public event Action<Item> OnItemDropped;
     
-    private void Start()
+    public void Initialize(InventoryComponent inventory)
     {
-        InventoryComponent inventory = GearSystems.Instance.Inventory;
         inventory.OnItemRemoved += Drop;
     }
 

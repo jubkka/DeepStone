@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: spell
   description: 
   id: spell_test
-  icon: {fileID: 5839167083248417371, guid: ce70f4df6930c4743859fd0f58e70bf2, type: 3}
+  icon: {fileID: -4824631717902104908, guid: ce70f4df6930c4743859fd0f58e70bf2, type: 3}
   manaCost: 1
   cooldown: 1
   behavior: {fileID: 11400000, guid: 3f6d93c373d3a964ca0925faf12e9e7d, type: 2}

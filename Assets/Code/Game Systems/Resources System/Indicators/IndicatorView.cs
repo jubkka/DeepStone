@@ -1,30 +1,29 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using DG.Tweening;
 
-public class IndicatorView : MonoBehaviour 
+public class IndicatorView : MonoBehaviour
 {
     [SerializeField] protected TextMeshProUGUI textTMP;
-    [SerializeField] protected Slider slider;
+    [SerializeField] protected SliderControl sliderControl;
 
-    public void ChangeValue(float current, float max) 
+    public void ChangeSliderValue(float current, float max) 
     { 
         int currentInt = Mathf.FloorToInt(current);
         int maxInt = Mathf.FloorToInt(max);
         
         textTMP.text = currentInt + "/" + maxInt;
-        slider.DOValue(current, 0.25f);
+        
+        sliderControl.SetValue(currentInt);
     }
 
-    private void ChangeSliderMax(float max)
+    public void ChangeSliderValueMax(float max)
     {
-        slider.maxValue = max;
+        sliderControl.SetMax(max);
     }
 
     public void Init(float current, float max)
     {
-        ChangeValue(current, max);
-        ChangeSliderMax(max);
+        ChangeSliderValue(current, max);
+        ChangeSliderValueMax(max);
     }
 }

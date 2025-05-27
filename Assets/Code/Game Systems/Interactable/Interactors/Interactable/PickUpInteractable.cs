@@ -3,7 +3,6 @@ using UnityEngine;
 public class PickUpInteractable : Interactable
 {
     [SerializeField] private GenericContainer container;
-    [SerializeField] private GameObject itemObj;
     
     private InventoryComponent inventory;
 
@@ -18,6 +17,6 @@ public class PickUpInteractable : Interactable
             inventory = GearSystems.Instance.Inventory;
         
         if (inventory.AddItem(itemContainer.GetItem, 0))
-            Destroy(itemObj);
+            Destroy(transform.root.gameObject);
     }
 }

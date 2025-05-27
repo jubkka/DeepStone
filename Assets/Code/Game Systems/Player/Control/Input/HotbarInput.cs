@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class HotbarInput : InputControl
@@ -14,19 +13,14 @@ public class HotbarInput : InputControl
            OnSlotSelected?.Invoke(activeSlotIndex);
        }
     }
-
-    private HotbarComponent hotbar;
     
     public event Action<int> OnSlotSelected;
     public event Action<int> OnKeyPressed;
     public event Action<float> OnMouseScrolled;
 
-    protected override void Start()
+    public void Init(HotbarComponent hotbar)
     {
-        hotbar = GearSystems.Instance.Hotbar;
         hotbar.OnItemChanged += SelectSlot;
-        
-        base.Start();
     }
 
     protected override void SubscribeToControls()

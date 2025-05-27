@@ -1,23 +1,19 @@
-using UnityEngine;
-
-public class EffectComponent : MonoBehaviour
+public class EffectComponent
 {
-    public static EffectComponent instance;
-    
-    private IndicatorComponent component;
+    private IndicatorComponent indicator;
 
-    private void Awake()
+    public EffectComponent(Origin origin, IndicatorComponent indicatorComponent)
     {
-        instance = this;
+        indicator = indicatorComponent;
     }
 
-    private void Start()
+    public EffectComponent(IndicatorComponent indicatorComponent) //Save
     {
-        component = CharacterStatsSystems.Instance.Indicator;
+        indicator = indicatorComponent;
     }
 
     public void Heal(int healAmount) 
     {
-        component.Heal(healAmount);
+        indicator.Heal(healAmount);
     }
 }

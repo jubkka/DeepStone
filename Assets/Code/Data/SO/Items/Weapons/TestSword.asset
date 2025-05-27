@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf595259fab2e3a458e4ab4f3d35bd53, type: 3}
   m_Name: TestSword
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5844745149585794893, guid: e0184a0d6aef5c44bb1470d8aacdffa0, type: 3}
+  prefab: {fileID: 990363045699544721, guid: 1715808b336cef8499a840a2ea6e5813, type: 3}
   itemName: short_sword
   description: 
   id: sword_test
   icon: {fileID: 7072669480932279754, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
   weight: 1
   cost: 1
+  isLeftHanded: 0
   damage: 1
   range: 2
+  gripType: 0

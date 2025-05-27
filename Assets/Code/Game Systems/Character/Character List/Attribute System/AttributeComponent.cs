@@ -4,22 +4,38 @@ using UnityEngine;
 
 public class AttributeComponent : MonoBehaviour
 {
+    [Header("Attibute List")]
     [SerializeField] private Attributes attributes;
     
     [Header("UI")]
-    [SerializeField] private List<AttributeUI> attributeUIs; 
-    
-    private LevelComponent levelComponent;
+    [SerializeField] private List<AttributeUI> attributeUIs;
+    [SerializeField] private AttributeIncreaseUI attributeIncreaseUI;
 
-    public void Init(Origin newOrigin)
+    private LevelComponent level;
+
+    public event Action<int> OnAttributeIncreased;
+    
+    public void InitFromOrigin(Origin newOrigin, LevelComponent levelComponent)
     {
-        levelComponent = CharacterStatsSystems.Instance.Level;
+        level = levelComponent;
         attributes = new Attributes(newOrigin.GetAttributesData);
 
-        foreach (var attributeUI in attributeUIs)
-            attributeUI.Init();
+        InitUI();
     }
-    
+
+    private void InitUI()
+    {
+        foreach (var attributeUI in attributeUIs)
+            attributeUI.Init(this);
+        
+        attributeIncreaseUI.Init(level);
+    }
+
+    public void InitFromSave(LevelComponent levelComponent)
+    {
+        
+    }
+
     public void SetAttribute(AttributeType attributeType, int value)
     {
         var attribute = GetAttribute(attributeType);
@@ -44,13 +60,13 @@ public class AttributeComponent : MonoBehaviour
     
     public void AttributeIncrease(AttributeType attributeType)
     {
-        if (levelComponent.CountFreePoints == 0)
+        if (level.FreePoints == 0)
             return;
         
         Attribute attribute = GetAttribute(attributeType);
         attribute.Value += 1;
         
-        levelComponent.CountFreePoints -= 1;
+        OnAttributeIncreased?.Invoke(1);
     }
 }
 

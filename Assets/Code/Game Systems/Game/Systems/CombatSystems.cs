@@ -1,13 +1,15 @@
-﻿public class CombatSystems : Systems
+﻿using UnityEngine;
+
+public class CombatSystems : Systems
 {
     public static CombatSystems Instance;
     
-    private LeftHandComponent leftHand;
-    private RightHandComponent rightHand;
-    private MagicHandComponent magicHand;
-    
-    private AttackComponent attack;
-    private SpellCastingComponent spell;
+    [SerializeField] private LeftHandComponent leftHand;
+    [SerializeField] private RightHandComponent rightHand;
+    [SerializeField] private MagicHandComponent magicHand;
+
+    [SerializeField] private AttackComponent attack;
+    [SerializeField] private SpellCastingComponent spell;
 
     public LeftHandComponent GetLeftHand => leftHand;
     public RightHandComponent GetRightHand => rightHand;
@@ -16,19 +18,20 @@
     public AttackComponent GetAttackComponent => attack;
     public SpellCastingComponent GetSpell => spell;
 
-    private void Awake()
+    protected override void Init()
     {
         Instance = this;
-        GetComponents();
     }
 
-    protected override void GetComponents()
+    public override void LoadFromOrigin(Origin origin)
     {
-        leftHand = components.GetComponentInChildren<LeftHandComponent>();
-        rightHand = components.GetComponentInChildren<RightHandComponent>();
-        magicHand = components.GetComponentInChildren<MagicHandComponent>();
+        Init();
+    }
+
+    public override void LoadFromSave()
+    {
+        Init();
         
-        attack = components.GetComponentInChildren<AttackComponent>();
-        spell = components.GetComponentInChildren<SpellCastingComponent>();
+        // TODO
     }
 }

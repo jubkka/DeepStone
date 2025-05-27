@@ -5,14 +5,11 @@ public abstract class HandComponent : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] protected Transform handContainer;
-    [SerializeField] protected HotbarInput input;
     [SerializeField] protected DropComponent dropComponent;
     
     [Header("Item")]
     [SerializeField] protected Item activeItem = new Item();
     [SerializeField] private GameObject activeItemGameObject;
-    
-    private HotbarComponent hotbar;
     
     public Item GetActiveItem => activeItem;
     public GameObject GetActiveItemGameObject => activeItemGameObject;
@@ -20,10 +17,7 @@ public abstract class HandComponent : MonoBehaviour
 
     protected void Start()
     {
-        hotbar = GearSystems.Instance.Hotbar;
-        
-        
-        dropComponent.OnItemDropped += DropItemInHand;
+        dropComponent.OnItemDropped += DropItemFromHand;
     }
     
     public virtual void PutInHand(Item item)
@@ -37,11 +31,11 @@ public abstract class HandComponent : MonoBehaviour
             SpawnItem();
             CreateItem(item);
         }
-        
+
         OnActiveItemChanged?.Invoke(activeItem);
     }
 
-    protected void DropItemInHand(Item item)
+    protected void DropItemFromHand(Item item)
     {
         if (item.GetUniqueId != activeItem.GetUniqueId)
             return;

@@ -220,6 +220,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Close"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e01eb03d-307b-4c70-9795-fc4a39f6417c"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Close"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -485,6 +496,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Spells"",
+            ""id"": ""7b1829e5-a0ce-4c8a-88d0-91043bdedead"",
+            ""actions"": [
+                {
+                    ""name"": ""Toggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""666a844e-8317-48e8-be1c-7abe709307bd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""47347882-7eb8-4f0c-968d-e9ebfcc05830"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -542,6 +581,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Chest
         m_Chest = asset.FindActionMap("Chest", throwIfNotFound: true);
         m_Chest_Close = m_Chest.FindAction("Close", throwIfNotFound: true);
+        // Spells
+        m_Spells = asset.FindActionMap("Spells", throwIfNotFound: true);
+        m_Spells_Toggle = m_Spells.FindAction("Toggle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -971,6 +1013,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public ChestActions @Chest => new ChestActions(this);
+
+    // Spells
+    private readonly InputActionMap m_Spells;
+    private List<ISpellsActions> m_SpellsActionsCallbackInterfaces = new List<ISpellsActions>();
+    private readonly InputAction m_Spells_Toggle;
+    public struct SpellsActions
+    {
+        private @PlayerControls m_Wrapper;
+        public SpellsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Toggle => m_Wrapper.m_Spells_Toggle;
+        public InputActionMap Get() { return m_Wrapper.m_Spells; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SpellsActions set) { return set.Get(); }
+        public void AddCallbacks(ISpellsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SpellsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SpellsActionsCallbackInterfaces.Add(instance);
+            @Toggle.started += instance.OnToggle;
+            @Toggle.performed += instance.OnToggle;
+            @Toggle.canceled += instance.OnToggle;
+        }
+
+        private void UnregisterCallbacks(ISpellsActions instance)
+        {
+            @Toggle.started -= instance.OnToggle;
+            @Toggle.performed -= instance.OnToggle;
+            @Toggle.canceled -= instance.OnToggle;
+        }
+
+        public void RemoveCallbacks(ISpellsActions instance)
+        {
+            if (m_Wrapper.m_SpellsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ISpellsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SpellsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SpellsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public SpellsActions @Spells => new SpellsActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -1024,5 +1112,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IChestActions
     {
         void OnClose(InputAction.CallbackContext context);
+    }
+    public interface ISpellsActions
+    {
+        void OnToggle(InputAction.CallbackContext context);
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +8,12 @@ public class AttributeIncreaseUI : MonoBehaviour
     
     private Image[] images;
 
-    private void Start()
+    public void Init(LevelComponent levelComponent)
     {
-        CharacterStatsSystems.Instance.Level.OnCountFreePointsChanged += ChangeIcon;
         images = GetComponentsInChildren<Image>();
+        levelComponent.OnFreePointsChanged += ChangeIcon;
+        
+        ChangeIcon(levelComponent.FreePoints);
     }
 
     private void ChangeIcon(int amount)

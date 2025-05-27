@@ -24,8 +24,9 @@ public class InputManager : MonoBehaviour
     public void SwitchToInventory()
     {
         controls.Disable();
+        
         controls.Inventory.Enable();
-        controls.Player.ToggleInventory.Enable();
+        controls.Spells.Enable();
         
         GameManager.CursorChangeState(true);
     }
@@ -33,7 +34,10 @@ public class InputManager : MonoBehaviour
     public void SwitchToPlayer()
     {
         controls.Enable();
-        controls.Inventory.Close.Disable();
+        
+        controls.Inventory.Disable();
+        controls.Spells.Disable();
+        controls.Chest.Disable();
         
         GameManager.CursorChangeState(false);
     }

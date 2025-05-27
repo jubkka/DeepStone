@@ -18,7 +18,7 @@ public class EnemyAttack : MonoBehaviour
     public void Attack()
     {
         if (indicator != null)
-            indicator.Damage(1);
+            indicator.Hit(1);
         else
             indicator = CharacterStatsSystems.Instance.Indicator;
     }

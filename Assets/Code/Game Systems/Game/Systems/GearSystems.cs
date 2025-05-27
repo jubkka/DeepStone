@@ -1,59 +1,71 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class GearSystems : Systems
 {
     public static GearSystems Instance;
-    
-    public InventoryComponent Inventory { get; private set; }
-    public EquipmentComponent Equipment { get; private set; }
-    public SpellComponent Spell { get; private set; }
-    public HotbarComponent Hotbar { get; private set; }
-    public ChestComponent Chest { get; private set; }
-    public ItemUsageSystem ItemsUsage { get; private set; }
 
-    private void Awake()
+    [SerializeField] private InventoryComponent inventory;
+    [SerializeField] private EquipmentComponent equipment;
+    [SerializeField] private SpellComponent spell;
+    [SerializeField] private HotbarComponent hotbar;
+    [SerializeField] private ChestComponent chest;
+    [SerializeField] private DropComponent drop;
+    
+    [Header("Resources")]
+    [SerializeField] private WeightComponent weight;
+    
+    public InventoryComponent Inventory => inventory;
+    public EquipmentComponent Equipment => equipment;
+    public SpellComponent Spell => spell;
+    public HotbarComponent Hotbar => hotbar;
+    public ChestComponent Chest => chest;
+    public DropComponent Drop => drop;
+
+    protected override void Init()
     {
         Instance = this;
         
-        GetComponents();
-        Initialization();
-    }
-
-    private void Start()
-    {
-        LoadFromOrigin();
+        inventory.Initialize();
+        equipment.Initialize(inventory);
+        hotbar.Initialize(inventory);
+        drop.Initialize(inventory);
+        spell.Initialize();
+        chest.Initialize();
         
-        ItemsUsage = new ItemUsageSystem();
+        weight.InitFromInventory(inventory);
     }
-
-    protected override void GetComponents()
+    
+    public override void LoadFromSave()
     {
-        Inventory = components.GetComponentInChildren<InventoryComponent>();
-        Equipment = components.GetComponentInChildren<EquipmentComponent>();
-        Spell = components.GetComponentInChildren<SpellComponent>();
-        Hotbar = components.GetComponentInChildren<HotbarComponent>();
-        Chest = components.GetComponentInChildren<ChestComponent>();
-    }
-
-    private void Initialization()
-    {
-        Inventory.Initialize();
-        Equipment.Initialize();
-        Spell.Initialize();
-        Hotbar.Initialize();
-        Chest.Initialize();
-    }
-
-    private void LoadFromOrigin()
-    {
-        List<Item> items = CreateNewItems(PlayerSetup.Instance.SelectedOrigin.GetItems);
-        List<Item> equipments; //TODO
-        List<Item> spells =  CreateNewItems(PlayerSetup.Instance.SelectedOrigin.GetSpells);
+        Init();
         
-        Inventory.AddItems(items);
-        Equipment.AddItems(items);
-        Hotbar.AddItems(items);
-        Spell.AddItems(spells);
+        // List<Item> items = CreateNewItems(save.GetItems);
+        // List<Item> equipments = CreateNewItems(save.GetItems);
+        // List<Item> hotbars = CreateNewItems(save.GetItems); 
+        // List<Item> spells =  CreateNewItems(save.GetSpells);
+
+        //AddItems(items, equipments, hotbars, spells);
+    }
+
+    public override void LoadFromOrigin(Origin origin)
+    {
+        Init();
+        
+        List<Item> items = CreateNewItems(origin.GetItems);
+        List<Item> equipments = CreateNewItems(origin.GetItems); //TODO
+        List<Item> hotbars = CreateNewItems(origin.GetItems); //TODO
+        List<Item> spells = CreateNewItems(origin.GetSpells);
+
+        AddItemsToGears(items, equipments, spells, hotbars);
+    }
+
+    private void AddItemsToGears(List<Item> items, List<Item> equipments, List<Item> spells, List<Item> hotbars)
+    {
+        inventory.AddItems(items);
+        equipment.AddItems(equipments);
+        spell.AddItems(spells);
+        hotbar.AddItems(hotbars);
     }
 
     private List<Item> CreateNewItems(List<Item> items)

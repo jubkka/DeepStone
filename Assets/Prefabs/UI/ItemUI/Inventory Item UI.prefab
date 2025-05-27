@@ -32,11 +32,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5257447949048831256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: -20}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 15, y: 15}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &503195973646522514
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -142,8 +142,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1c9292e3a8c0e3b4ab8090eb1e3f32ea, type: 2}
-  m_sharedMaterial: {fileID: 1041454403919592756, guid: 1c9292e3a8c0e3b4ab8090eb1e3f32ea, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 206f2c26b473d4f43a4204f72bcfbcfa, type: 2}
+  m_sharedMaterial: {fileID: 8123773828232758185, guid: 206f2c26b473d4f43a4204f72bcfbcfa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -247,7 +247,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 55, y: 55}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3458724732341685313
 CanvasRenderer:
@@ -299,16 +299,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d689e3be3e7d3d24f8ce0d30f4518666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TMP: {fileID: 5992981036726189624}
-  icon: {fileID: 6823687857170664608}
-  gear: {fileID: 0}
   index: 0
   alphaInDrag: 0.7
   item:
     data: {fileID: 0}
     amount: 0
     uniqueId: 
+  TMP: {fileID: 5992981036726189624}
+  icon: {fileID: 6823687857170664608}
+  gear: {fileID: 0}
   beforeDragParent: {fileID: 0}
   afterDragParent: {fileID: 0}
   dragContainer: {fileID: 0}
-  itemInHandIcon: {fileID: 6810702421404474962}

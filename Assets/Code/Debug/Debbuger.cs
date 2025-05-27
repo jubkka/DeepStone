@@ -6,6 +6,9 @@ public class Debbuger : MonoBehaviour
 {
     [SerializeField] private GameObject fpsCounter;
     [SerializeField] private GameObject itemSpawner;
+    
+    [SerializeField] private IndicatorComponent indicator;
+    [SerializeField] private LevelComponent level; 
 
     private PlayerControls playerControls;
 
@@ -32,14 +35,16 @@ public class Debbuger : MonoBehaviour
 
     private void Update()
     {
-        DrawInteractRay();
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            indicator.Heal(1);
+        
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            indicator.Hit(1);
+        
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            level.AddExp(10);
     }
-
-    private void DrawInteractRay()
-    {
-        //Raycaster.DrawRay(cam.position, cam.forward * distance, color);
-    }
-
+    
     private void OnToggleFPS(InputAction.CallbackContext context)
     {
         fpsCounter.SetActive(!fpsCounter.activeSelf);
