@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class InventoryComponent : GearComponent 
+public class InventoryComponent : GearComponent
 {
     public event Action<Item> OnItemAdded;
     public event Action<Item> OnItemRemoved;
@@ -31,14 +31,6 @@ public class InventoryComponent : GearComponent
 
         Debug.Log($"Fail add item in {gearName}: {item.data.GetName} in slot index: {index}");
         return false;
-    }
-
-    public override void RemoveItem(int index)
-    {
-        if (Manager.RemoveItem(index)) 
-            Debug.Log($"Item delete from inventory from index {index}");
-        else
-            Debug.Log($"Item not delete from inventory by index {index}");
     }
     
     public override bool MoveItems(int fromIndex, int targetIndex)

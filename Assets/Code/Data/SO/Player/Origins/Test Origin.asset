@@ -17,7 +17,10 @@ MonoBehaviour:
   stamina: 10
   mana: 10
   attributesData: {fileID: 11400000, guid: 7b976af6128faaa42b7fa4a666e268c6, type: 2}
-  items: []
+  items:
+  - data: {fileID: 11400000, guid: 6572d3d8ab96fa9418ad160aea3c0df7, type: 2}
+    amount: 1
+    uniqueId: 324234
   spells:
   - data: {fileID: 11400000, guid: 95fedca8df30eb24dbcd5ae3f796027a, type: 2}
     amount: 1

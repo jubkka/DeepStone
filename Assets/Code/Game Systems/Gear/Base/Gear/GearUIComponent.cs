@@ -15,7 +15,7 @@ public class GearUIComponent : MonoBehaviour
         slotsParent = transform.Find("Slots");
         dragContainer = GameObject.FindWithTag("DragContainer").transform;
         
-        itemUIs = new BaseItemUI[newGear.maxSize];
+        itemUIs = new BaseItemUI[newGear.GetSize];
 
         newGear.OnItemChanged += UpdateSlotUI;
     }

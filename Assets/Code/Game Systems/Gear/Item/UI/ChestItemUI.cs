@@ -19,7 +19,7 @@ public class ChestItemUI : BaseItemUI
 
     private void HandleInventoryDrop(GearComponent inventory, int targetIndex)
     {
-        if (inventory.IsFull()) 
+        if (inventory.IsFull) 
             return;
 
         inventory.AddItem(item, targetIndex);

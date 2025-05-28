@@ -8,7 +8,7 @@ public class EquipmentItemUI : BaseItemUI
 
         if (slot.itemSlotType == ItemSlotType.Inventory) 
         {
-            if (inventory.IsFull()) 
+            if (inventory.IsFull) 
                 return;
 
             inventory.AddItem(item, targetIndex);

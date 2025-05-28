@@ -12,17 +12,23 @@ public class WeightComponent : MonoBehaviour
     public event Action<int> OnWeightCurrentChanged;
     public event Action<int> OnWeightMaxChanged;
 
-    public void InitFromInventory(InventoryComponent inventory)
-    {
-        inventory.OnItemAdded += GiveWeight;
-        inventory.OnItemRemoved += TakeWeight;
-    }
-
-    public void InitFromOrigin(Origin origin, AttributeComponent attributeComponent)
+    public void InitFromOrigin(Origin origin, AttributeComponent attributeComponent, InventoryComponent inventory, EquipmentComponent equipment)
     {
         attribute = attributeComponent;
-
+        
+        inventory.OnItemAdded += GiveWeight;
+        inventory.OnItemRemoved += TakeWeight;
+        
+        //equipment.OnEquiped
+        //equipment.OnUnequiped
+        
+        CalculateWeightInventory(inventory);
         CalculateMaxWeight();
+    }
+
+    private void CalculateWeightInventory(InventoryComponent inventory)
+    {
+        //
     }
 
     public void InitFromSave()

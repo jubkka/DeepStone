@@ -1,4 +1,5 @@
-public class ChestComponent : GearComponent {
+public class ChestComponent : GearComponent
+{
     public override void Initialize() 
     {
         Storage = new GearStorage(maxSize);

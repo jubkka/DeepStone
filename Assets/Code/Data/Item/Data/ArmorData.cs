@@ -5,8 +5,10 @@ public class ArmorData : SimpleItemData
 {
     [Header("Armor Data")]
     [SerializeField] private ArmorType armorType;
-    [SerializeField] private int defense;
+    [SerializeField] private float physicalDef;
+    [SerializeField] private float magicalDef;
     
-    public int GetDefense => defense;
+    public float GetPhysicalDef => physicalDef;
+    public float GetMagicalDef => magicalDef;
     public ArmorType GetArmorType => armorType;
 }

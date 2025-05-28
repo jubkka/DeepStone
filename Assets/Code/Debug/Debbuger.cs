@@ -39,7 +39,7 @@ public class Debbuger : MonoBehaviour
             indicator.Heal(1);
         
         if (Input.GetKeyDown(KeyCode.LeftArrow))
-            indicator.Hit(1);
+            indicator.Hit(1f);
         
         if (Input.GetKeyDown(KeyCode.UpArrow))
             level.AddExp(10);

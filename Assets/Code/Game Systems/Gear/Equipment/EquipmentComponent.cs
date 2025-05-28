@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class EquipmentComponent : GearComponent
 {
     private InventoryComponent inventory;
+
+    public event Action OnDefenceChanged;
     
     public override void Initialize()
     {
@@ -46,6 +48,8 @@ public class EquipmentComponent : GearComponent
 
         if (targetItem.data != null)
             inventory.AddItem(targetItem, -1); // Добавляем старый предмет в инвентарь
+
+        OnDefenceChanged?.Invoke();
     }
 
     private void TryEquipItems(List<Item> items)
@@ -59,8 +63,49 @@ public class EquipmentComponent : GearComponent
         for (int i = 0; i < Storage.Items.Length; i++)
         {
             if (Storage.Items[i] == currentItem)
+            {
+                OnDefenceChanged?.Invoke();
                 RemoveItem(i);
+            }
         }
+    }
+    
+    public ArmorModel GetDefenceFlat()
+    {
+        float physicalDef = 0;
+        float magicalDef = 0;
+
+        foreach (Item item in Storage.Items)
+        {
+            if (item.data is ArmorData data)
+            {
+                physicalDef += data.GetPhysicalDef;
+                magicalDef += data.GetPhysicalDef;
+            }
+        }
+        
+        ArmorModel model = new(physicalDef, magicalDef);
+
+        return model;
+    }
+    
+    public ArmorModel GetDefencePercent() //Change on Percent
+    {
+        float physicalDef = 0;
+        float magicalDef = 0;
+
+        foreach (Item item in Storage.Items)
+        {
+            if (item.data is ArmorData data)
+            {
+                physicalDef += data.GetPhysicalDef;
+                magicalDef += data.GetPhysicalDef;
+            }
+        }
+        
+        ArmorModel model = new(physicalDef, magicalDef);
+
+        return model;
     }
 
     public override void AddItems(List<Item> items)

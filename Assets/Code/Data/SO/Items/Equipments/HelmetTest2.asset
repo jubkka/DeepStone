@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: HelmetTest2
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
-  nameItem: HelmetTest
-  description: 
-  icon: {fileID: -3749147462820520855, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
+  itemName: helmet_test
+  description: cool helmet
   id: helmet_test_2
+  icon: {fileID: -3749147462820520855, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
   weight: 1
   cost: 1
-  isSpendable: 0
+  isLeftHanded: 0
   armorType: 0
-  defense: 0
+  physicalDef: 10
+  magicalDef: 10

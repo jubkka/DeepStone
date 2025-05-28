@@ -12,9 +12,6 @@ public class GearSystems : Systems
     [SerializeField] private ChestComponent chest;
     [SerializeField] private DropComponent drop;
     
-    [Header("Resources")]
-    [SerializeField] private WeightComponent weight;
-    
     public InventoryComponent Inventory => inventory;
     public EquipmentComponent Equipment => equipment;
     public SpellComponent Spell => spell;
@@ -32,8 +29,6 @@ public class GearSystems : Systems
         drop.Initialize(inventory);
         spell.Initialize();
         chest.Initialize();
-        
-        weight.InitFromInventory(inventory);
     }
     
     public override void LoadFromSave()
@@ -53,7 +48,7 @@ public class GearSystems : Systems
         Init();
         
         List<Item> items = CreateNewItems(origin.GetItems);
-        List<Item> equipments = CreateNewItems(origin.GetItems); //TODO
+        List<Item> equipments = new List<Item>(); //CreateNewItems(origin.GetItems); //TODO
         List<Item> hotbars = CreateNewItems(origin.GetItems); //TODO
         List<Item> spells = CreateNewItems(origin.GetSpells);
 

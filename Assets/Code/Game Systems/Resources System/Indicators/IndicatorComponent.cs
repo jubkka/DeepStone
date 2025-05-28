@@ -33,7 +33,7 @@ public class IndicatorComponent : MonoBehaviour
 
     public void Heal(int value) => health.Increase(value);
 
-    public void Hit(int value)
+    public void Hit(float value)
     {
         health.Decrease(value);
         

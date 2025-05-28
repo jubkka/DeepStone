@@ -8,6 +8,8 @@ public class CharacterStatsSystems : Systems
     [SerializeField] private EffectComponent effect;
     [SerializeField] private AttributeComponent attribute;
     [SerializeField] private LevelComponent level;
+    [SerializeField] private DefenceComponent defence;
+    [SerializeField] private DamageComponent damage;
     
     [SerializeField] private WeightComponent weight;
     
@@ -20,7 +22,9 @@ public class CharacterStatsSystems : Systems
         Instance = this;
     }
 
-    public override void LoadFromOrigin(Origin origin)
+    public override void LoadFromOrigin(Origin origin) { }
+
+    public void LoadFromOrigin(Origin origin, InventoryComponent inventory, EquipmentComponent equipment)
     {
         Init();
 
@@ -29,7 +33,10 @@ public class CharacterStatsSystems : Systems
         indicator.InitFromOrigin(origin);
         effect = new(origin, indicator);
         
-        weight.InitFromOrigin(origin, attribute);
+        defence.InitFromOrigin(origin, equipment, effect);
+        damage.Init(defence, indicator);
+        
+        weight.InitFromOrigin(origin, attribute, inventory, equipment);
     }
 
     public override void LoadFromSave()
