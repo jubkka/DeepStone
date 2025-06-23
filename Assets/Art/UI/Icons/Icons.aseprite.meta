@@ -402,6 +402,46 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
+  - name: Spell power Icon
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 64
+      width: 16
+      height: 15
+    spriteID: 643fa2fd865c53748bf39cda3c4bb2f3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Resistance Magic Icon
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 69
+      y: 47
+      width: 14
+      height: 14
+    spriteID: d5f4fd23ec858ce44a150a28d09a96bb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
     guid: -1744697416
@@ -416,7 +456,7 @@ ScriptedImporter:
       cellRect:
         x: 16
         y: 21
-        width: 95
+        width: 96
         height: 89
       spriteId: 37d94fa877614f84390148641a78208c
     linkedCells: []

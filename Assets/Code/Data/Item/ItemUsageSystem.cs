@@ -14,16 +14,16 @@ public class ItemUsageSystem
     private readonly AttackComponent attackComponent;
     private readonly SpellCastingComponent spellCastingComponent;
     
-    public ItemUsageSystem(GearSystems gear, CharacterStatsSystems character, CombatSystems combat)
+    public ItemUsageSystem(BootstrapCharacter character)
     {
         Instance = this;
         
-        inventory = gear.Inventory;
-        equipment = gear.Equipment;
-        effectComponent = character.Effect;
-        //handComponent = CombatSystems.Instance.GetHandComponent;
-        attackComponent = combat.GetAttackComponent;
-        spellCastingComponent = combat.GetSpell;
+        inventory = character.GearSystems.Inventory;
+        equipment = character.GearSystems.Equipment;
+        effectComponent = character.CombatSystems.Effect;
+        //handComponent = CombatSystems.Instance.GetHandComponent; //TODO
+        attackComponent = character.CombatSystems.Attack;
+        spellCastingComponent = character.CombatSystems.Spell;
 
         AddCommands();
     }

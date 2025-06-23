@@ -9,6 +9,6 @@ public class CharacterCreation : MonoBehaviour
 
     private void Subscribe()
     {
-        originsUI.OnOriginSelected += PlayerSetup.Instance.SelectOrigin;
+        originsUI.OnOriginSelected += GameManager.Instance.SelectOrigin;
     }
 }

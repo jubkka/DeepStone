@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb228e3517f0f54dae5b3d22c26042b, type: 3}
   m_Name: TestPotion
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4956422820230839314, guid: c17ae3b429bde8d4795cd766269d58fa, type: 3}
+  prefab: {fileID: 919132149155446097, guid: d96b4dd8a4298094d9a5d8b6a30c8dd2, type: 3}
   itemName: potion of healing
   description: 
   id: potion_test

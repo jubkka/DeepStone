@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class DefenceComponent : MonoBehaviour
+public class DefenceComponent : MonoBehaviour, ILoad
 {
     [SerializeField] private DefenceView physicalDefenceView;
     [SerializeField] private DefenceView magicalDefenceView;
@@ -32,7 +33,7 @@ public class DefenceComponent : MonoBehaviour
         remove => model.OnBaseDefChanged -= value;
     }
 
-    public void InitFromOrigin(Origin origin,EquipmentComponent equipment, EffectComponent effect)
+    public void Init(EquipmentComponent equipment, EffectComponent effect)
     {
         equipmentComponent = equipment;
         effectComponent = effect;
@@ -43,8 +44,6 @@ public class DefenceComponent : MonoBehaviour
         model = new(10); //origin.GetBaseDefence
         
         CalculateDefence();
-        
-        InitUI();
     }
 
     private void InitUI()
@@ -53,10 +52,15 @@ public class DefenceComponent : MonoBehaviour
         magicalDefenceView.Init(this);
     }
 
-    public void InitFromSave()
+    public void LoadFromOrigin(Origin origin)
     {
-        
-    } //TODO
+        InitUI();
+    }
+
+    public void LoadFromSave()
+    {
+        //TODO
+    } 
 
     private void CalculateDefence()
     {

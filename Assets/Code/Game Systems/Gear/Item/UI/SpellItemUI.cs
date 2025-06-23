@@ -1,6 +1,4 @@
-﻿using System;
-
-public class SpellItemUI : BaseItemUI
+﻿public class SpellItemUI : BaseItemUI
 {
     public override void HandleDrop(GearComponent targetGear)
     {
@@ -17,6 +15,8 @@ public class SpellItemUI : BaseItemUI
                 HandleHotbarDrop(targetGear, targetIndex);
                 break;
         }
+
+        PlacedItemSound();
     }
 
     private void HandleHotbarDrop(GearComponent targetGear, int targetIndex)

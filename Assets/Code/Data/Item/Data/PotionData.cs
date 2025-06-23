@@ -1,12 +1,13 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TestPotion", menuName = "Items/Potions/TestWeapon")]
+[CreateAssetMenu(fileName = "TestPotion", menuName = "Items/Potions/TestPotion")]
 public class PotionData : StackableItemData
 {
-    [SerializeField] private List<ItemEffectData> effects = new List<ItemEffectData>();
+    [SerializeField] private List<Effect> effects = new List<Effect>();
 
-    public ItemEffectData AddEffect 
+    public Effect AddEffect 
     {
         set => effects.Add(value);
     }
@@ -15,7 +16,20 @@ public class PotionData : StackableItemData
     {
         foreach (var effect in effects)
         {
-            effect.Apply(effectComponent);
+            effectComponent.Apply(effect);
         }
+    }
+
+    public string CreateDescription()
+    {
+        var builder = new StringBuilder(description);
+        
+        foreach (var effect in effects)
+        {
+            builder.AppendLine(effect.GetDescription());
+            builder.AppendLine();
+        }
+
+        return builder.ToString();
     }
 }

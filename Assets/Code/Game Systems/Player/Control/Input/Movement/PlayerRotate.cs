@@ -3,26 +3,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerRotate : InputControl
 {
+    [Header("Player")] 
+    [SerializeField] private GameObject player;
+    [SerializeField] private Camera playerCamera;
+    
+    [Header("Settings")]
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private float upperVerticalRotationLimit; 
-    [SerializeField] private float lowerVerticalRotationLimit; 
-    
-    private GameObject player;
-    private Camera playerCamera;
+    [SerializeField] private float lowerVerticalRotationLimit;
 
     private Vector2 rotateInput;
     
     private float xRotation;
     private float yRotation;
     
-    protected override void Start()
-    {
-        player = GameObject.FindWithTag("Player");
-        playerCamera = Camera.main;
-
-        base.Start();
-    }
-
     protected override void SubscribeToControls()
     {
         controls.Player.Rotate.canceled += OnRotate;

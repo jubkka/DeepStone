@@ -15,6 +15,8 @@ public class ChestItemUI : BaseItemUI
                 HandleInventoryDrop(targetGear, targetIndex);
                 break;
         }
+        
+        PlacedItemSound();
     }
 
     private void HandleInventoryDrop(GearComponent inventory, int targetIndex)

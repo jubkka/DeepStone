@@ -10,5 +10,7 @@ public class HotbarItemUI : BaseItemUI
 
             gear.MoveItems(index, targetIndex);
         }
+        
+        PlacedItemSound();
     }
 }

@@ -9,7 +9,10 @@ public class DoorInteractable : Interactable
     [SerializeField] private BoxCollider boxCollider;
     [SerializeField] private Transform pivot;
     
-    private Coroutine coroutine;
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private SoundData doorSound;
+    
     private GameObject player;
 
     private bool isOpen = false;
@@ -18,18 +21,17 @@ public class DoorInteractable : Interactable
     private Vector3 startRotation;
     private Vector3 forward;
 
-    private Quaternion start;
+    private Quaternion startRot;
     private Quaternion target;
 
     private void Start()
     { 
-        start = pivot.rotation;
-        player = GameObject.FindWithTag("Player");
+        startRot = pivot.rotation;
     }
     
     private void Close()
     {
-        StartCoroutine(DoRotation(pivot.rotation, start));
+        StartCoroutine(DoRotation(pivot.rotation, startRot));
     }
 
     private void Open()
@@ -38,9 +40,9 @@ public class DoorInteractable : Interactable
 
         float angle = (dot <= 0) ? -90f : 90f;
         
-        target = Quaternion.Euler(0f, start.eulerAngles.y + angle, 0f);
+        target = Quaternion.Euler(0f, startRot.eulerAngles.y + angle, 0f);
         
-        coroutine = StartCoroutine(DoRotation(pivot.rotation, target));
+        StartCoroutine(DoRotation(pivot.rotation, target));
     }
 
     private IEnumerator DoRotation(Quaternion start, Quaternion end)
@@ -56,7 +58,6 @@ public class DoorInteractable : Interactable
         }
 
         blockInteract = false;
-        coroutine = null;
     }
 
     public override void Interact()
@@ -64,12 +65,16 @@ public class DoorInteractable : Interactable
         if (blockInteract)
             return;
         
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
+        
         if (isOpen)
             Close();
         else
             Open();
         
         ToggleStates();
+        audioSource.PlayOneShot(doorSound.AudioClip, doorSound.Volume);
     }
 
     private void ToggleStates()

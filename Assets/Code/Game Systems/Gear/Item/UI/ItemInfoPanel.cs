@@ -7,6 +7,9 @@ public class ItemInfoPanel : MonoBehaviour
     [SerializeField] float duration;
     [SerializeField] private Vector2 offset;
     
+    [Header("ItemTemplateManager")]
+    [SerializeField] ItemTemplateManager templateManager;
+    
     [Header("TMPs")]
     [SerializeField] TextMeshProUGUI nameTMP;
     [SerializeField] TextMeshProUGUI descriptionTMP;
@@ -46,19 +49,22 @@ public class ItemInfoPanel : MonoBehaviour
     {
         Item item = gear.GetItem(indexSlot);
 
-        if (item.data is IInfoDisplayable data) 
+        if (item.data is IInfoDisplayable  data) 
         {
             SetInfo(data);
             DoFadePanel(1f);
         }
     }
 
-    private void SetInfo(IInfoDisplayable data) 
+    private void SetInfo(IInfoDisplayable  data) 
     {
-        nameTMP.text = data.GetNameString;
-        descriptionTMP.text = data.GetDescriptionString;
-        costTMP.text = data.GetCostString;
-        weightTMP.text = data.GetWeightString;
+        var (nameData, weight, cost,description, alignment) = templateManager.GetFormattedDescription(data);
+        
+        nameTMP.text = nameData;
+        descriptionTMP.text = description;
+        descriptionTMP.alignment = alignment;
+        costTMP.text = cost;
+        weightTMP.text = weight;
     }
 
     public void DoFadePanel(float value) 

@@ -15,9 +15,9 @@ public abstract class HandComponent : MonoBehaviour
     public GameObject GetActiveItemGameObject => activeItemGameObject;
     public event Action<Item> OnActiveItemChanged; 
 
-    protected void Start()
+    public void Init()
     {
-        dropComponent.OnItemDropped += DropItemFromHand;
+        dropComponent.OnItemDropped += DropItemFromHand; //TODO Зачем это ?
     }
     
     public virtual void PutInHand(Item item)
@@ -76,6 +76,8 @@ public abstract class HandComponent : MonoBehaviour
     {
         activeItemGameObject = Instantiate(activeItem.data.GetPrefab, handContainer);
         activeItemGameObject.layer = LayerMask.NameToLayer("Weapon");
+        activeItemGameObject.GetComponentInChildren<CorrectTransform>()?.SetupHand();
+        activeItemGameObject.GetComponentInChildren<InfoPanelWorldSpace>()?.gameObject.SetActive(false);
     }
 
     protected void CreateItem(Item item)

@@ -1,8 +1,11 @@
 using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class HotbarInput : InputControl
 {
+    [SerializeField] private HotbarComponent hotbar;
+    
     private int activeSlotIndex = 0;
     public int ActiveSlotIndex
     {
@@ -18,8 +21,10 @@ public class HotbarInput : InputControl
     public event Action<int> OnKeyPressed;
     public event Action<float> OnMouseScrolled;
 
-    public void Init(HotbarComponent hotbar)
+    protected override void Start()
     {
+        base.Start();
+        
         hotbar.OnItemChanged += SelectSlot;
     }
 

@@ -1,26 +1,11 @@
-﻿using UnityEngine;
-
-public class InputManager : MonoBehaviour
+﻿public class InputManager  //TODO Создавать при старте игры
 {
-    public static InputManager instance;
-    [HideInInspector] public PlayerControls controls;
-
-    private void Awake()
-    {
-        instance = this;
-        controls = new PlayerControls();
-    }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-
+    private static InputManager instance;
+    private static PlayerControls controls;
+    
+    public static InputManager Instance => instance ??= new InputManager();
+    public static PlayerControls Controls => controls ??= new PlayerControls();
+    
     public void SwitchToInventory()
     {
         controls.Disable();
@@ -54,6 +39,7 @@ public class InputManager : MonoBehaviour
     {
         controls.Disable();
         controls.Chest.Enable();
+        controls.Spells.Enable();
         
         GameManager.CursorChangeState(true);
     }

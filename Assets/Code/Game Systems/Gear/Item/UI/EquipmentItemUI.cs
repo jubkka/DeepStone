@@ -14,6 +14,8 @@ public class EquipmentItemUI : BaseItemUI
             inventory.AddItem(item, targetIndex);
             gear.RemoveItem(index);
         } 
+        
+        PlacedItemSound();
     }
     
     protected override void Use()

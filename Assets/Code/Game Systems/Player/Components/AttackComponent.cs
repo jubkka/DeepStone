@@ -2,16 +2,22 @@
 
 public class AttackComponent : MonoBehaviour
 {
+    [SerializeField] private AttackView attackView;
+    
     private RightHandComponent rightHand;
+    private AttributeComponent attributeComponent;
+    private EffectComponent effectComponent;
     
     private GameObject activeItemGameObject;
     private Animator animator;
     
-    private void Start()
+    public void Init(RightHandComponent hand, AttributeComponent attribute, EffectComponent effect)
     {
-        rightHand = CombatSystems.Instance.GetRightHand;
+        rightHand = hand;
+        attributeComponent = attribute;
+        effectComponent = effect;
+        
         rightHand.OnActiveItemChanged += GetComponents;
-
         GetComponents(rightHand.GetActiveItem);
     }
 
@@ -20,8 +26,18 @@ public class AttackComponent : MonoBehaviour
         if (item.data == null)
             return;
         
+        if (item.data is not WeaponData)
+        {
+            attackView.UpdateText(0);
+            return;
+        }
+
         activeItemGameObject = rightHand.GetActiveItemGameObject;
-        animator = activeItemGameObject.GetComponent<Animator>();
+        activeItemGameObject.GetComponentInChildren<ItemAttack>()?.Init(attributeComponent, effectComponent, attackView);
+        animator = activeItemGameObject.GetComponentInChildren<Animator>();
+        
+        if (animator == null)
+            Debug.LogWarning("Animator is Null");
     }
 
     public void Attack()

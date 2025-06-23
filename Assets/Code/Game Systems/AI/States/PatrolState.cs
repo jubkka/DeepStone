@@ -12,27 +12,40 @@ public class PatrolState : StateDecision
     
     protected override IEnumerator ExecuteActions()
     {
-        if(!enemyMove.IsDestinationReached())
-            yield break;
-
         enemyMove.MoveToDestination(GetRandomWalkPoint());
 
+        yield return new WaitUntil(() => enemyMove.IsMoving());
+        yield return new WaitUntil(() => enemyMove.IsDestinationReached());
         yield return new WaitForSeconds(nextStateDelay);
-        
+
         SelectRandomState();
-        
+
         coroutine = null;
     }
 
     private Vector3 GetRandomWalkPoint() 
     {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
+        Vector3 candidatePoint;
+        int attempts = 30;
 
-        return new Vector3(
-            transform.position.x + randomX, 
-            transform.position.y, 
-            transform.position.z + randomZ
-        );
+        do
+        {
+            float radius = Random.Range(3f, 5f);
+            float angle = Random.Range(0f, 360f);
+            
+            float offsetX = Mathf.Cos(angle * Mathf.Deg2Rad) * radius;
+            float offsetZ = Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
+
+            candidatePoint = new Vector3(
+                transform.position.x + offsetX,
+                0f,
+                transform.position.z + offsetZ
+            );
+
+            attempts--;
+
+        } while (!enemyMove.CanReachPoint(candidatePoint) && attempts > 0);
+
+        return candidatePoint;
     }
 }

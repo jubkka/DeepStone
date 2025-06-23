@@ -7,12 +7,14 @@ public class DropComponent : MonoBehaviour
     
     public void Initialize(InventoryComponent inventory)
     {
-        inventory.OnItemRemoved += Drop;
+        inventory.OnItemDropped += Drop;
     }
 
     private void Drop(Item item) 
     {
         SpawnItem(item);
+        
+        SFXAudioManager.Instance.PlaySound("ItemDropped");
         
         OnItemDropped?.Invoke(item);
     }
@@ -30,6 +32,6 @@ public class DropComponent : MonoBehaviour
     private void CorrectTransform(GameObject item)
     {
         CorrectTransform correctTransform = item.GetComponentInChildren<CorrectTransform>();
-        correctTransform?.Setup();
+        correctTransform?.SetupSpawning();
     }
 }

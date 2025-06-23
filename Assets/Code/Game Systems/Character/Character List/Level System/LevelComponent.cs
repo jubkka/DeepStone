@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class LevelComponent : MonoBehaviour
+public class LevelComponent : MonoBehaviour, ILoad
 {
     [Header("UI Elements")]
     [SerializeField] private FreePointsUI freePointsUI;
@@ -47,12 +48,17 @@ public class LevelComponent : MonoBehaviour
         remove => model.OnFreePointsChanged -= value;
     }
 
-    public void InitFromOrigin(Origin origin, AttributeComponent attributeComponent)
+    public void Init(AttributeComponent attributeComponent)
     {
-        model = new LevelModel(origin);
+        model = new LevelModel();
         attributeComponent.OnAttributeIncreased += SpendFreePoints;
-
+        
         InitUI();
+    }
+
+    public void LoadFromOrigin(Origin origin)
+    {
+        model.LoadFromOrigin(origin);
     }
 
     private void InitUI()
@@ -62,7 +68,7 @@ public class LevelComponent : MonoBehaviour
         experienceView.Init(this);
     }
     
-    public void InitFromSave() //TODO
+    public void LoadFromSave() //TODO
     {
         
     }

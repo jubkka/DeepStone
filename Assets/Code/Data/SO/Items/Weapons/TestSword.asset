@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf595259fab2e3a458e4ab4f3d35bd53, type: 3}
   m_Name: TestSword
   m_EditorClassIdentifier: 
-  prefab: {fileID: 990363045699544721, guid: 1715808b336cef8499a840a2ea6e5813, type: 3}
+  prefab: {fileID: 3917288794822775273, guid: 1715808b336cef8499a840a2ea6e5813, type: 3}
   itemName: short_sword
   description: 
   id: sword_test
@@ -21,5 +21,7 @@ MonoBehaviour:
   cost: 1
   isLeftHanded: 0
   damage: 1
+  criticalChance: 0.5
+  multiplierDamage: 1
   range: 2
-  gripType: 0
+  gripType: 1

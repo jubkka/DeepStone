@@ -28,7 +28,7 @@ public class InfoPanelManager : MonoBehaviour
             return;
         }
         
-        InfoPanelWorldSpace infoPanel = target.transform.root?.GetComponentInChildren<InfoPanelWorldSpace>();
+        InfoPanelWorldSpace infoPanel = target.transform.root?.GetComponentInChildren<InfoPanelWorldSpace>(); //TODO Нужно поменять, иначе в объекте Items мы будем искать по всем предметам 
         
         if (infoPanel == null)
             return;

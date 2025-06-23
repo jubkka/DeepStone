@@ -19,5 +19,6 @@ public class DeathScreen : MonoBehaviour
             canvas.alpha = 0;
         
         deathScreen.alpha = 1;
+        deathScreen.blocksRaycasts = true;
     }
 }

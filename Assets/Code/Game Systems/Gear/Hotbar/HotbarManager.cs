@@ -1,33 +1,55 @@
-public class HotbarManager : GearManager
+using System;
+
+public class HotbarManager : IGearManager
 {
-    public HotbarManager(GearStorage storage) : base(storage) {}
+    private GearStorage storage;
+    
+    public event Action<int> OnItemChanged;
+    public event Action<Item> OnItemAdded;
+    public event Action<Item> OnItemRemoved;
+    public event Action<Item> OnItemDropped;
 
-    public override bool AddItem(Item item, int index)
+    public HotbarManager(GearStorage storage)
     {
-        if (item == null) return false;
+        this.storage = storage;
+    }
+
+    public bool AddItem(Item item, int index)
+    {
+        if (item == null)
+            return false;
         
-        Storage.SetItem(item, index);
-        InvokeItemChanged(index);
+        storage.SetItem(item, index);
+        OnItemAdded?.Invoke(item);
+        OnItemChanged?.Invoke(index);
         
         return true;
     }
 
-    public override bool RemoveItem(int index) 
+    public bool RemoveItem(int index) 
     {
-        if (Storage.Items[index] == null) return false;
+        if (storage.Items[index] == null) 
+            return false;
         
-        Storage.Items[index] = new Item();
-        InvokeItemChanged(index);
+        OnItemRemoved?.Invoke(storage.Items[index]);
+        storage.Items[index] = new Item();
+        OnItemChanged?.Invoke(index);
         
         return true;
     }
 
-    public override bool MoveItems(int fromIndex, int targetIndex)
+    public bool DropItem(int index)
     {
-        if (fromIndex == targetIndex) return false;
+        return false;
+    }
+    
+    public bool MoveItems(int fromIndex, int targetIndex)
+    {
+        if (fromIndex == targetIndex) 
+            return false;
 
-        Item fromItem = Storage.Items[fromIndex];
-        Item targetItem = Storage.Items[targetIndex];
+        Item fromItem = storage.Items[fromIndex];
+        Item targetItem = storage.Items[targetIndex];
 
         IMoveCommand moveCommand;
 
@@ -40,12 +62,38 @@ public class HotbarManager : GearManager
             moveCommand = new SwapItemsCommand(fromIndex, targetIndex);
         }   
 
-        if (moveCommand.Execute(Storage.Items)) 
+        if (moveCommand.Execute(storage.Items)) 
         {
-            InvokeItemChanged(fromIndex);
-            InvokeItemChanged(targetIndex);
+            OnItemChanged?.Invoke(fromIndex);
+            OnItemChanged?.Invoke(targetIndex);
             return true;
         }
+
+        return false;
+    }
+    
+    public void HandleItemRemoved(Item item) 
+    {
+        for (int i = 0; i < storage.Items.Length; i++)
+        {
+            if (storage.Items[i] == item) 
+                RemoveItem(i);
+        }
+    }
+    
+    public bool ContainsItem(Item item, out int existingIndex) 
+    {
+        for (int i = 0; i < storage.Items.Length; i++)
+        {
+            if (storage.Items[i] != null && storage.Items[i].GetUniqueId == item.GetUniqueId) 
+            {
+                existingIndex = i;
+
+                return true;
+            }
+        }
+
+        existingIndex = -1;
 
         return false;
     }

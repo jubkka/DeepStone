@@ -2,21 +2,22 @@
 
 public class SpellCastingComponent : MonoBehaviour
 {
+    [SerializeField] private AttackView attackView;
+    
     [Header("Magic Hand Component")]
-    [SerializeField] private GameObject magicItem;
+    [SerializeField] private GameObject magicObj;
     [SerializeField] private Animator animator;
     
-    private RightHandComponent rightHand;
-    private LeftHandComponent leftHand;
-    private MagicHandComponent magicHand;
+    private CombatSystems combatSystems;
+    private AttributeComponent attributeComponent;
 
-    private void Start()
+    public void Init(CombatSystems combat, AttributeComponent attribute)
     {
-        rightHand = CombatSystems.Instance.GetRightHand;
-        leftHand = CombatSystems.Instance.GetLeftHand;
-        magicHand = CombatSystems.Instance.GetMagicHand;
+        combatSystems = combat;
+        attributeComponent = attribute;
 
-        magicHand.OnActiveItemChanged += GetComponents;
+        combatSystems.MagicHand.OnActiveItemChanged += GetComponents;
+        GetComponents(combatSystems.MagicHand.GetActiveItem);
     }
 
     private void GetComponents(Item item)
@@ -24,20 +25,16 @@ public class SpellCastingComponent : MonoBehaviour
         if (item.data == null)
             return;
 
-        magicItem = magicHand.GetActiveItemGameObject;
-        animator = magicItem.GetComponent<Animator>();
+        magicObj = combatSystems.MagicHand.GetActiveItemGameObject;
+        magicObj.GetComponentInChildren<ItemAttack>()?.Init(attributeComponent, combatSystems.Effect, attackView);
+        animator = magicObj.GetComponent<Animator>();
     }
 
     public void Cast()
     {
-        if (magicItem == null)
+        if (magicObj == null)
             return;
         
         animator.SetTrigger("Cast");
-    }
-
-    public void ToggleVisibilityItems()
-    {
-        
     }
 }

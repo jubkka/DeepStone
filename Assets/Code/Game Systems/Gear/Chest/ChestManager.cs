@@ -2,13 +2,17 @@ public class ChestManager : InventoryTypeManager
 {
     public ChestManager(GearStorage storage) : base(storage) {}
 
-    public bool AddItems(Item[] items) 
+    public Item[] TakeItems() 
     {
-        for (int i = 0; i < items.Length; i++)
+        Item[] items = new Item[storage.Items.Length];
+
+        for (int i = 0; i < storage.Items.Length; i++)
         {
-            if(!AddItem(items[i], i)) 
-                return false;
-        }    
-        return true;
-    } 
+            Item item = storage.GetItem(i);
+            items[i] = new Item(item.data, item.Amount);
+            RemoveItem(i);
+        }   
+
+        return items;
+    }
 }

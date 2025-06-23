@@ -91,6 +91,7 @@ public class FloorLevel : MonoBehaviour
         floorObj.layer = LayerMask.NameToLayer("Ground");
         floorObj.transform.SetParent(container);
         floorObj.transform.position = new Vector3();
+        floorObj.transform.Translate(0f, -0.001f, 0f);
         floorObj.GetComponent<MeshFilter>().mesh = mesh;
         floorObj.GetComponent<MeshRenderer>().material = floorMaterial;
     }

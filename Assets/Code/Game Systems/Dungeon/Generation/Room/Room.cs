@@ -5,9 +5,12 @@ public class Room : MonoBehaviour
 {
      [Header("Room GameObject")]
      public GameObject prefab;
-
+     
+     [Header("Chest")]
+     public GameObject possibleChest;
+     
      [Header("Room Doorways")]
-     public List<GameObject> posibleDoorways = new List<GameObject>();
+     public List<GameObject> possibleDoorways = new List<GameObject>();
      public List<GameObject> activeDoorways = new List<GameObject>();
      
      [Space(10)]
@@ -18,6 +21,10 @@ public class Room : MonoBehaviour
      
      [Header("Wall Cells")]
      [SerializeField] private List<Vector2Int> occupiedWallCells = new List<Vector2Int>();
+     
+     [Header("Chest Cells")]
+     [SerializeField] private List<Vector2Int> occupiedChestCells = new List<Vector2Int>();
+     
      public int GetWallCountOccupiedCells => occupiedWallCells.Count;
      
      [Header("Containers")]
@@ -41,6 +48,16 @@ public class Room : MonoBehaviour
      }
      
      public IEnumerable<Vector3Int> GetWallCells()
+     {
+          foreach (var cells in occupiedWallCells)
+          {
+               Vector3Int worldPos = new Vector3Int(cells.x, 0, cells.y);
+
+               yield return worldPos;
+          }
+     }
+     
+     public IEnumerable<Vector3Int> GetChestCells()
      {
           foreach (var cells in occupiedWallCells)
           {
@@ -76,7 +93,19 @@ public class Room : MonoBehaviour
 
           FillOccupiedCells(renderers, occupiedWallCells);
      }
-     
+
+     public void FillChestOccupiedCells()
+     {
+          if (possibleChest == null)
+               return;
+          
+          occupiedChestCells.Clear();
+          
+          MeshRenderer[] renderers = possibleChest.GetComponentsInChildren<MeshRenderer>();
+          
+          FillOccupiedCells(renderers, occupiedChestCells);
+     }
+
      private void FillOccupiedCells(MeshRenderer[] renderers, List<Vector2Int> occupiedCells)
      {
           foreach (var rend in renderers)

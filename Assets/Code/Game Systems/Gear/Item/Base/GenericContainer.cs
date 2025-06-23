@@ -4,6 +4,7 @@ public abstract class GenericContainer : MonoBehaviour
 {
     protected Item item = new ();
     public Item GetItem => item;
+    public abstract GenericElementData Data { get; }
 
     [SerializeField] protected InfoPanelWorldSpace infoPanel;
 

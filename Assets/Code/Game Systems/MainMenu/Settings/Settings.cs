@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class Settings : MonoBehaviour
 {
@@ -24,11 +24,21 @@ public class Settings : MonoBehaviour
     public ControlSetting ControlSetting => controlSetting;
 
     public event Action OnResetAction;
-    
-    private void Awake() => Instance = this;
 
-    private void Start()
+    private void Singleton()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
+        Instance = this;
+    }
+
+    public void Init()
+    {
+        Singleton();
         LoadAllSettings();
         OnApply();
     }

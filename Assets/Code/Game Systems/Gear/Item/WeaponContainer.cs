@@ -3,6 +3,7 @@
 public class WeaponContainer : GenericContainer
 {
     [SerializeField] private WeaponData data;
+    public override GenericElementData Data => data;
     
     protected override void Start()
     {

@@ -4,17 +4,17 @@ using UnityEngine;
 public class LauncherArrow : LauncherProjectile
 {
     private WeaponData data;
-    
-    public override void SetData(GenericContainer container)
+
+    public override GenericElementData Data
     {
-        data = (WeaponData)container.GetItem.data;
+        set => data = (WeaponData)value;
     }
-    
+
     protected override void OnCollisionEnter(Collision other)
     {
         GameObject otherObject = other.gameObject;
 
-        FreezeObject(otherObject);
+        FreezeArrow();
         SetParent(otherObject);
         TouchObject(otherObject);
         
@@ -36,7 +36,7 @@ public class LauncherArrow : LauncherProjectile
         rb.useGravity = true;
     }
 
-    private void FreezeObject(GameObject obj)
+    private void FreezeArrow()
     {
         rb.isKinematic = true;
         rb.detectCollisions = false;
@@ -56,6 +56,6 @@ public class LauncherArrow : LauncherProjectile
         Damageable damageable = obj.GetComponentInChildren<Damageable>();
         
         if (damageable != null)
-            damageable.GetDamage(data.GetDamage);
+            damageable.GetDamage(data.Damage);
     }
 }

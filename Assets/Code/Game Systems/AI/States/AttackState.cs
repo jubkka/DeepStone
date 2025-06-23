@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class AttackState : State
 {
-    [SerializeField] private EnemyAttack enemyAttack;
+    [SerializeField] private Enemy enemy;
     
     public override State RunCurrentState()
     {
-        if (!enemyAttack.CanAttackPlayer()) 
+        if (!enemy.Attack.CanAttackPlayer()) 
             return StateManager.stateDict.GetState(StateType.Chase);
 
         return base.RunCurrentState();
@@ -15,8 +15,8 @@ public class AttackState : State
 
     protected override IEnumerator ExecuteActions()
     {
-        enemyAttack.Attack();
-            
+        enemy.Animator.Play("Attack");
+        
         yield return new WaitForSeconds(1f);
         
         coroutine = null;

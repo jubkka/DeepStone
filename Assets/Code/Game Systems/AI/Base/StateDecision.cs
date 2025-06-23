@@ -11,7 +11,7 @@ public abstract class StateDecision : State
     [SerializeField] [Range(0f, 30f)] protected float minNextStateDelay;
     [SerializeField] [Range(0f, 30f)] protected float maxNextStateDelay;
 
-    private void Start()
+    protected override void Start()
     {
         nextStateDelay = Random.Range(minNextStateDelay, maxNextStateDelay);
     }

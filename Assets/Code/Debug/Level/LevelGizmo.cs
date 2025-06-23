@@ -53,6 +53,6 @@ public class LevelGizmo : MonoBehaviour
     private void Init()
     {
         occupiedCells = grid?.GetOccupiedCells;
-        occupiedCellsByWalls = grid?.GetOccupiedCellsByWalls;
+        occupiedCellsByWalls = grid?.GetOccupiedCellsByObstacles;
     }
 }

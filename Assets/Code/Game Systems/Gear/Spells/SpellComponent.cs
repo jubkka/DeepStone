@@ -1,9 +1,12 @@
 public class SpellComponent : GearComponent
 {
+    private SpellManager spellManager;
+    
     public override void Initialize()
     {
         Storage = new GearStorage(maxSize);
-        Manager = new SpellManager(Storage);
+        spellManager = new SpellManager(Storage);
+        Manager = spellManager;
         
         base.Initialize();
     }

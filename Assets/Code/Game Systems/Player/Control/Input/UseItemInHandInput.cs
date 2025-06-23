@@ -1,15 +1,9 @@
-﻿using UnityEngine.InputSystem;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UseItemInHandInput : InputControl
 {
-    private RightHandComponent rightHand;
-    
-    protected override void Start()
-    {
-        rightHand = CombatSystems.Instance.GetRightHand;
-
-        base.Start();
-    }
+    [SerializeField] private RightHandComponent rightHand;
 
     protected override void SubscribeToControls()
     {

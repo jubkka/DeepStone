@@ -3,16 +3,10 @@ using UnityEngine;
 
 public class OutlineActivation : MonoBehaviour
 {
+    [SerializeField] private Outline outline;
     [SerializeField] private Color colorOn;
     [SerializeField] private Color colorOff;
     public bool IsColorOn => colorOn == outline.OutlineColor;
-    
-    private Outline outline;
-
-    private void Awake()
-    {
-        outline = GetComponent<Outline>();
-    }
 
     public OutlineActivation EnableOutline() 
     {

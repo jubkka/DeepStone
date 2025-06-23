@@ -1,17 +1,35 @@
-public class EffectComponent
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EffectComponent : MonoBehaviour, ILoad
 {
+    [SerializeField] private GameObject effectViewPrefab;
+    [SerializeField] private Transform effectViewsParent;
+    private List<ActiveEffect> activeEffects;
+    
+    private DamageComponent damage;
     private IndicatorComponent indicator;
     
-    private ItemEffectData[] itemEffectData;
+    public List<ActiveEffect> ActiveEffects => activeEffects;
+    public DamageComponent Damage => damage;
+    public IndicatorComponent Indicator => indicator;
 
-    public EffectComponent(Origin origin, IndicatorComponent indicatorComponent)
+    public void Init(IndicatorComponent indicatorComponent, DamageComponent damageComponent)
     {
+        damage = damageComponent;
         indicator = indicatorComponent;
+        activeEffects = new List<ActiveEffect>();
     }
 
-    public EffectComponent(IndicatorComponent indicatorComponent) //Save TODO
+    public void LoadFromOrigin(Origin origin)
     {
-        indicator = indicatorComponent;
+        
+    }
+
+    public void LoadFromSave() //Save TODO
+    {
+        
     }
 
     public void GetDefenceEffects()
@@ -24,14 +42,50 @@ public class EffectComponent
             }
         } */  
     }
-
-    public void Heal(int healAmount) 
+    
+    public void Apply(IItemEffect effect)
     {
-        indicator.Heal(healAmount);
+        effect.Apply(this);
     }
 
-    private void Timer()
+    public void RegisterTemporaryEffect(TemporaryEffect temporaryEffect, Action action)
     {
-        
+        if (IsExistingEffect(temporaryEffect))
+            return;
+
+        EffectView effectView = AddView(temporaryEffect);
+
+        ActiveEffect activeEffect = new ActiveEffect(temporaryEffect, temporaryEffect.DurationEffect, action, effectView);
+        activeEffects.Add(activeEffect);
+
+        StartCoroutine(activeEffect.Run( (_) =>
+            RemoveActiveEffect(activeEffect)
+            ));
+    }
+
+    private bool IsExistingEffect(TemporaryEffect temporaryEffect)
+    {
+        ActiveEffect existingEffect = activeEffects.Find(x => x.Effect.Name == temporaryEffect.Name);
+
+        if (existingEffect != null)
+        {
+            existingEffect.Refresh(temporaryEffect.DurationEffect);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void RemoveActiveEffect(ActiveEffect activeEffect)
+    {
+        activeEffects.Remove(activeEffect);
+    }
+
+    private EffectView AddView(TemporaryEffect temporaryEffect)
+    {
+        EffectView effectView = Instantiate(effectViewPrefab, effectViewsParent).GetComponentInChildren<EffectView>();
+        effectView.Init(temporaryEffect.Icon, temporaryEffect.DurationEffect);
+
+        return effectView;
     }
 }

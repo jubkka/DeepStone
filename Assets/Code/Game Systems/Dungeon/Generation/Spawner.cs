@@ -17,6 +17,7 @@ public abstract class Spawner : MonoBehaviour
     [SerializeField] protected GridLevel gridLevel;
     
     private int levelSize;
+    public List<Vector3> SpawnedPos => spawnedPos;
     
     protected void Start()
     {
@@ -49,7 +50,7 @@ public abstract class Spawner : MonoBehaviour
     
     private bool CheckFreeCells(Vector3 spawnPosition)
     {
-        foreach (var cells in gridLevel.GetOccupiedCellsByWalls)
+        foreach (var cells in gridLevel.GetOccupiedCellsByObstacles)
         {
             if (cells == spawnPosition && !spawnedPos.Contains(spawnPosition))
                 return false;

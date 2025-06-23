@@ -5,8 +5,9 @@ public class RoomsLevel : MonoBehaviour
 {
     [SerializeField] private Transform containerRooms;
     
-    private GridLevel gridLevel;
-    private RoomDoorwayLevel roomDoorwayLevel;
+    [SerializeField] private GridLevel gridLevel;
+    [SerializeField] private RoomDoorwayLevel roomDoorwayLevel;
+    [SerializeField] private ChestSpawnerLevel chestLevel;
     
     private Room startRoom;
     private int levelSize;
@@ -16,9 +17,6 @@ public class RoomsLevel : MonoBehaviour
 
     public void Init(Room startRoom, int levelSize, List<Room> prefabRooms)
     {
-        gridLevel = GetComponentInParent<GridLevel>();
-        roomDoorwayLevel = GetComponent<RoomDoorwayLevel>();
-
         roomDoorwayLevel.Init(levelSize);
         
         this.levelSize = levelSize;
@@ -59,9 +57,17 @@ public class RoomsLevel : MonoBehaviour
         for (int i = 0; i < tries; i++)
             TryPlaceRoom();
         
-        gridLevel.SetWallCells(placedRooms);
+        gridLevel.SetObstacleCells(placedRooms);
+        gridLevel.SetChestCells(placedRooms);
+        
+        MeshCombine();
     }
-     
+
+    private void MeshCombine()
+    {
+        
+    }
+
     private bool TryPlaceRoom()
     {
         Vector3 pos = new Vector3(Random.Range(0, levelSize * 2), -0.5f, Random.Range(0, levelSize * 2));
@@ -83,6 +89,7 @@ public class RoomsLevel : MonoBehaviour
             }
              
             roomDoorwayLevel.CreateDoorway(room);
+            chestLevel.TrySpawnChest(room);
             
             ExpendRoom(room);
             placedRooms.Add(room);
@@ -101,19 +108,19 @@ public class RoomsLevel : MonoBehaviour
         foreach (var prefab in prefabRooms)
         {
             Room newRoom = PlaceRoom(prefab, new Vector3(), Quaternion.identity);
-            newRoom.posibleDoorways.Shuffle();
+            newRoom.possibleDoorways.Shuffle();
          
             bool placedRoom = false;
              
             for (int i = 0; i < oldRoom.activeDoorways.Count && !placedRoom; i++)
             {
-                for (int j = 0; j < newRoom.posibleDoorways.Count && !placedRoom; j++)
+                for (int j = 0; j < newRoom.possibleDoorways.Count && !placedRoom; j++)
                 {
                     for (int angle = 0; angle < 4; angle++)
                     {
                         newRoom.transform.Rotate(Vector3.up, angle * 90f);
                  
-                        Vector3 offset = oldRoom.activeDoorways[i].transform.position - newRoom.posibleDoorways[j].transform.position;
+                        Vector3 offset = oldRoom.activeDoorways[i].transform.position - newRoom.possibleDoorways[j].transform.position;
                         newRoom.transform.position += offset;
 
                         FillCells(newRoom);
@@ -122,8 +129,9 @@ public class RoomsLevel : MonoBehaviour
          
                         if (canPlaceRoom)
                         {
-                            roomDoorwayLevel.EnableDoorway(newRoom, newRoom.posibleDoorways[j]);
+                            roomDoorwayLevel.EnableDoorway(newRoom, newRoom.possibleDoorways[j]);
                             roomDoorwayLevel.CreateDoorway(newRoom);
+                            chestLevel.TrySpawnChest(newRoom);
                              
                             gridLevel.AddRoomToGrid(newRoom);
          

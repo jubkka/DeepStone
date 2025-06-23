@@ -9,9 +9,8 @@ public class GridLevel : MonoBehaviour
     private List<Vector3> occupiedCells = new List<Vector3>();
     public List<Vector3> GetOccupiedCells => occupiedCells;
     
-    
-    private List<Vector3> occupiedCellsByWalls = new List<Vector3>();
-    public List<Vector3> GetOccupiedCellsByWalls => occupiedCellsByWalls;
+    private List<Vector3> occupiedCellsByObstacles = new List<Vector3>();
+    public List<Vector3> GetOccupiedCellsByObstacles => occupiedCellsByObstacles;
 
     public void Init(int levelSize)
     {
@@ -38,14 +37,34 @@ public class GridLevel : MonoBehaviour
         Destroy(room.gameObject);
     }
     
-    public void SetWallCells(List<Room> rooms)
+    public void SetObstacleCells(List<Room> rooms)
     {
         foreach (var room in rooms)
         {
             foreach (Vector3Int cells in room.GetWallCells())
             {
-                occupiedCellsByWalls.Add(new Vector3(cells.x, 0, cells.z));
+                occupiedCellsByObstacles.Add(new Vector3(cells.x, 0, cells.z));
             }
+        }
+    }
+    
+    public void SetChestCells(List<Room> rooms)
+    {
+        foreach (var room in rooms)
+        {
+            foreach (Vector3Int cells in room.GetChestCells())
+            {
+                occupiedCellsByObstacles.Add(new Vector3(cells.x, 0, cells.z));
+            }
+        }
+    }
+
+    public void SetExitDoorCells(ExitDoorLevel exitDoor)
+    {
+        foreach (Vector3Int cells in exitDoor.GetCells())
+        {
+            occupiedCells.Add(new Vector3(cells.x, 0, cells.z));
+            occupiedCellsByObstacles.Add(new Vector3(cells.x, 0, cells.z));
         }
     }
 }

@@ -3,7 +3,12 @@
 public class LauncherSpell : LauncherProjectile
 {
     private SpellData data;
-    
+
+    public override GenericElementData Data
+    {
+        set => data = (SpellData)value;
+    }
+
     public override void Init(Transform dir)
     {
         base.Init(dir);
@@ -12,16 +17,11 @@ public class LauncherSpell : LauncherProjectile
         Launch();
     }
 
-    public override void SetData(GenericContainer container)
-    {
-        data = (SpellData)container.GetItem.data;
-    }
-
     protected override void OnCollisionEnter(Collision other)
     {
         GameObject obj = other.gameObject;
 
-        if (obj.tag == "Player")
+        if (obj.CompareTag("Player"))
             return;
         
         TouchObject(obj);

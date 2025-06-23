@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttributeComponent : MonoBehaviour
+public class AttributeComponent : MonoBehaviour, ILoad
 {
-    [Header("Attibute List")]
+    [Header("Attribute List")]
     [SerializeField] private Attributes attributes;
     
     [Header("UI")]
@@ -15,10 +15,10 @@ public class AttributeComponent : MonoBehaviour
 
     public event Action<int> OnAttributeIncreased;
     
-    public void InitFromOrigin(Origin newOrigin, LevelComponent levelComponent)
+    public void Init(LevelComponent levelComponent)
     {
         level = levelComponent;
-        attributes = new Attributes(newOrigin.GetAttributesData);
+        attributes = new Attributes();
 
         InitUI();
     }
@@ -31,7 +31,12 @@ public class AttributeComponent : MonoBehaviour
         attributeIncreaseUI.Init(level);
     }
 
-    public void InitFromSave(LevelComponent levelComponent)
+    public void LoadFromOrigin(Origin newOrigin)
+    {
+        attributes.LoadFromData(newOrigin.GetAttributesData);
+    }
+
+    public void LoadFromSave()
     {
         
     }
@@ -73,26 +78,26 @@ public class AttributeComponent : MonoBehaviour
 [Serializable]
 public class Attributes
 {
-    [SerializeField] private Attribute strength;
-    [SerializeField] private Attribute constitution;
-    [SerializeField] private Attribute dexterity;
-    [SerializeField] private Attribute perception;
-    [SerializeField] private Attribute intelligence;
-    [SerializeField] private Attribute wisdom;
+    [SerializeField] private Attribute strength = new(0);
+    [SerializeField] private Attribute constitution = new(0);
+    [SerializeField] private Attribute dexterity = new(0);
+    [SerializeField] private Attribute perception = new(0);
+    [SerializeField] private Attribute intelligence = new(0);
+    [SerializeField] private Attribute wisdom = new(0);
     public Attribute Strength => strength;
     public Attribute Constitution => constitution;
     public Attribute Dexterity => dexterity;
     public Attribute Perception => perception;
     public Attribute Intelligence => intelligence;
     public Attribute Wisdom => wisdom;
-    
-    public Attributes(AttributesData attributesData)
+
+    public void LoadFromData(AttributesData attributesData)
     {
-        strength = new Attribute(attributesData.Strength.Value);
-        constitution = new Attribute(attributesData.Constitution.Value);
-        dexterity = new Attribute(attributesData.Dexterity.Value);
-        perception = new Attribute(attributesData.Perception.Value);
-        intelligence = new Attribute(attributesData.Intelligence.Value);
-        wisdom = new Attribute(attributesData.Wisdom.Value);
+        strength.Value = attributesData.Strength.Value;
+        constitution.Value = attributesData.Constitution.Value;
+        dexterity.Value = attributesData.Dexterity.Value;
+        perception.Value = attributesData.Perception.Value;
+        intelligence.Value = attributesData.Intelligence.Value;
+        wisdom.Value = attributesData.Wisdom.Value;
     }
 }

@@ -48,12 +48,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1359230680679794027}
-  posibleDoorways:
+  possibleChest: {fileID: 0}
+  possibleDoorways:
   - {fileID: 3152887763339187687}
   activeDoorways: []
   chancesCreateDoorway: []
   occupiedFloorCells: []
   occupiedWallCells: []
+  occupiedChestCells: []
   containerFloors: {fileID: 2180937346559689248}
   containerWalls: {fileID: 2239634253779932815}
 --- !u!1 &1787149203324790673

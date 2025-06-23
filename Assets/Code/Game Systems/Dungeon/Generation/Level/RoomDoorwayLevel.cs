@@ -21,7 +21,7 @@ public class RoomDoorwayLevel : MonoBehaviour
 
     public void EnableDoorway(Room room, GameObject doorway)
     {
-        room.posibleDoorways.Remove(doorway);
+        room.possibleDoorways.Remove(doorway);
         room.activeDoorways.Add(doorway);
         
         doorway.GetComponent<MeshRenderer>().enabled = false;
@@ -37,7 +37,7 @@ public class RoomDoorwayLevel : MonoBehaviour
         {
             OccupyCellsNearDoorways(room, positions);
             EnableDoorway(room,doorway);
-            CreateDoor(doorway.transform, true);
+            CreateDoor(doorway.transform, false);
 
             return true;
         }
@@ -49,7 +49,7 @@ public class RoomDoorwayLevel : MonoBehaviour
     {
         int doorwayCount = GetRandomCountDoorway(room);
         
-        for (int i = 0; i < doorwayCount && room.posibleDoorways.Count > 0; i++)
+        for (int i = 0; i < doorwayCount && room.possibleDoorways.Count > 0; i++)
         {
             GameObject doorway = GetRandomPossibleDoorway(room);
             Vector3 pos = GetForwardFromDoorway(doorway);
@@ -58,7 +58,7 @@ public class RoomDoorwayLevel : MonoBehaviour
                 continue;
 
             EnableDoorway(room, doorway);
-            CreateDoor(doorway.transform);
+            CreateDoor(doorway.transform, true);
         }
     }
 
@@ -71,13 +71,14 @@ public class RoomDoorwayLevel : MonoBehaviour
         Vector3 offset = doorway.transform.forward * -0.5f;
         doorPosition += offset;
 
-        // if (isExitDoorway)
-        // {
-        //     Vector3 offset = doorway.transform.forward * -0.5f;
-        //     doorPosition += offset;
-        // }
+        if (isExitDoorway)
+        {
+            offset = doorway.transform.forward * 0.5f;
+            doorPosition += offset;
+        }
 
-        GameObject newDoor = Instantiate(door, doorPosition, doorway.transform.rotation, doorway.transform);
+        GameObject doorObj = Instantiate(door, doorPosition, Quaternion.identity, doorway.transform.parent);
+        doorObj.transform.localRotation = doorway.localRotation;
     }
 
     public void OccupyCellsNearDoorways(Room room, List<Vector3> positions)
@@ -108,8 +109,8 @@ public class RoomDoorwayLevel : MonoBehaviour
     
     public GameObject GetRandomPossibleDoorway(Room room)
     {
-        int index = Random.Range(0, room.posibleDoorways.Count);
-        return room.posibleDoorways[index];
+        int index = Random.Range(0, room.possibleDoorways.Count);
+        return room.possibleDoorways[index];
     }
     
     public int GetRandomCountDoorway(Room room)

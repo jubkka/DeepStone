@@ -174,9 +174,9 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 16
+        x: 17
         y: 51
-        width: 14
+        width: 15
         height: 10
       spriteId: 4321894110f3dfe4f83ce7f3ec807be8
     linkedCells: []

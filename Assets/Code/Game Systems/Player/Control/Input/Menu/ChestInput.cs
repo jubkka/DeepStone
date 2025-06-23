@@ -31,9 +31,9 @@ public class ChestInput : InputControl
     {
         activeChest = chestInteractable;
         
-        inventory.Toggle();
+        inventory.OpenUI();
             
-        chest.GiveItems(chestInteractable.ChestContainer.Items);
+        chest.AddItems(chestInteractable.ChestContainer.Items);
         chestUI.Show();
         
         inputManager.SwitchToChest();
@@ -44,11 +44,13 @@ public class ChestInput : InputControl
         if (activeChest == null)
             return;
         
-        inventory.Toggle();
+        inventory.CloseUI();
         
         activeChest.SaveBackItems(chest.TakeItems());
+        activeChest = null;
+        
         chestUI.Hide();
         
-        activeChest = null;
+        inputManager.SwitchToPlayer();
     }
 }

@@ -3,26 +3,20 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private Health health;
-    
-    [SerializeField] private EnemyIndicatorView view;
+    [SerializeField] private Enemy enemy;
     public event Action OnTakeDamage;
-
-    public void Init(int hp)
-    {
-        health = new Health(hp, hp,view);
-    }
 
     public void TakeDamage(float damage)
     {
-        health.Decrease(damage);
-        view.ToggleIndicator(true);
+        enemy.HP.Decrease(damage);
+        enemy.IndicatorView.ToggleIndicator(true);
+        enemy.PlaySound(enemy.DamageSound);
         
         OnTakeDamage?.Invoke();
     }
 
     public bool CheckDeath()
     {
-        return health.Current <= 0;
+        return enemy.HP.Current <= 0;
     }
 }

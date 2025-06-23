@@ -1,20 +1,17 @@
+using System.Linq;
 using UnityEngine;
 
 public class ChestInteractable : Interactable
 {
-    private ChestInput chestInput;
-    private Animation anim;
+    [SerializeField] private Animator anim;
+    [SerializeField] private AudioSource sound;
+    [SerializeField] private SoundData openChestSound;
+    [SerializeField] private SoundData closeChestSound;
     public ChestContainer ChestContainer { get; private set; }
     
     private void Start()
     {
-        anim = GetComponentInParent<Animation>();
         ChestContainer = GetComponent<ChestContainer>();
-    }
-
-    public void Init(ChestInput input)
-    {
-        chestInput = input;
     }
 
     public override void Interact()
@@ -24,14 +21,20 @@ public class ChestInteractable : Interactable
 
     private void Open()
     {
+        ChestInput chestInput = GameObject.FindWithTag("ChestInput").GetComponentInChildren<ChestInput>();
+        
         chestInput.OpenChest(this);
-        //anim.Play("Opening"); //TODO анимации
+        sound.PlayOneShot(openChestSound.AudioClip, openChestSound.Volume);
+        
+        anim.Play("Open");
     }
 
     public void SaveBackItems(Item[] items)
     {
-        ChestContainer.Items = items;
-
-        //anim.Play("Closing");
+        ChestContainer.Items = items.ToList();
+        
+        sound.PlayOneShot(closeChestSound.AudioClip, closeChestSound.Volume);
+        
+        anim.Play("Close");
     }
 }

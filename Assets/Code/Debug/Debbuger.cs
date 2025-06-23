@@ -2,35 +2,32 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class Debbuger : MonoBehaviour
+public class Debbuger : InputControl
 {
+    [Header("Debug Elements")]
     [SerializeField] private GameObject fpsCounter;
     [SerializeField] private GameObject itemSpawner;
     
     [SerializeField] private IndicatorComponent indicator;
-    [SerializeField] private LevelComponent level; 
-
-    private PlayerControls playerControls;
-
-    private void Awake()
+    [SerializeField] private LevelComponent level;
+    [SerializeField] private EffectComponent effect;
+    
+    [SerializeField] private TemporaryEffect temporaryEffect;
+    
+    protected override void SubscribeToControls()
     {
-        playerControls = new PlayerControls();
+        controls.Debug.ItemSpawner.performed += OnToggleItemSpawner;
+        controls.Debug.FPS.performed += OnToggleFPS;
+        controls.Debug.RestartScene.performed += OnRestartedScene;
+        controls.Debug.Enable();
     }
 
-    private void OnEnable()
+    protected override void UnsubscribeFromControls()
     {
-        playerControls.Debug.ItemSpawner.performed += OnToggleItemSpawner;
-        playerControls.Debug.FPS.performed += OnToggleFPS;
-        playerControls.Debug.RestartScene.performed += OnRestartedScene;
-        playerControls.Debug.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerControls.Debug.ItemSpawner.performed -= OnToggleItemSpawner;
-        playerControls.Debug.FPS.performed -= OnToggleFPS;
-        playerControls.Debug.RestartScene.performed -= OnRestartedScene;
-        playerControls.Debug.Disable();
+        controls.Debug.ItemSpawner.performed -= OnToggleItemSpawner;
+        controls.Debug.FPS.performed -= OnToggleFPS;
+        controls.Debug.RestartScene.performed -= OnRestartedScene;
+        controls.Debug.Disable();
     }
 
     private void Update()
@@ -43,6 +40,9 @@ public class Debbuger : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.UpArrow))
             level.AddExp(10);
+        
+        if (Input.GetKeyDown(KeyCode.H))
+            effect.Apply(temporaryEffect);
     }
     
     private void OnToggleFPS(InputAction.CallbackContext context)

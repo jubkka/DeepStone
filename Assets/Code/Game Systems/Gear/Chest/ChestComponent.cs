@@ -1,42 +1,24 @@
 public class ChestComponent : GearComponent
 {
+    private ChestManager chestManager;
+    
     public override void Initialize() 
     {
         Storage = new GearStorage(maxSize);
-        Manager = new ChestManager(Storage);
+        chestManager = new ChestManager(Storage);
+        Manager = chestManager;
 
         base.Initialize();
     }
     
-    public bool GiveItems(Item[] items)
-    {
-        for (int i = 0; i < items.Length; i++)
-        {
-            if(!Manager.AddItem(items[i], i)) 
-                return false;
-        }    
-        return true;
-    }
-    
     public Item[] TakeItems() 
     {
-        Item[] items = new Item[maxSize];
-
-        for (int i = 0; i < Storage.Items.Length; i++)
-        {
-            Item item = GetItem(i);
-            items[i] = new Item(item.data, item.Amount);
-            RemoveItem(i);
-        }   
-
-        return items;
+        return chestManager.TakeItems();
     }
+    
     public override bool MoveItems(int fromIndex, int targetIndex)
     {
-        if (Manager.MoveItems(fromIndex, targetIndex)) 
-            return true;
-
-        return false;
+        return Manager.MoveItems(fromIndex, targetIndex);
     }
 
     public override void DropItem(int index) { }

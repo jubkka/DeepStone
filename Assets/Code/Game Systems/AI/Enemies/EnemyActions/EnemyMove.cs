@@ -3,31 +3,58 @@ using UnityEngine.AI;
 
 public class EnemyMove : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent agent;
+    [Header("Enemy")] 
+    [SerializeField] private Enemy enemy;
+    [Header("Destination")]
     [SerializeField] private Vector3 walkPoint;
-    
-    [SerializeField] private EnemyMemory memory;
 
     private void Start()
     {
         walkPoint = transform.position;
-        memory.OnPlayerLost += StopMoving;
+        enemy.Memory.OnPlayerLost += StopMoving;
     }
 
-    public bool IsDestinationReached() 
+    public bool IsDestinationReached()
     {
-        return !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance;
+        bool flag = !enemy.NavMeshAgent.pathPending 
+                    && enemy.NavMeshAgent.remainingDistance <= enemy.NavMeshAgent.stoppingDistance
+                    && enemy.NavMeshAgent.velocity.sqrMagnitude < 0.1f;
+        
+        if (flag)
+        {
+            enemy.Animator.Play("Idle");
+            return true;
+        }
+        
+        return false;
     }
 
     public void MoveToDestination(Vector3 newWalkPoint) 
     {
+        enemy.Animator.Play("Walk");
         walkPoint = newWalkPoint;
-        agent.SetDestination(walkPoint);
+        enemy.NavMeshAgent.SetDestination(walkPoint);
     }
 
-    public void StopMoving()
+    private void StopMoving()
     {
-        walkPoint = transform.position;
-        agent.SetDestination(walkPoint);
+        enemy.Animator.Play("Idle");
+        enemy.NavMeshAgent.ResetPath();
+    }
+
+    public bool IsMoving()
+    {
+        return enemy.NavMeshAgent.velocity.sqrMagnitude > 0.1f;
+    }
+
+    public bool CanReachPoint(Vector3 destination)
+    {
+        NavMeshPath path = new NavMeshPath();
+        enemy.NavMeshAgent.CalculatePath(destination, path);
+        
+        if (destination == enemy.NavMeshAgent.destination)
+            return false;
+        
+        return path.status == NavMeshPathStatus.PathComplete;
     }
 }

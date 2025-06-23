@@ -22,7 +22,7 @@ public class KeyButtonBinder : Binder
 
     protected override void Setup()
     {
-        action = InputManager.instance.controls.FindAction(actionName);
+        action = InputManager.Controls.FindAction(actionName);
         button.onClick.AddListener(RebindKey);
     }
 

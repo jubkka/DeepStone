@@ -15,6 +15,9 @@ MonoBehaviour:
   prefab: {fileID: 1191664231429932763, guid: fe280a07ae6ba234aaa4408623c04b99, type: 3}
   enemyName: Test pidor
   health: 10
+  speed: 4
   damage: 1
+  speedAttack: 1
+  damageRange: 2
   visionRange: 1
   angleRange: 80

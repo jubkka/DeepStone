@@ -28,10 +28,10 @@ public class WeightModel
         }
     }
     
-    public WeightModel(int weightMax, WeightView weightCurrentView, WeightView weightMaxView)
+    public WeightModel(WeightView weightCurrentView, WeightView weightMaxView)
     {
         weightCurrent = 0;
-        this.weightMax = weightMax;
+        weightMax = 0;
         
         this.weightCurrentView = weightCurrentView;
         this.weightMaxView = weightMaxView;

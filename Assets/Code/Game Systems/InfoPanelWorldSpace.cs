@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,9 @@ public class InfoPanelWorldSpace : MonoBehaviour
     private CanvasGroup canvasGroup;
     
     private bool isVisible = false;
+
+    private Tween appearTween;
+    private Tween disappearTween;
 
     public bool IsVisible => isVisible;
 
@@ -37,13 +41,15 @@ public class InfoPanelWorldSpace : MonoBehaviour
 
     private void Update()
     {
-        if (isVisible)
-            transform.LookAt(cam?.transform);
+        if (isVisible && cam != null)
+            transform.LookAt(cam.transform);
     }
 
     public InfoPanelWorldSpace Show()
     {
-        canvasGroup.DOFade(1f, doFadeDuration);
+        appearTween?.Kill();
+        
+        appearTween = canvasGroup.DOFade(1f, doFadeDuration);
         isVisible = true;
         
         return this;
@@ -51,7 +57,16 @@ public class InfoPanelWorldSpace : MonoBehaviour
     
     public void Hide()
     {
-        canvasGroup.DOFade(0f, doFadeDuration);
+        disappearTween?.Kill();
+        
+        disappearTween = canvasGroup.DOFade(0f, doFadeDuration);
         isVisible = false;
+    }
+
+    private void OnDestroy()
+    {
+        DOTween.Kill(canvasGroup);
+        appearTween?.Kill();
+        disappearTween?.Kill();
     }
 }

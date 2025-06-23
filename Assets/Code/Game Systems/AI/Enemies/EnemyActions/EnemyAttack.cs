@@ -1,41 +1,39 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    private IndicatorComponent indicator;
-    
-    [SerializeField] private float attackRange = 2f;
-    [SerializeField] private LayerMask playerMask;
-
-    private GameObject player;
-
-    private void Start()
-    {
-        player = GameObject.FindWithTag("Player");
-    }
+    [SerializeField] private Enemy enemy;
 
     public void Attack()
     {
-        if (indicator != null)
-            indicator.Hit(1f);
-        else
-            indicator = CharacterStatsSystems.Instance.Indicator;
+        if (enemy.DamageComponent != null)
+        {
+            enemy.DamageComponent.TakeDamageByEnemy(enemy.Data.GetDamage);
+            enemy.PlaySound(enemy.AttackSound);
+        }
     }
     
     public bool CanAttackPlayer() 
     {
-        float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-
-        if (distanceToPlayer > attackRange)
+        if (!InRangeAttack())
             return false;
         
-        return Physics.Raycast(transform.position, transform.forward, attackRange, playerMask);
-    } 
-    
+        return Physics.Raycast(transform.position, transform.forward, enemy.Data.GetDamageRange, enemy.PlayerMask);
+    }
+
+    public bool InRangeAttack()
+    {
+        float distanceToPlayer = Vector3.Distance(enemy.Player.transform.position, transform.position);
+        
+        if (distanceToPlayer > enemy.Data.GetDamageRange)
+            return false;
+
+        return true;
+    }
+
     private void OnDrawGizmosSelected()
     {
-        Vector3 forwardLimit = transform.forward * attackRange;
+        Vector3 forwardLimit = transform.forward * enemy.Data.GetDamageRange;
 
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, transform.position + forwardLimit);

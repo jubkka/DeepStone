@@ -25,3 +25,6 @@ MonoBehaviour:
   - data: {fileID: 11400000, guid: 95fedca8df30eb24dbcd5ae3f796027a, type: 2}
     amount: 1
     uniqueId: 
+  - data: {fileID: 11400000, guid: c4cf300b1968c774090bab3d65bba9cd, type: 2}
+    amount: 1
+    uniqueId: 

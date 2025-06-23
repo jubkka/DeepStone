@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class HotbarInfo : GearInfo
 {
-
     [Header("Components")]
     [SerializeField] private HotbarInput hotbar;
     
@@ -24,7 +23,7 @@ public class HotbarInfo : GearInfo
     }
     protected override void UpdateStorageInfo(int index)
     {
-        storage = component.GetStorage;
+        items = component.GetItems;
     }
     private void UpdateActiveSlotInfo() 
     {

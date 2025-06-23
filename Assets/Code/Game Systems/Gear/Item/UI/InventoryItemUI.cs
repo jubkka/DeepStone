@@ -21,7 +21,10 @@ public class InventoryItemUI : BaseItemUI
                 HandleChestDrop(targetGear, targetIndex);
                 break;
         }
+
+        PlacedItemSound();
     }
+    
     private void HandleChestDrop(GearComponent targetGear, int targetIndex)
     {
         if (targetGear.IsFull)

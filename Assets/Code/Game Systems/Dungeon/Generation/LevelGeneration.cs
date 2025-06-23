@@ -17,6 +17,7 @@ public class LevelGeneration : MonoBehaviour
     [SerializeField] private GridLevel gridLevel;
     [SerializeField] private FloorLevel floorLevel;
     [SerializeField] private RoomsLevel roomsLevel;
+    [SerializeField] private ExitDoorLevel exitDoorLevel;
     
     [Header("Rooms")]
     [SerializeField] private List<Room> prefabRooms;
@@ -50,7 +51,10 @@ public class LevelGeneration : MonoBehaviour
         roomsLevel.PlaceStartRoom(levelSize / 2, levelSize / 2);
         PlaceBorders();
         
+        
         roomsLevel.GenerateRooms(triesForGenerateRoom);
+        
+        exitDoorLevel.SpawnExitDoor();
         
         if (canGenerateFloor)
             floorLevel.SetFloor();

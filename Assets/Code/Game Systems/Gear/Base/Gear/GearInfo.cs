@@ -5,7 +5,7 @@ public abstract class GearInfo : MonoBehaviour
     [SerializeField] protected GearComponent component;
     
     [Header("Storage")]
-    [SerializeField] protected GearStorage storage;
+    [SerializeField] protected Item[] items;
 
     protected abstract void Initialize();
     
@@ -18,6 +18,6 @@ public abstract class GearInfo : MonoBehaviour
     
     protected virtual void UpdateStorageInfo(int index)
     {
-        storage = component.GetStorage;
+        items = component.GetItems;
     }
 }

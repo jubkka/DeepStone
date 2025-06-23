@@ -6,7 +6,7 @@ public class CombinedSpellData : ScriptableObject, ICombatElement, ISpellBehavio
 
     public GripType GetGripType { get; }
     
-    public float GetDamage => damage;
+    public float Damage => damage;
     
     public void Cast(GameObject target)
     {

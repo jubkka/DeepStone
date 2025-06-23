@@ -305,6 +305,7 @@ MonoBehaviour:
     data: {fileID: 0}
     amount: 0
     uniqueId: 
+  audioProfile: {fileID: 11400000, guid: d392cfb02f4ae5f46a6c3d00e417fe99, type: 2}
   TMP: {fileID: 5992981036726189624}
   icon: {fileID: 6823687857170664608}
   gear: {fileID: 0}

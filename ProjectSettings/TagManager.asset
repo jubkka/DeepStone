@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DragContainer
   - ProjectilePointLauncher
+  - ChestInput
   layers:
   - Default
   - TransparentFX

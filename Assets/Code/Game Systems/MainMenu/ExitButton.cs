@@ -1,6 +1,10 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ExitButton : MonoBehaviour
+public class ExitButton : MonoBehaviour, IPointerClickHandler
 {
-    public void Exit() => Application.Quit();
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Application.Quit();
+    }
 }

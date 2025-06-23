@@ -44,46 +44,48 @@ public class InventoryInput : InputControl
         canvasGroup = gearUI.GetComponent<CanvasGroup>();
     }
 
-    private void OnToggle(InputAction.CallbackContext context)
-    {
-        Toggle();
-    }
-    
-    private void OnClose(InputAction.CallbackContext context)
-    {
-        isInventoryOpen = false;
-        
-        Close();
-    }
+    private void OnToggle(InputAction.CallbackContext context) => Toggle();
 
-    public void Toggle()
+    private void OnClose(InputAction.CallbackContext context) => Close();
+
+    private void Toggle()
     {
-        if (isInventoryOpen)
+        if (isInventoryOpen) 
             Close();
         else
             Open();
-        
-        isInventoryOpen = !isInventoryOpen;
     }
     
     private void Close()
     {
         inputManager.SwitchToPlayer();
-        
-        var seq = DOTween.Sequence(); //TODO
-        
-        rectTransform.anchoredPosition = new Vector2(0f, 0f);
-        
-        Animate(closePositionSlide, 0f);
+
+        CloseUI();
+        SFXAudioManager.Instance.PlaySound("InventoryClose");
     }
 
     private void Open()
     {
         inputManager.SwitchToInventory();
-        
+
+        OpenUI();
+        SFXAudioManager.Instance.PlaySound("InventoryOpen");
+    }
+
+    public void OpenUI()
+    {
         rectTransform.anchoredPosition = new Vector2(0f, Screen.height * rateOffsetSlide);
-        
         Animate(openPositionSlide, 1f);
+        
+        isInventoryOpen = true;
+    }
+
+    public void CloseUI()
+    {
+        rectTransform.anchoredPosition = new Vector2(0f, 0f);
+        Animate(closePositionSlide, 0f);
+        
+        isInventoryOpen = false;
     }
 
     private void Animate(Vector2 slidePosition, float endValue)

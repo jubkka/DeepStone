@@ -20,9 +20,9 @@ public class HandIconUI : MonoBehaviour
         if (isInitialized)
             return;
         
-        rightHand = CombatSystems.Instance.GetRightHand;
-        leftHand = CombatSystems.Instance.GetLeftHand;
-        magicHand = CombatSystems.Instance.GetMagicHand;
+        rightHand = CombatSystems.Instance.RightHand;
+        leftHand = CombatSystems.Instance.LeftHand;
+        magicHand = CombatSystems.Instance.MagicHand;
         
         rightHand.OnActiveItemChanged += OnHandItemChanged;
         leftHand.OnActiveItemChanged += OnHandItemChanged;

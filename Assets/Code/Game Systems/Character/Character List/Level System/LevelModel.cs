@@ -70,22 +70,32 @@ public class LevelModel
     public event Action<int> OnPointsPerLevelChanged;
     public event Action<int> OnFreePointsChanged;
     
-    public LevelModel(Origin origin)
+    public LevelModel()
     {
         level = 1;
         exp = 0;
         freePoints = 0;
         
-        pointsPerLevel = 3; //Temp
-        expToNextLevel = 100; //Todo
+        pointsPerLevel = 3; 
+        expToNextLevel = 100; 
+    }
+
+    public LevelModel( int a/*Save*/)
+    {
+        // level = Save.GetLevel; //TODO
+    }
+
+    public void LoadFromOrigin(Origin origin)
+    {
+        Level = 1;
+        Exp = 0;
+        FreePoints = 0;
+        
+        PointsPerLevel = 3; //Temp
+        ExpToNextLevel = 100; //Todo
         
         //countPointsPerLevel = origin.GetCountPointsPerLevel;
         //countExpToNextLevel = origin.countExpToNextLevel;
-    }
-
-    public LevelModel( /*Save*/)
-    {
-        // level = Save.GetLevel; //TODO
     }
 
     public void AddExp(int amount)

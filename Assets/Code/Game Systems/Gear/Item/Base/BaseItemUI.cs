@@ -40,6 +40,8 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
 
         beforeDragParent = transform.parent;
         transform.SetParent(dragContainer);
+        
+        SFXAudioManager.Instance.PlaySound("ItemMoved");
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -52,8 +54,11 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
     }
     public virtual void OnPointerClick(PointerEventData eventData) 
     {
-        if (eventData.button == PointerEventData.InputButton.Right) 
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
             Use();
+            SFXAudioManager.Instance.PlaySound("ItemEquipped");
+        }
         else if (eventData.button == PointerEventData.InputButton.Middle) 
             Drop();
     }
@@ -80,4 +85,5 @@ public abstract class BaseItemUI : MonoBehaviour, IDragHandler, IBeginDragHandle
         gear.DropItem(index);
     }
     public abstract void HandleDrop(GearComponent gear);
+    protected void PlacedItemSound() => SFXAudioManager.Instance.PlaySound("ItemPlaced");
 }

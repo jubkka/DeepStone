@@ -52,5 +52,8 @@ public class PauseInput : InputControl
         postProcessLayer.enabled = isPaused; // on/off vignette  
         menu.alpha = isPaused ? 1 : 0;  
         menu.blocksRaycasts = isPaused;
+        
+        if (EnemiesPauser.Instance is not null)
+            EnemiesPauser.Instance.ChangeStateEnemies(isPaused);
     }
 }

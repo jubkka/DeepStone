@@ -1,11 +1,38 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
-public class MusicManager : AudioManager
+public class MusicManager : MonoBehaviour
 {
-    [SerializeField] private AudioClip mainMenuMusic;
+    private static MusicManager instance;
+    public static MusicManager Instance => instance;
+    
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioMixer audioMixer;
+    
+    [Header("List Musics")]
+    [SerializeField] private SoundData mainMenuMusic;
+    [SerializeField] private AudioClip ambientMusic;
 
-    private void Awake()
+    private void Singleton()
     {
-        audioSource.clip = mainMenuMusic;
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
+        instance = this;
+    }
+
+    public void Init()
+    {
+        Singleton();
+
+        audioSource.PlayOneShot(mainMenuMusic.AudioClip, mainMenuMusic.Volume);
+    }
+    
+    public void ChangeVolume(float volume)
+    {
+        audioSource.volume = volume;
     }
 }

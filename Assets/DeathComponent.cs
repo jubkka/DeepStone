@@ -3,21 +3,16 @@ using UnityEngine;
 public class DeathComponent : MonoBehaviour
 {
     [SerializeField] private DeathScreen deathScreen;
-    private IndicatorComponent indicator;
-    private InputManager inputManager;
 
-    private void Start()
+    public void Init(IndicatorComponent indicator)
     {
-        indicator = CharacterStatsSystems.Instance.Indicator;
         indicator.OnHealthZero += OnDeath;
-        
-        inputManager = InputManager.instance;
     }
 
     private void OnDeath()
     {
         deathScreen.Show();
-
-        inputManager.SwitchToDeathScreen();
+        InputManager.Instance.SwitchToDeathScreen();
+        SFXAudioManager.Instance.PlaySound("Lose");
     }
 }

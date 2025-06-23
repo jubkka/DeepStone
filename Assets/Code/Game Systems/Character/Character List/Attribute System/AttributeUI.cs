@@ -28,7 +28,6 @@ public class AttributeUI : MonoBehaviour, IPointerClickHandler
         var seq = DOTween.Sequence();
         
         seq.Append(tmp.transform.DOShakePosition(0.5f, strength: 5f, vibrato: 10));
-        //seq.Join(tmp.DOColor(new Color32(90, 197, 79, 255), 0.5f).SetLoops(2, LoopType.Yoyo));
     }
 
     public void OnPointerClick(PointerEventData eventData)

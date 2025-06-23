@@ -7,22 +7,30 @@ public abstract class InputControl : MonoBehaviour
 
     protected virtual void Start()
     {
-        inputManager = InputManager.instance;
-        controls = inputManager.controls;
-        
         SubscribeToControls();
+    }
+
+    private void Init()
+    {
+        if (inputManager == null)
+        {
+            inputManager = InputManager.Instance;
+            controls = InputManager.Controls;
+        }
+        else
+            controls = InputManager.Controls;
     }
 
     protected void OnEnable()
     {
-        if (inputManager != null && controls != null)
-            SubscribeToControls();
+        Init();
+        SubscribeToControls();
     }
 
     protected void OnDisable()
     {
-        if (controls != null)
-            UnsubscribeFromControls();
+        Init();
+        UnsubscribeFromControls();
     }
 
     protected void OnDestroy()

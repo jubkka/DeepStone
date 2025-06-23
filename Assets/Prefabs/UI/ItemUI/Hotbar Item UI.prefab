@@ -230,6 +230,7 @@ MonoBehaviour:
     data: {fileID: 0}
     amount: 0
     uniqueId: 
+  audioProfile: {fileID: 11400000, guid: d392cfb02f4ae5f46a6c3d00e417fe99, type: 2}
   TMP: {fileID: 608512852531587256}
   icon: {fileID: 8042959406096972434}
   gear: {fileID: 0}

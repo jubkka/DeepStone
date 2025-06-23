@@ -59,7 +59,6 @@ public class ControlSetting : Setting
     {
         PlayerPrefs.SetInt("MouseSensitivity", MouseSensitivity);
         PlayerPrefs.SetInt("Fov", Fov);
-        
         PlayerPrefs.Save();
     }
 
@@ -70,7 +69,7 @@ public class ControlSetting : Setting
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            InputManager.instance.controls.LoadBindingOverridesFromJson(json);
+            InputManager.Controls.LoadBindingOverridesFromJson(json);
         }
     }
 
@@ -82,7 +81,7 @@ public class ControlSetting : Setting
 
     private string GetBindingOverrides()
     {
-        var overrides = InputManager.instance.controls.SaveBindingOverridesAsJson();
+        var overrides = InputManager.Controls.SaveBindingOverridesAsJson();
         return overrides;
     }
 }

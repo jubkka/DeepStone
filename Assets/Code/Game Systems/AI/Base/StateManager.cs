@@ -13,6 +13,8 @@ public class StateManager : MonoBehaviour
     public static StateDict stateDict;
     public StateDict StateDict => stateDict;
 
+    public bool isPaused = false;
+
     private void Awake()
     {
         stateDict = new StateDict(conditionStatesList);
@@ -29,6 +31,9 @@ public class StateManager : MonoBehaviour
 
     private void RunStateMachine() 
     {
+        if (isPaused)
+            return;
+        
         State nextState = currentState?.RunCurrentState();
 
         if (nextState != null && nextState != currentState) 
@@ -40,8 +45,14 @@ public class StateManager : MonoBehaviour
         currentState = nextState;
     }
 
-    private void TakeDamage() => SwitchToTheNextState(stateDict.GetState(StateType.Search));
-
+    private void TakeDamage()
+    {
+        if (currentState == stateDict.GetState(StateType.Attack) || currentState == stateDict.GetState(StateType.Chase))
+            return;
+        
+        SwitchToTheNextState(stateDict.GetState(StateType.Search));
+    }
+    
     private void PlayerDetected() => SwitchToTheNextState(stateDict.GetState(StateType.Chase));
 
     private void PlayerLost() => SwitchToTheNextState(stateDict.GetState(StateType.Idle));

@@ -1,4 +1,5 @@
-﻿using Unity.AI.Navigation;
+﻿using System.Collections;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class DungeonGeneration : MonoBehaviour
@@ -17,19 +18,26 @@ public class DungeonGeneration : MonoBehaviour
     private void Start()
     {
         BuildLevel();
-        Spawn();
+        Spawns();
     }
 
     private void BuildLevel()
     {
         levelGeneration.GenerateLevel();
-        navMeshSurface.BuildNavMesh();
+
+        StartCoroutine(OnBuildMesh());
     }
 
-    private void Spawn()
+    private void Spawns()
     {
         itemSpawner.Spawn();
         enemySpawner.Spawn();
         playerSpawner.Spawn();
+    }
+
+    private IEnumerator OnBuildMesh()
+    {
+        yield return null;
+        navMeshSurface.BuildNavMesh();
     }
 }

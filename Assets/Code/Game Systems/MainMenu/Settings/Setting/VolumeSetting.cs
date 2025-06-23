@@ -5,9 +5,9 @@ using UnityEngine;
 public class VolumeSetting : Setting
 {
     [SerializeField] private int music;
-    [SerializeField] private int effects;
+    [SerializeField] private int sfx;
 
-    [SerializeField] private int defaultValue = 50;
+    [SerializeField] private int defaultValue = 25;
 
     public int Music
     {
@@ -19,37 +19,38 @@ public class VolumeSetting : Setting
         }
     }
 
-    public int Effects
+    public int SFX
     {
-        get => effects;
+        get => sfx;
         set
         {
-            effects = value;
+            sfx = value;
             Save();
         }
     }
 
     public override void Load()
     {
-        music = PlayerPrefs.GetInt("VolumeSound", defaultValue);
-        effects = PlayerPrefs.GetInt("VolumeEffects", defaultValue);
+        music = PlayerPrefs.GetInt("VolumeMusic", defaultValue);
+        sfx = PlayerPrefs.GetInt("VolumeSFX", defaultValue);
     }
 
     public override void Save()
     {
-        PlayerPrefs.SetInt("VolumeSound", music);
-        PlayerPrefs.SetInt("VolumeEffects", effects);
+        PlayerPrefs.SetInt("VolumeMusic", music);
+        PlayerPrefs.SetInt("VolumeSFX", sfx);
         PlayerPrefs.Save();
     }
 
     public override void Default()
     {
         music = defaultValue;
-        effects = defaultValue;
+        sfx = defaultValue;
     }
 
     public override void Apply()
     {
-        AudioSystems.Instance.GetMusic.ChangeVolume(music / 100f);
+        SFXAudioManager.Instance.ChangeVolume(sfx / 100f);
+        MusicManager.Instance.ChangeVolume(music / 100f);
     }
 }

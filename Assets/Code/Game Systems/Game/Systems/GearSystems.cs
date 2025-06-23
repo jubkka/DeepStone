@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class GearSystems : Systems
+public class GearSystems : Systems, ILoad
 {
     public static GearSystems Instance;
 
@@ -19,7 +19,7 @@ public class GearSystems : Systems
     public ChestComponent Chest => chest;
     public DropComponent Drop => drop;
 
-    protected override void Init()
+    public override void Init(BootstrapCharacter character)
     {
         Instance = this;
         
@@ -31,10 +31,8 @@ public class GearSystems : Systems
         chest.Initialize();
     }
     
-    public override void LoadFromSave()
+    public void LoadFromSave()
     {
-        Init();
-        
         // List<Item> items = CreateNewItems(save.GetItems);
         // List<Item> equipments = CreateNewItems(save.GetItems);
         // List<Item> hotbars = CreateNewItems(save.GetItems); 
@@ -43,13 +41,11 @@ public class GearSystems : Systems
         //AddItems(items, equipments, hotbars, spells);
     }
 
-    public override void LoadFromOrigin(Origin origin)
+    public void LoadFromOrigin(Origin origin)
     {
-        Init();
-        
         List<Item> items = CreateNewItems(origin.GetItems);
         List<Item> equipments = new List<Item>(); //CreateNewItems(origin.GetItems); //TODO
-        List<Item> hotbars = CreateNewItems(origin.GetItems); //TODO
+        List<Item> hotbars = new List<Item>(); //TODO
         List<Item> spells = CreateNewItems(origin.GetSpells);
 
         AddItemsToGears(items, equipments, spells, hotbars);

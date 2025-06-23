@@ -5,11 +5,7 @@ public class FreePointsUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI tmp;
 
-    public void Init(LevelComponent levelComponent)
-    {
-        Subscribe(levelComponent);
-        UpdateFreePoints(levelComponent.FreePoints);
-    }
+    public void Init(LevelComponent levelComponent) => Subscribe(levelComponent);
 
     private void Subscribe(LevelComponent levelComponent) => levelComponent.OnFreePointsChanged += UpdateFreePoints;
     

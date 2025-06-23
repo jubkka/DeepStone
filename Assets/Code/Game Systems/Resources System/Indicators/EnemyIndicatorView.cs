@@ -1,43 +1,69 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
 public class EnemyIndicatorView : IndicatorView
 {
+    [SerializeField] private Enemy enemy;
     [SerializeField] private float timeToDisappear = 1f;
-    private CanvasGroup canvasGroup;
+    [SerializeField] private float fadeDuration = 0.5f;
 
-    protected void Awake()
+    [SerializeField] private CanvasGroup canvasGroup;
+
+    private Coroutine disappearRoutine;
+    private bool isShown = false;
+
+    public void Init()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
-
-       transform.localScale = new Vector3(
-           -transform.localScale.x, 
-           transform.localScale.y, 
-           transform.localScale.z);
+        textTMP.text = enemy.Data.EnemyName;
     }
 
-    private void OnEnable() => StartCoroutine(TimerToDisappear());
+    private void OnEnable() => StartCoroutine(AutoHideAfterDelay());
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+        canvasGroup?.DOKill();
+    }
+
+    protected override void ChangeText(int currentInt, int maxInt) { }
 
     private void Update()
     {
-        transform.LookAt(Camera.main.transform);
+        if (enemy.PlayerCamera == null)
+            return;
+        
+        if (isShown)
+            transform.LookAt(enemy.PlayerCamera.transform); 
     }
 
     public void ToggleIndicator(bool state)
     {
-        float alpha = state ? 1f : 0f;
-        canvasGroup.DOFade(alpha, 0.5f);
+        isShown = state;
+
+        canvasGroup.DOFade(state ? 1f : 0f, fadeDuration);
         enabled = state;
+
+        if (state)
+        {
+            if (disappearRoutine != null)
+                StopCoroutine(disappearRoutine);
+
+            disappearRoutine = StartCoroutine(AutoHideAfterDelay());
+        }
+        else
+        {
+            if (disappearRoutine != null)
+            {
+                StopCoroutine(disappearRoutine);
+                disappearRoutine = null;
+            }
+        }
     }
 
-    private IEnumerator TimerToDisappear()
+    private IEnumerator AutoHideAfterDelay()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(timeToDisappear);
-            ToggleIndicator(false);
-        }
+        yield return new WaitForSeconds(timeToDisappear);
+        ToggleIndicator(false);
     }
 }

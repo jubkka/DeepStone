@@ -1,40 +1,75 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class CameraShaker : MonoBehaviour
 {
-    [SerializeField] private float shakeAmplitude = 0.02f;
-    [SerializeField] private float shakeSpeed = 5f;
+    [SerializeField] private Transform cameraHolder;
     
+    [Header("Movement")]
+    [SerializeField] private float movementAmplitude = 0.05f;
+    [SerializeField] private float movementDuration = 0.4f;
+    
+    [Header("Damage")]
+    [SerializeField] private float damageDuration = 0.2f;
+    [SerializeField] private float damageStrength = 0.5f;
+    [SerializeField] private int damageVibrato = 10;
+    
+    private Tween movementTween;
     private Vector3 originalPosition;
     private bool isShaking;
     private float offsetTimer;
 
     private void Start()
     {
-        originalPosition = transform.localPosition;
+        originalPosition = cameraHolder.localPosition;
     }
 
-    public void StartShaking()
+    public void ShakeDamage()
     {
-        isShaking = true;
+        KillMovement();
+        
+        cameraHolder.DOComplete();
+        cameraHolder.localPosition = originalPosition;
+        
+        cameraHolder.DOShakePosition(damageDuration, damageStrength, damageVibrato)
+            .OnComplete(
+                () =>
+                {
+                    cameraHolder.localPosition = originalPosition;
+                });
     }
 
-    public void StopShaking()
+    public void DecideShake(float magnitude)
     {
-        isShaking = false;
-        transform.localPosition = originalPosition;
+        if (magnitude > 0.01f)
+            StartShakeMovement();
+        else
+            StopShakeMovement();
     }
 
-    private void Update()
+    private void StartShakeMovement()
     {
-        if (!isShaking) 
+        if (movementTween != null && movementTween.IsActive())
             return;
 
-        offsetTimer += Time.deltaTime * shakeSpeed;
+        movementTween = cameraHolder
+            .DOPunchPosition(Vector3.up * movementAmplitude, movementDuration, 1, 0)
+            .SetLoops(-1, LoopType.Restart)
+            .SetEase(Ease.InOutSine);
+    }
+    
+    private void StopShakeMovement()
+    {
+        KillMovement();
+        cameraHolder.localPosition = originalPosition;
+    }
 
-        float raw = Mathf.PingPong(offsetTimer, 1f);
-        float offsetY = (raw - 0.5f) * 2f * shakeAmplitude;
-
-        transform.localPosition = originalPosition + new Vector3(0f, offsetY, 0f);
+    private void KillMovement()
+    {
+        if (movementTween != null)
+        {
+            movementTween.Kill();
+            movementTween = null;
+        }
     }
 }

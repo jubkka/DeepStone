@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class EnemyMemory : MonoBehaviour
 {
+    [Header("Enemy")] 
+    [SerializeField] private Enemy enemy;
+    
+    [Header("Memory Settings")]
     [SerializeField] private float secondsForgetDelay;
     
-    [SerializeField] private EnemyVision vision;
-    [SerializeField] private EnemyHealth health;
-    
     private Coroutine coroutine;
-
     public event Action OnPlayerLost;
 
     private void Start()
     {
-        vision.OnPlayerDetected += ResetForgetDelay;
-        vision.OnPlayerLost += StartForgetDelay;
-        health.OnTakeDamage += StartForgetDelay;
+        enemy.Vision.OnPlayerDetected += ResetForgetDelay;
+        enemy.Vision.OnPlayerLost += StartForgetDelay;
+        enemy.Health.OnTakeDamage += StartForgetDelay;
     }
 
     private void StartForgetDelay()

@@ -12,8 +12,9 @@ public abstract class LauncherProjectile : MonoBehaviour
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected BoxCollider boxCollider;
     
-    protected Vector3 direction;
-    
+    private Vector3 direction;
+    public abstract GenericElementData Data { set; }
+
     public virtual void Init(Transform dir)
     {
         rb = GetComponent<Rigidbody>();
@@ -22,14 +23,11 @@ public abstract class LauncherProjectile : MonoBehaviour
         direction = dir.forward;
         
         transform.rotation = Quaternion.LookRotation(direction, dir.up);
+        transform.rotation *= Quaternion.Euler(90f, 0f, 0f);
         Launch();
     }
-    public abstract void SetData(GenericContainer container);
 
-    protected virtual void Launch()
-    {
-        rb.velocity = direction * force;
-    }
+    protected virtual void Launch() => rb.velocity = direction * force;
 
     protected abstract void OnCollisionEnter(Collision other);
     

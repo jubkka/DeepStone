@@ -12,10 +12,8 @@ public class TextItemHotbar : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private TextMeshProUGUI tmp;
     
-    public void Init(HotbarComponent hotbar)
+    public void Start()
     {
-        hotbarComponent = hotbar;
-        
         hotbarInput.OnKeyPressed += UpdateText;
         hotbarInputUI.OnMouseScrolled += UpdateText;
     }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class GoldComponent : MonoBehaviour 
+public class GoldComponent : MonoBehaviour, ILoad
 {
     [SerializeField] private GoldView goldView;
     
@@ -9,6 +9,11 @@ public class GoldComponent : MonoBehaviour
     
     public event Action<int> OnGoldChanged;
 
+    public void Init()
+    {
+        gold = new GoldModel(0, goldView);
+    }
+    
     public void LoadFromOrigin(Origin origin)
     {
         //gold = new GoldModel(origin, goldView); //TODO

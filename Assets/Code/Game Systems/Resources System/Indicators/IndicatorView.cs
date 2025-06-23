@@ -11,10 +11,12 @@ public class IndicatorView : MonoBehaviour
         int currentInt = Mathf.FloorToInt(current);
         int maxInt = Mathf.FloorToInt(max);
         
-        textTMP.text = currentInt + "/" + maxInt;
+        ChangeText(currentInt, maxInt);
         
         sliderControl.SetValue(currentInt);
     }
+    
+    protected virtual void ChangeText(int currentInt, int maxInt) => textTMP.text = currentInt + "/" + maxInt;
 
     public void ChangeSliderValueMax(float max)
     {

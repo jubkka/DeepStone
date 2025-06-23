@@ -15,6 +15,8 @@ public class GoldPickUp : Interactable
     public override void Interact()
     {
         AddGold();
+        
+        SFXAudioManager.Instance.PlaySound("PickUpGold");
     }
 
     private void AddGold() 

@@ -3,21 +3,18 @@ using UnityEngine;
 
 public class EnemyVision : MonoBehaviour
 {
+    [Header("Enemy")] 
+    [SerializeField] private Enemy enemy;
+    
     [Header("Settings Vision")]
     [SerializeField] private float visionRange = 10f;
     [SerializeField] private float visionAngle = 45f;
     [SerializeField] private LayerMask obstaclesLayer;
     
-    private GameObject player;
     private bool wasVisible = false;
     private bool canSee = false;
     public event Action OnPlayerDetected;
     public event Action OnPlayerLost;
-
-    private void Start()
-    {
-        player = GameObject.FindWithTag("Player");
-    }
 
     private void Update()
     {
@@ -58,7 +55,7 @@ public class EnemyVision : MonoBehaviour
 
     private bool PlayerExists()
     {
-        if (player == null) 
+        if (enemy.Player == null) 
             return false;
         
         return true;
@@ -66,7 +63,7 @@ public class EnemyVision : MonoBehaviour
 
     private bool IsPlayerInRange(out float distanceToPlayer)
     {
-        distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+        distanceToPlayer = Vector3.Distance(enemy.Player.transform.position, transform.position);
 
         if (distanceToPlayer > visionRange) 
             return false;
@@ -76,7 +73,7 @@ public class EnemyVision : MonoBehaviour
 
     private bool IsPlayerInAngle(out Vector3 directionToPlayer)
     {
-        directionToPlayer = (player.transform.position - transform.position).normalized;
+        directionToPlayer = (enemy.Player.transform.position - transform.position).normalized;
         float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
 
         if (angleToPlayer > visionAngle)
