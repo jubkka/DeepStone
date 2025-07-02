@@ -86,6 +86,9 @@ public class DoorInteractable : Interactable
 
     private float GetDot()
     {
+        if (player == null)
+            return 0f;
+        
         Vector3 toPlayer = (player.transform.position - pivot.transform.position).normalized;
         return Vector3.Dot(pivot.right, toPlayer);
     }

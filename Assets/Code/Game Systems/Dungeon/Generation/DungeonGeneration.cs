@@ -10,7 +10,6 @@ public class DungeonGeneration : MonoBehaviour
     [Header("Spawners")]
     [SerializeField] private ItemSpawner itemSpawner;
     [SerializeField] private EnemySpawner enemySpawner;
-    [SerializeField] private PlayerSpawner playerSpawner;
     
     [Header("NavMesh")]
     [SerializeField] private NavMeshSurface navMeshSurface;
@@ -32,12 +31,12 @@ public class DungeonGeneration : MonoBehaviour
     {
         itemSpawner.Spawn();
         enemySpawner.Spawn();
-        playerSpawner.Spawn();
     }
 
     private IEnumerator OnBuildMesh()
     {
         yield return null;
         navMeshSurface.BuildNavMesh();
+        yield return new WaitForSeconds(0.1f);
     }
 }

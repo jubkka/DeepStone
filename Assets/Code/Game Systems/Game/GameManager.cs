@@ -26,10 +26,13 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         CursorChangeState(true);
     }
-    
-    public void NewGame() => SceneManager.LoadScene(loadingScene);
-    public void ReturnToMainMenu() => SceneManager.LoadScene(mainMenuScene);
-    
+
+    public void NewGame()
+    {
+        SceneManager.LoadScene(loadingScene);
+        MusicManager.Instance.PlayAmbientMusic();
+    }
+
     public static void CursorChangeState(bool state) 
     {
         Cursor.visible = state;

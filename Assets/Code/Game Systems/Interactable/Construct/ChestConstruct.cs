@@ -14,7 +14,8 @@ public class ChestConstruct : Construct
     protected override void Deconstruct()
     {
         DropItems();
-        Destroy(parent);
+        
+        base.Deconstruct();
     }
 
     private void DropItems()

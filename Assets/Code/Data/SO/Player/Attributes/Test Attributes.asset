@@ -13,26 +13,26 @@ MonoBehaviour:
   m_Name: Test Attributes
   m_EditorClassIdentifier: 
   strength:
-    value: 1
+    value: 25
     baseValue: 1
     modifiers: 
   constitution:
-    value: 100
+    value: 25
     baseValue: 1
     modifiers: 
   dexterity:
-    value: 10
+    value: 25
     baseValue: 10
     modifiers: 
   perception:
-    value: 10
+    value: 25
     baseValue: 10
     modifiers: 
   intelligence:
-    value: 10
+    value: 25
     baseValue: 10
     modifiers: 
   wisdom:
-    value: 1
+    value: 25
     baseValue: 10
     modifiers: 

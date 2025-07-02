@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: Hunter Attributes
   m_EditorClassIdentifier: 
   strength:
-    value: 10
-    baseValue: 10
+    value: 5
+    baseValue: 5
     modifiers: 
   constitution:
     value: 5
     baseValue: 5
     modifiers: 
   dexterity:
-    value: 20
-    baseValue: 20
+    value: 10
+    baseValue: 10
     modifiers: 
   perception:
-    value: 20
-    baseValue: 20
+    value: 10
+    baseValue: 10
     modifiers: 
   intelligence:
     value: 5

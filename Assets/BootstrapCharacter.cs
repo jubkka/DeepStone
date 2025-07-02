@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BootstrapCharacter : MonoBehaviour
@@ -34,6 +36,14 @@ public class BootstrapCharacter : MonoBehaviour
         
         LateInit();
         CreateItemUsageSystem();
+
+        PlacePlayer();
+    }
+
+    private void PlacePlayer()
+    {
+        if (GameManager.Instance.CurrentLevel > 1)
+            player.transform.position = new Vector3(50f, 1f, 50f);
     }
 
     private void DontDestroy()

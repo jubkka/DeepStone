@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,12 +19,12 @@ public class LoadingScreen : MonoBehaviour
 
     private IEnumerator LoadNewGameSceneASync()
     {
-        AsyncOperation generation = SceneManager.LoadSceneAsync(generationSceneName, LoadSceneMode.Single);
-        AsyncOperation player = SceneManager.LoadSceneAsync(playerSceneName, LoadSceneMode.Additive);
-
+        AsyncOperation player = SceneManager.LoadSceneAsync(playerSceneName, LoadSceneMode.Single);
+        AsyncOperation generation = SceneManager.LoadSceneAsync(generationSceneName, LoadSceneMode.Additive);
+        
         yield return new WaitUntil(() => player.isDone && generation.isDone);
     }
-    
+
     private IEnumerator LoadNextLevelSceneASync()
     {
         AsyncOperation generation = SceneManager.LoadSceneAsync(generationSceneName, LoadSceneMode.Single);

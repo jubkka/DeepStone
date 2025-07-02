@@ -12,15 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c54887cc0d94e4dac98b18ca1cdb33, type: 3}
   m_Name: Test Origin
   m_EditorClassIdentifier: 
-  nameOrigin: TEST
+  nameOrigin: test
   health: 10
   stamina: 10
   mana: 10
   attributesData: {fileID: 11400000, guid: 7b976af6128faaa42b7fa4a666e268c6, type: 2}
   items:
-  - data: {fileID: 11400000, guid: 6572d3d8ab96fa9418ad160aea3c0df7, type: 2}
+  - data: {fileID: 11400000, guid: 8575791b12719c646a01fe1acf4812a9, type: 2}
     amount: 1
-    uniqueId: 324234
+    uniqueId: 
+  - data: {fileID: 11400000, guid: b49161306b085e24e993e9dbb8ad8415, type: 2}
+    amount: 1
+    uniqueId: 
+  - data: {fileID: 11400000, guid: 34ab429fd0be4a04da215b6edcae4acc, type: 2}
+    amount: 1
+    uniqueId: 
+  - data: {fileID: 11400000, guid: a2e1559b28fb38d4d87fd2cc1f8d5925, type: 2}
+    amount: 1
+    uniqueId: 
+  - data: {fileID: 11400000, guid: 126e4b9279550594f9b7332b2b8efa99, type: 2}
+    amount: 1
+    uniqueId: 
+  - data: {fileID: 11400000, guid: bdf5a9a54c335e645acfac3de6bfc96c, type: 2}
+    amount: 1
+    uniqueId: 
+  - data: {fileID: 11400000, guid: a2e1559b28fb38d4d87fd2cc1f8d5925, type: 2}
+    amount: 1
+    uniqueId: 
+  - data: {fileID: 11400000, guid: 9a6dc927ab0c93b469a65b31009ed428, type: 2}
+    amount: 5
+    uniqueId: 
+  - data: {fileID: 11400000, guid: b68730858717f344cbcf3b3f91f6d5b2, type: 2}
+    amount: 5
+    uniqueId: 
   spells:
   - data: {fileID: 11400000, guid: 95fedca8df30eb24dbcd5ae3f796027a, type: 2}
     amount: 1

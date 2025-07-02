@@ -8,6 +8,7 @@ public class LevelComponent : MonoBehaviour, ILoad
     [SerializeField] private FreePointsUI freePointsUI;
     [SerializeField] private LevelView levelView;
     [SerializeField] private ExperienceView experienceView;
+    [SerializeField] private LevelUpView levelUpView;
     
     [Header("Level")]
     [SerializeField] private LevelModel model;
@@ -66,6 +67,7 @@ public class LevelComponent : MonoBehaviour, ILoad
         freePointsUI.Init(this);
         levelView.Init(this);
         experienceView.Init(this);
+        levelUpView.Init(this);
     }
     
     public void LoadFromSave() //TODO

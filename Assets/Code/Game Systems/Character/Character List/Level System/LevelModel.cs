@@ -87,12 +87,12 @@ public class LevelModel
 
     public void LoadFromOrigin(Origin origin)
     {
-        Level = 1;
-        Exp = 0;
-        FreePoints = 0;
+        level = 1;
+        exp = 0;
+        freePoints = 0;
         
-        PointsPerLevel = 3; //Temp
-        ExpToNextLevel = 100; //Todo
+        pointsPerLevel = 3; //Temp
+        expToNextLevel = 100; //Todo
         
         //countPointsPerLevel = origin.GetCountPointsPerLevel;
         //countExpToNextLevel = origin.countExpToNextLevel;
@@ -115,6 +115,7 @@ public class LevelModel
     {
         Level++;
         FreePoints += PointsPerLevel;
+        SFXAudioManager.Instance.PlaySound("LevelUP");
     }
 
     private int DefaultXpFormula()

@@ -5,6 +5,7 @@ public class WeaponData : SimpleItemData, ICombatElement
 {
     [Header("Weapon Data")]
     [SerializeField] private float damage;
+    [SerializeField] private float speedAttack;
     [SerializeField] [Range(0f, 1f)] private float criticalChance;
     [SerializeField] [Range(0f, 2f)] private float multiplierDamage;
     [SerializeField] private float range;
@@ -15,7 +16,8 @@ public class WeaponData : SimpleItemData, ICombatElement
         set => damage = value;
         get => damage;
     }
-    
+
+    public float SpeedAttack => speedAttack;
     public float GetCriticalChance => criticalChance;
     public float GetMultiplierDamage => multiplierDamage;
     public float GetRange => range;

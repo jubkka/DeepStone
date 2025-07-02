@@ -28,11 +28,19 @@ public class MusicManager : MonoBehaviour
     {
         Singleton();
 
-        audioSource.PlayOneShot(mainMenuMusic.AudioClip, mainMenuMusic.Volume);
+        audioSource.clip = mainMenuMusic.AudioClip;
+        audioSource.volume = mainMenuMusic.Volume;
+        audioSource.Play();
     }
     
     public void ChangeVolume(float volume)
     {
         audioSource.volume = volume;
+    }
+    
+    public void PlayAmbientMusic()
+    {
+        audioSource.clip = ambientMusic;
+        audioSource.Play();
     }
 }

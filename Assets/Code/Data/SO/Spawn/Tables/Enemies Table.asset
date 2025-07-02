@@ -13,5 +13,13 @@ MonoBehaviour:
   m_Name: Enemies Table
   m_EditorClassIdentifier: 
   enemies:
+  - data: {fileID: 11400000, guid: 9c36830a31928b44ea5358a6f91e51e7, type: 2}
+    weight: 164
   - data: {fileID: 11400000, guid: 8dafeb6281dce1d46b3f1ba67e2c9c00, type: 2}
-    weight: 130
+    weight: 709
+  - data: {fileID: 11400000, guid: d16bf2ef0a429eb46bf5b91ddae6baa4, type: 2}
+    weight: 400
+  - data: {fileID: 11400000, guid: cb30166a96719274a9fe93c8762f5e5c, type: 2}
+    weight: 176
+  - data: {fileID: 11400000, guid: cb30166a96719274a9fe93c8762f5e5c, type: 2}
+    weight: 176

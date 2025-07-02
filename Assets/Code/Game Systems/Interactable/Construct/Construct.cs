@@ -3,7 +3,9 @@ using UnityEngine;
 
 public abstract class Construct : Damageable
 {
+    [SerializeField] protected GameObject obj;
     [SerializeField] protected float durability;
+    [SerializeField] private SoundData breakSound;
 
     protected GameObject parent;
 
@@ -20,5 +22,13 @@ public abstract class Construct : Damageable
             Deconstruct();
     }
 
-    protected abstract void Deconstruct();
+    protected virtual void Deconstruct()
+    {
+        GameObject audioObj = new GameObject("TempDeathSound");
+        AudioSource source = audioObj.AddComponent<AudioSource>();
+        source.clip = breakSound.AudioClip;
+        source.Play();
+        
+        Destroy(obj);
+    }
 }

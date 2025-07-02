@@ -34,6 +34,8 @@ public class IndicatorComponent : MonoBehaviour, ILoad
     public Mana Mana => mana;
     public Stamina Stamina => stamina;
 
+    public bool isDead;
+
     public float RegenerationPercent
     {
         get => regenerationPercent;
@@ -84,10 +86,11 @@ public class IndicatorComponent : MonoBehaviour, ILoad
     {
         health.Decrease(value);
 
-        if (health.Current <= 0)
+        if (health.Current <= 0 && !isDead)
         {
             StopAllCoroutines();
             OnHealthZero?.Invoke();
+            isDead = true;
         }
     }
     

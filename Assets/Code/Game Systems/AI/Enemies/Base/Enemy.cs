@@ -8,6 +8,7 @@ public class Enemy : Damageable
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private DamageComponent damageComponent;
+    [SerializeField] private LevelComponent levelComponent;
     
     [Header("Components")]
     [SerializeField] private GameObject enemyObj;
@@ -76,26 +77,22 @@ public class Enemy : Damageable
         indicatorView.Init();
         
         hp = new Health(data.GetHealth, data.GetHealth, indicatorView);
-        animator.SetFloat("SpeedAttackMultiplier", data.SpeedAttack);
-        animator.SetFloat("SpeedMultiplier", data.Speed / 2f);
-        navMeshAgent.speed = data.Speed * 1.5f;
+        animator.SetFloat("SpeedAttackMultiplier", data.GetSpeedAttack);
+        animator.SetFloat("SpeedMultiplier", data.GetSpeed / 2f);
+        navMeshAgent.speed = data.GetSpeed * 1.5f;
     }
 
     public void PlayerInit()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         
-        Debug.Log(player);
-
         if (player != null)
         {
             damageComponent = player.GetComponentInChildren<DamageComponent>();
-            playerCamera = Camera.main;
+            levelComponent = player.GetComponentInChildren<LevelComponent>();
             
-            return;
+            playerCamera = Camera.main;
         }
-
-        player = new GameObject();
     }
 
     public override void GetDamage(float damage)
@@ -105,6 +102,8 @@ public class Enemy : Damageable
         if (health.CheckDeath())
         {
             PlayDeathSound();
+            levelComponent.AddExp(data.GetExpGain);
+            
             Destroy(enemyObj);
         }
     }

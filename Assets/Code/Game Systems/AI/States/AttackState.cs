@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class AttackState : State
 {
+    [SerializeField] private StateManager stateManager;
     [SerializeField] private Enemy enemy;
     
     public override State RunCurrentState()
     {
         if (!enemy.Attack.CanAttackPlayer()) 
-            return StateManager.stateDict.GetState(StateType.Chase);
+            return stateManager.stateDict.GetState(StateType.Chase);
 
         return base.RunCurrentState();
     }

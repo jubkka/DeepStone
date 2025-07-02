@@ -24,7 +24,7 @@ public abstract class Spawner : MonoBehaviour
         levelSize = gridLevel.Grid.GetLength(0);
     }
     
-    public void Spawn()
+    public virtual void Spawn()
     {
         int countTries = 0;
 
@@ -42,13 +42,13 @@ public abstract class Spawner : MonoBehaviour
         }
     }
     
-    private void Create(GameObject prefab, Vector3 spawnPos)
+    protected void Create(GameObject prefab, Vector3 spawnPos)
     {
         Instantiate(prefab, spawnPos, Quaternion.identity, container);
         spawnedPos.Add(spawnPos);
     }
     
-    private bool CheckFreeCells(Vector3 spawnPosition)
+    protected bool CheckFreeCells(Vector3 spawnPosition)
     {
         foreach (var cells in gridLevel.GetOccupiedCellsByObstacles)
         {
@@ -59,7 +59,7 @@ public abstract class Spawner : MonoBehaviour
         return true;
     }
     
-    private Vector3 GetRandomSpawnPosition()
+    protected Vector3 GetRandomSpawnPosition()
     {
         int x = Random.Range(0, levelSize);
         int z = Random.Range(0, levelSize);

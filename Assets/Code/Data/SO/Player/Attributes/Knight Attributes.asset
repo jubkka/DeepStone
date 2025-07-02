@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Knight Attributes
   m_EditorClassIdentifier: 
   strength:
-    value: 20
-    baseValue: 20
+    value: 10
+    baseValue: 10
     modifiers: 
   constitution:
-    value: 20
-    baseValue: 20
+    value: 10
+    baseValue: 10
     modifiers: 
   dexterity:
     value: 10

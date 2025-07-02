@@ -12,14 +12,16 @@ public class EnemyData : ScriptableObject
     [SerializeField] private float damageRange = 1.5f;
     [SerializeField] private float visionRange = 1;
     [SerializeField] private float angleRange = 80f;
+    [SerializeField] private int expGain = 15;
     
     public GameObject GetPrefab => prefab;
-    public string EnemyName => enemyName;
+    public string GetName => enemyName;
     public int GetHealth => health;
     public int GetDamage => damage;
     public float GetDamageRange => damageRange;
     public float GetVisionRange => visionRange;
     public float GetAngleRange => angleRange;
-    public float SpeedAttack => speedAttack;
-    public float Speed => speed;
+    public float GetSpeedAttack => speedAttack;
+    public float GetSpeed => speed;
+    public int GetExpGain => expGain;
 }

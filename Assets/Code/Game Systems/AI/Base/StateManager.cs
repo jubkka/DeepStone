@@ -10,7 +10,7 @@ public class StateManager : MonoBehaviour
     [SerializeField] private Enemy enemy;
     [SerializeField] private List<StateEntry> conditionStatesList;
 
-    public static StateDict stateDict;
+    public StateDict stateDict;
     public StateDict StateDict => stateDict;
 
     public bool isPaused = false;

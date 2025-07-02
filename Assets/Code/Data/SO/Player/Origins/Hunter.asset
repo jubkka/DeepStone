@@ -18,6 +18,19 @@ MonoBehaviour:
   mana: 10
   attributesData: {fileID: 11400000, guid: 6db75e0735f792b468dcfbe3d69a90db, type: 2}
   items:
-  - data: {fileID: 11400000, guid: 5ecc26e9f7a39d944b8752a660099cee, type: 2}
+  - data: {fileID: 11400000, guid: a2e1559b28fb38d4d87fd2cc1f8d5925, type: 2}
     amount: 1
     uniqueId: 
+  - data: {fileID: 11400000, guid: 34ab429fd0be4a04da215b6edcae4acc, type: 2}
+    amount: 1
+    uniqueId: 
+  - data: {fileID: 11400000, guid: b49161306b085e24e993e9dbb8ad8415, type: 2}
+    amount: 1
+    uniqueId: 
+  - data: {fileID: 11400000, guid: 8575791b12719c646a01fe1acf4812a9, type: 2}
+    amount: 1
+    uniqueId: 
+  - data: {fileID: 11400000, guid: 9a6dc927ab0c93b469a65b31009ed428, type: 2}
+    amount: 2
+    uniqueId: 
+  spells: []

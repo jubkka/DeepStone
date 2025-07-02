@@ -15,7 +15,7 @@ public class EnemyIndicatorView : IndicatorView
 
     public void Init()
     {
-        textTMP.text = enemy.Data.EnemyName;
+        textTMP.text = enemy.Data.GetName;
     }
 
     private void OnEnable() => StartCoroutine(AutoHideAfterDelay());

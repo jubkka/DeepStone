@@ -14,7 +14,7 @@ public class DropComponent : MonoBehaviour
     {
         SpawnItem(item);
         
-        SFXAudioManager.Instance.PlaySound("ItemDropped");
+        SFXAudioManager.Instance.PlaySound("Dropped");
         
         OnItemDropped?.Invoke(item);
     }

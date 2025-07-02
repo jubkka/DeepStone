@@ -25,7 +25,6 @@ public class InfoPanelWorldSpace : MonoBehaviour
     private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        cam = Camera.main;
         
         transform.localScale = new Vector3(-0.01f, 0.01f, 0.01f);
     }
@@ -41,12 +40,17 @@ public class InfoPanelWorldSpace : MonoBehaviour
 
     private void Update()
     {
+        if (cam == null)
+            cam = Camera.main;
+        
         if (isVisible && cam != null)
             transform.LookAt(cam.transform);
     }
 
     public InfoPanelWorldSpace Show()
     {
+        cam = Camera.main;
+        
         appearTween?.Kill();
         
         appearTween = canvasGroup.DOFade(1f, doFadeDuration);
