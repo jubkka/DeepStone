@@ -1,0 +1,106 @@
+fileFormatVersion: 2
+guid: 322ac50dd52f48e4eac5f3c5adb38fbd
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 804e1ce4c496647cfa3f1a1134187c71, type: 3}
+  _removeEmptyRootObjects: 1
+  _scaleFactor: 0.095
+  _deduplicateResources: 0
+  _maximumLod: 300
+  _readWriteEnabled: 1
+  _generateColliders: 0
+  _addColliders: 0
+  _swapUvs: 0
+  _generateLightmapUVs: 0
+  _importBlendShapeNames: 1
+  _blendShapeFrameWeight:
+    _option: 0
+    _multiplier: 1
+  _importNormals: 0
+  _importTangents: 0
+  _importCamera: 2
+  _importAnimations: 2
+  _mecanimHumanoidFlip: 0
+  _addAnimatorComponent: 0
+  _animationLoopTime: 1
+  _animationLoopPose: 0
+  _importMaterials: 1
+  _enableGpuInstancing: 0
+  _texturesReadWriteEnabled: 1
+  _generateMipMaps: 1
+  _useSceneNameIdentifier: 1
+  _textureCompression: -50
+  _gltfAsset: '<b>Generator: </b>VoxEdit Beta 10e52324
+
+    <b>Version: </b>2.0
+
+    
+
+    <b>Extras:
+    </b>
+
+'
+  optimizeGameObjects: 0
+  materials:
+  - {fileID: -2144497291649524400, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: -2864529298633459984, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: 4638812574012396124, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: 1469190005951078073, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: -755754134108074450, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  textures:
+  - {fileID: -808246083534644856, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: 693606967796295579, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: -2336466130231310973, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: -6239572015816388464, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: 5233355361776858456, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: 8082365341594080649, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: 2633009572664429162, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: -68637764770617298, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: -3452139294893583784, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  - {fileID: -4843222368509001470, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+  hasSceneData: 1
+  hasAnimationData: 1
+  hasMaterialData: 1
+  hasTextureData: 1
+  animations:
+  - name: Idle
+  - name: walk
+  _extensions: []
+  _textures:
+  - texture: {fileID: -808246083534644856, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {fileID: 693606967796295579, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {fileID: -2336466130231310973, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {fileID: -6239572015816388464, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {fileID: 5233355361776858456, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {fileID: 8082365341594080649, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {fileID: 2633009572664429162, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {fileID: -68637764770617298, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {fileID: -3452139294893583784, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {fileID: -4843222368509001470, guid: 322ac50dd52f48e4eac5f3c5adb38fbd, type: 3}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  _mainAssetIdentifier: scenes/Scene
+  _importPlugins: []

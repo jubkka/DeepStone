@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59639dba7dde47f98702997498e45872, type: 3}
+  m_Name: Skeleton naked
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1091517071831035809, guid: 4c2fcdf99b47bdc4dbb51418bbe5070b, type: 3}
+  enemyName: Skeleton
+  health: 50
+  speed: 4
+  damage: 2
+  speedAttack: 5
+  damageRange: 1.5
+  visionRange: 1
+  angleRange: 80
+  expGain: 15

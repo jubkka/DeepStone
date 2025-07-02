@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2bed3260d1eb24c81b1ef7848e54a8, type: 3}
+  m_Name: Wood shield
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6078749756653668984, guid: 986c287999a45924d87b1dbf8d8fb670, type: 3}
+  itemName: Wood shield
+  description: 
+  id: shield_wood
+  icon: {fileID: -1398160598140617945, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
+  weight: 5
+  cost: 5
+  isLeftHanded: 1

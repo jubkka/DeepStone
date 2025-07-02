@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3eb00f0d2aa4112a2daaae8129cb3e3, type: 3}
+  m_Name: ManaTemporaryEffectData
+  m_EditorClassIdentifier: 
+  nameEffect: Mana Recover
+  effectType: 2
+  icon: {fileID: -3903698935552181814, guid: 6536599f0c4857f438058481b888ab13, type: 3}
+  durationEffect: 5
+  manaRecover: 2
+  manaColor: '#FFF1FF'

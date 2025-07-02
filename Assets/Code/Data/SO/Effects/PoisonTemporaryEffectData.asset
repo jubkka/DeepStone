@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b1b9fb8de5473aa05061eb2e828e35, type: 3}
+  m_Name: PoisonTemporaryEffectData
+  m_EditorClassIdentifier: 
+  nameEffect: Poison
+  icon: {fileID: -1701411217832510789, guid: 9763938b00d5f7348b56963c2a03159b, type: 3}
+  durationEffect: 5
+  poisonDamage: 1

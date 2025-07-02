@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cca66c3fd2c444aabd3b7d6928758e9, type: 3}
+  m_Name: TemplateManager
+  m_EditorClassIdentifier: 
+  weaponTemplate: {fileID: 11400000, guid: 63fc98b1710ec9945953868156346a27, type: 2}
+  armorTemplate: {fileID: 11400000, guid: d704b747b8d30b74288124ffac537251, type: 2}
+  spellTemplate: {fileID: 11400000, guid: 0b9c5525f3b649440b0f7750ae4e7944, type: 2}
+  potionTemplate: {fileID: 11400000, guid: 0b0b755446f544149b6ee3700db36706, type: 2}
+  defaultTemplate: {fileID: 11400000, guid: c56badf8427226247b1ae85f15eeb92d, type: 2}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c10cd015cf5aa46a10cb3dfb9223c9, type: 3}
+  m_Name: Leather ChestPlate 1
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6886760645570904108, guid: 3445087ea79c7cb49b142c207c1083d5, type: 3}
+  itemName: Leather Chestplate 2
+  description: 
+  id: leather_chestplate_2
+  icon: {fileID: 7187015501240946195, guid: e9fedad49d4602c4ca8aebcd2be49a0b, type: 3}
+  weight: 30
+  cost: 250
+  isLeftHanded: 0
+  armorType: 2
+  physicalDef: 20
+  magicalDef: 0
